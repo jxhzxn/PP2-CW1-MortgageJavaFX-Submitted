@@ -10,66 +10,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class Mortgage{
 
-    Stage homepage,fixedDepositStage;
-    Scene homePageScene, fixedDepositScene;
-
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-
-        homepage = primaryStage;
-        homepage.setTitle("Welcome to the Calculator");
-
-
-        //HomePageButtons
-        Button fixedDepositBtn = new Button("Fixed Deposit");
-        Button savingsBtn = new Button("Savings");
-        Button loanBtn = new Button("Loan");
-        Button mortgageBtn = new Button("Mortgage");
-
-        fixedDepositBtn.setPrefSize(150,50);
-        fixedDepositBtn.setLayoutX(120);
-        fixedDepositBtn.setLayoutY(100);
-
-        savingsBtn.setPrefSize(150,50);
-        savingsBtn.setLayoutX(120);
-        savingsBtn.setLayoutY(170);
-
-        loanBtn.setPrefSize(150,50);
-        loanBtn.setLayoutX(120);
-        loanBtn.setLayoutY(240);
-
-        mortgageBtn.setPrefSize(150,50);
-        mortgageBtn.setLayoutX(120);
-        mortgageBtn.setLayoutY(310);
-
-        fixedDepositBtn.setOnAction(e -> {
-            homepage.close();
-            FixedDeposit.display();
-        });
-
-        savingsBtn.setOnAction(e -> {
-            homepage.close();
-            Saving.display();
-        });
-
-        loanBtn.setOnAction(e -> {
-            homepage.close();
-            Loan.display();
-        });
-
-        mortgageBtn.setOnAction(e -> {
-            homepage.close();
-            Mortgage.display();
-        });
-
-
-
-
-
-
-        //Keyboard Buttons
+    public static void display(){
+        Stage window = new Stage();
+        Scene keyBoardScene;
+        window.setTitle("Mortgage");
 
         Button btn0 = new Button("0");
         Button btn1 = new Button("1");
@@ -140,31 +86,30 @@ public class Main extends Application {
         btnEnter.setLayoutX(400);
         btnEnter.setLayoutY(390);
 
+        btnEnter.setOnAction(e -> {
+            window.close();
+            HomePage.display();
+        });
 
 
 
 
 
 
-        Pane homePageRoot = new Pane();
-        homePageRoot.getChildren().addAll(fixedDepositBtn,savingsBtn,loanBtn,mortgageBtn);
 
-        Pane fixedDepositRoot = new Pane();
-        fixedDepositRoot.getChildren().addAll();
+        Pane root2 = new Pane();
+        root2.getChildren().addAll(btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btnEnter,btn0,btnPoint,btnC);
 
+        keyBoardScene = new Scene(root2,900,900);
 
-
-        homePageScene = new Scene(homePageRoot,400,400);
-        fixedDepositScene = new Scene(fixedDepositRoot,400,400);
-
-
-
-        primaryStage.setScene(homePageScene);
-        primaryStage.show();
+        window.setScene(keyBoardScene);
+        window.show();
     }
 
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+
+
+
 }
+
+

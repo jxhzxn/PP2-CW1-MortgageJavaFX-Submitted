@@ -44,6 +44,21 @@ public class HomePage{
             FixedDeposit.display();
         });
 
+        savingsBtn.setOnAction(e -> {
+            window.close();
+            Saving.display();
+        });
+
+        loanBtn.setOnAction(e -> {
+            window.close();
+            Loan.display();
+        });
+
+        mortgageBtn.setOnAction(e -> {
+            window.close();
+            Loan.display();
+        });
+
         Pane homePageRoot = new Pane();
         homePageRoot.getChildren().addAll(fixedDepositBtn,savingsBtn,loanBtn,mortgageBtn);
 
