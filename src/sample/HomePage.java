@@ -23,19 +23,25 @@ public class HomePage{
         Button loanBtn = new Button("Loan");
         Button mortgageBtn = new Button("Mortgage");
 
-        fixedDepositBtn.setPrefSize(150,50);
+        //Setting the ID of the Buttons
+        fixedDepositBtn.setId("homeBtn");
+        savingsBtn.setId("homeBtn");
+        loanBtn.setId("homeBtn");
+        mortgageBtn.setId("homeBtn");
+
+        fixedDepositBtn.setPrefSize(180,50);
         fixedDepositBtn.setLayoutX(120);
         fixedDepositBtn.setLayoutY(100);
 
-        savingsBtn.setPrefSize(150,50);
+        savingsBtn.setPrefSize(180,50);
         savingsBtn.setLayoutX(120);
         savingsBtn.setLayoutY(170);
 
-        loanBtn.setPrefSize(150,50);
+        loanBtn.setPrefSize(180,50);
         loanBtn.setLayoutX(120);
         loanBtn.setLayoutY(240);
 
-        mortgageBtn.setPrefSize(150,50);
+        mortgageBtn.setPrefSize(180,50);
         mortgageBtn.setLayoutX(120);
         mortgageBtn.setLayoutY(310);
 
@@ -64,6 +70,7 @@ public class HomePage{
 
 
         homePageScene = new Scene(homePageRoot,400,400);
+        homePageScene.getStylesheets().add(HomePage.class.getResource("stylesheet.css").toExternalForm());
 
         window.setScene(homePageScene);
         window.show();

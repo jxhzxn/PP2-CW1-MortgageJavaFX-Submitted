@@ -31,7 +31,6 @@ public class Saving{
         Button btnEnter = new Button("Enter");
         Button btnC = new Button("C");
 
-
         btn0.setPrefSize(50,50);
         btn1.setPrefSize(50,50);
         btn2.setPrefSize(50,50);
@@ -91,12 +90,6 @@ public class Saving{
             HomePage.display();
         });
 
-
-
-
-
-
-
         Pane root2 = new Pane();
         root2.getChildren().addAll(btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btnEnter,btn0,btnPoint,btnC);
 
@@ -105,10 +98,6 @@ public class Saving{
         window.setScene(keyBoardScene);
         window.show();
     }
-
-
-
-
 
 }
 

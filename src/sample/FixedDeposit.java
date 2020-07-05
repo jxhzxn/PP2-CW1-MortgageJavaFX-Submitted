@@ -5,9 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class FixedDeposit{
@@ -16,6 +18,23 @@ public class FixedDeposit{
         Stage window = new Stage();
         Scene keyBoardScene;
         window.setTitle("Fixed Deposit");
+
+        Text capitalText = new Text("Capital");
+        Text rateText = new Text("Rate");
+        Text periodText = new Text("Period");
+        Text fvText = new Text("FV");
+
+        capitalText.setId("capitalText");
+        rateText.setId("rateText");
+        periodText.setId("periodText");
+        fvText.setId("fvText");
+
+        capitalText.setLayoutY(10);
+        rateText.setLayoutY(30);
+        periodText.setLayoutY(50);
+        fvText.setLayoutY(70);
+
+
 
         Button btn0 = new Button("0");
         Button btn1 = new Button("1");
@@ -98,7 +117,7 @@ public class FixedDeposit{
 
 
         Pane root2 = new Pane();
-        root2.getChildren().addAll(btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btnEnter,btn0,btnPoint,btnC);
+        root2.getChildren().addAll(capitalText,rateText,periodText,fvText,btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btnEnter,btn0,btnPoint,btnC);
 
         keyBoardScene = new Scene(root2,900,900);
 

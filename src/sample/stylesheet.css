@@ -1,0 +1,12 @@
+#homeBtn{
+    -fx-background-color: #9B4A97FF;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 100px;
+    -fx-background-radius: 20px;
+
+}
+
+#homeBtn:hover{
+    -fx-font-size: 18px;
+}
