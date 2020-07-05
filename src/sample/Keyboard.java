@@ -1,114 +1,129 @@
 package sample;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
+import java.io.FileNotFoundException;
 
-public class Keyboard{
+public class Keyboard {
+    public static Pane displayKeyboard(double x, double y){
+        Pane keyboardPane = new Pane();
 
-    public static void display(){
-        Stage window = new Stage();
-        Scene keyBoardScene;
-
-        Button btn0 = new Button("0");
-        Button btn1 = new Button("1");
-        Button btn2 = new Button("2");
-        Button btn3 = new Button("3");
-        Button btn4 = new Button("4");
-        Button btn5 = new Button("5");
-        Button btn6 = new Button("6");
-        Button btn7 = new Button("7");
-        Button btn8 = new Button("8");
-        Button btn9 = new Button("9");
-        Button btnPoint = new Button(".");
-        Button btnEnter = new Button("Enter");
-        Button btnC = new Button("C");
+        TextField keyboardText = new TextField();
+        keyboardText.setLayoutX(400);
+        keyboardText.setLayoutY(60);
+        keyboardText.setPrefHeight(70);
+        keyboardText.setPrefWidth(230);
+        keyboardText.setId("keyboardText");
 
 
-        btn0.setPrefSize(50,50);
-        btn1.setPrefSize(50,50);
-        btn2.setPrefSize(50,50);
-        btn3.setPrefSize(50,50);
-        btn4.setPrefSize(50,50);
-        btn5.setPrefSize(50,50);
-        btn6.setPrefSize(50,50);
-        btn7.setPrefSize(50,50);
-        btn8.setPrefSize(50,50);
-        btn9.setPrefSize(50,50);
-        btnPoint.setPrefSize(50,50);
-        btnEnter.setPrefSize(170,50);
-        btnC.setPrefSize(50,50);
+        Button button0 = createButton("0",480,390,70,70);
+        Button button1 = createButton("1",400,310,70,70);
+        Button button2 = createButton("2",480,310,70,70);
+        Button button3 = createButton("3",560,310,70,70);
+        Button button4 = createButton("4",400,230,70,70);
+        Button button5 = createButton("5",480,230,70,70);
+        Button button6 = createButton("6",560,230,70,70);
+        Button button7 = createButton("7",400,150,70,70);
+        Button button8 = createButton("8",480,150,70,70);
+        Button button9 = createButton("9",560,150,70,70);
+        Button buttonPoint = createButton(".",400,390,70,70);
+        Button buttonPOM = createButton("+",560,470,70,70);
+        Button buttonEnter = createButton("Enter",400,470,150,70);
+        Button buttonC = createButton("C",560,390,70,70);
 
-
-        btn9.setLayoutX(520);
-        btn9.setLayoutY(150);
-
-        btn8.setLayoutX(460);
-        btn8.setLayoutY(150);
-
-        btn7.setLayoutX(400);
-        btn7.setLayoutY(150);
-
-        btn6.setLayoutX(520);
-        btn6.setLayoutY(210);
-
-        btn5.setLayoutX(460);
-        btn5.setLayoutY(210);
-
-        btn4.setLayoutX(400);
-        btn4.setLayoutY(210);
-
-        btn3.setLayoutX(520);
-        btn3.setLayoutY(270);
-
-        btn2.setLayoutX(460);
-        btn2.setLayoutY(270);
-
-        btn1.setLayoutX(400);
-        btn1.setLayoutY(270);
-
-        btnC.setLayoutX(520);
-        btnC.setLayoutY(330);
-
-        btn0.setLayoutX(460);
-        btn0.setLayoutY(330);
-
-        btnPoint.setLayoutX(400);
-        btnPoint.setLayoutY(330);
-
-        btnEnter.setLayoutX(400);
-        btnEnter.setLayoutY(390);
-
-        btnEnter.setOnAction(e -> {
-            window.close();
-            HomePage.display();
+        button0.setOnAction(event -> {
+            String currentVal = keyboardText.getText();
+            String btn0Value = button0.getText();
+            keyboardText.setText(currentVal+btn0Value);
         });
 
+        button1.setOnAction(event -> {
+            String currentVal = keyboardText.getText();
+            String btn1Value = button1.getText();
+            keyboardText.setText(currentVal+btn1Value);
+        });
+
+        button2.setOnAction(event -> {
+            String currentVal = keyboardText.getText();
+            String btn2Value = button2.getText();
+            keyboardText.setText(currentVal+btn2Value);
+        });
+
+        button3.setOnAction(event -> {
+            String currentVal = keyboardText.getText();
+            String btn3Value = button3.getText();
+            keyboardText.setText(currentVal+btn3Value);
+        });
+
+        button4.setOnAction(event -> {
+            String currentVal = keyboardText.getText();
+            String btn4Value = button4.getText();
+            keyboardText.setText(currentVal+btn4Value);
+        });
+
+        button5.setOnAction(event -> {
+            String currentVal = keyboardText.getText();
+            String btn5Value = button5.getText();
+            keyboardText.setText(currentVal+btn5Value);
+        });
+
+        button6.setOnAction(event -> {
+            String currentVal = keyboardText.getText();
+            String btn6Value = button6.getText();
+            keyboardText.setText(currentVal+btn6Value);
+        });
+
+        button7.setOnAction(event -> {
+            String currentVal = keyboardText.getText();
+            String btn7Value = button7.getText();
+            keyboardText.setText(currentVal+btn7Value);
+        });
+
+        button8.setOnAction(event -> {
+            String currentVal = keyboardText.getText();
+            String btn8Value = button8.getText();
+            keyboardText.setText(currentVal+btn8Value);
+        });
+
+        button9.setOnAction(event -> {
+            String currentVal = keyboardText.getText();
+            String btn9Value = button9.getText();
+            keyboardText.setText(currentVal+btn9Value);
+        });
+
+        buttonPoint.setOnAction(event -> {
+            String currentVal = keyboardText.getText();
+            String btnPointValue = buttonPoint.getText();
+            keyboardText.setText(currentVal+btnPointValue);
+        });
+
+        buttonC.setOnAction(event -> {
+            keyboardText.clear();
+        });
+
+        keyboardPane.getChildren().addAll(
+                button0,button1,button2,button3,button4,button5,button6,button7,button8,button9,
+                buttonC,buttonPOM,buttonPoint,buttonEnter,keyboardText
+        );
+        keyboardPane.setLayoutX(x);
+        keyboardPane.setLayoutY(y);
+
+        keyboardPane.getStylesheets().add(Keyboard.class.getResource("stylesheet.css").toExternalForm());
 
 
+        return keyboardPane;
 
-
-
-
-        Pane root2 = new Pane();
-        root2.getChildren().addAll(btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btnEnter,btn0,btnPoint,btnC);
-
-        keyBoardScene = new Scene(root2,900,900);
-
-        window.setScene(keyBoardScene);
-        window.show();
     }
 
+    private static Button createButton(String ButtonText, double x, double y, double j, double k){
+        Button button = new Button(ButtonText);
+        button.setLayoutX(x);
+        button.setLayoutY(y);
+        button.setId("keyboardButton");
+        button.setPrefSize(j,k);
 
-
-
+        return button;
+    }
 
 }
-
-

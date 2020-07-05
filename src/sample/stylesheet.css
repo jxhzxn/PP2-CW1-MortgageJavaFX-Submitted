@@ -10,3 +10,43 @@
 #homeBtn:hover{
     -fx-font-size: 18px;
 }
+
+#fdText{
+    -fx-font-size: 30px;
+}
+
+#keyboardText{
+    -fx-border-color: black;
+    -fx-border-width: 4px;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+#keyboardButton{
+    -fx-background-color: #FAD0C9FF;
+    -fx-border-color: black;
+    -fx-border-width: 4px;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+#keyboardButton:hover{
+    -fx-background-color: #FAD0C9FF;
+    -fx-border-color: black;
+    -fx-border-width: 5px;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+#commonField{
+    -fx-border-color: black;
+    -fx-border-width: 4px;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}

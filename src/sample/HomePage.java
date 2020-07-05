@@ -10,6 +10,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
+
 public class HomePage{
 
     public static void display(){
@@ -47,12 +49,20 @@ public class HomePage{
 
         fixedDepositBtn.setOnAction(e -> {
             window.close();
-            FixedDeposit.display();
+            try {
+                FixedDeposit.display();
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
         });
 
         savingsBtn.setOnAction(e -> {
             window.close();
-            Saving.display();
+            try {
+                Saving.display();
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
         });
 
         loanBtn.setOnAction(e -> {

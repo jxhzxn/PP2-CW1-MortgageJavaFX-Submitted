@@ -5,100 +5,111 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.io.FileNotFoundException;
+
+import static sample.Keyboard.displayKeyboard;
 
 public class Saving{
 
-    public static void display(){
+    public static void display() throws FileNotFoundException {
         Stage window = new Stage();
         Scene keyBoardScene;
-        window.setTitle("Saving");
+        window.setTitle("Simple Savings");
 
-        Button btn0 = new Button("0");
-        Button btn1 = new Button("1");
-        Button btn2 = new Button("2");
-        Button btn3 = new Button("3");
-        Button btn4 = new Button("4");
-        Button btn5 = new Button("5");
-        Button btn6 = new Button("6");
-        Button btn7 = new Button("7");
-        Button btn8 = new Button("8");
-        Button btn9 = new Button("9");
-        Button btnPoint = new Button(".");
-        Button btnEnter = new Button("Enter");
-        Button btnC = new Button("C");
+        Text futureValueText = new Text("Future Value");
+        Text presentValueText = new Text("Present Value");
+        Text interestRateText = new Text("Interest Rate");
+        Text yearsText = new Text("Time in Years");
 
-        btn0.setPrefSize(50,50);
-        btn1.setPrefSize(50,50);
-        btn2.setPrefSize(50,50);
-        btn3.setPrefSize(50,50);
-        btn4.setPrefSize(50,50);
-        btn5.setPrefSize(50,50);
-        btn6.setPrefSize(50,50);
-        btn7.setPrefSize(50,50);
-        btn8.setPrefSize(50,50);
-        btn9.setPrefSize(50,50);
-        btnPoint.setPrefSize(50,50);
-        btnEnter.setPrefSize(170,50);
-        btnC.setPrefSize(50,50);
+        futureValueText.setId("fdText");
+        presentValueText.setId("fdText");
+        interestRateText.setId("fdText");
+        yearsText.setId("fdText");
+
+        futureValueText.setLayoutX(60);
+        futureValueText.setLayoutY(220);
+
+        presentValueText.setLayoutX(60);
+        presentValueText.setLayoutY(290);
+
+        interestRateText.setLayoutX(60);
+        interestRateText.setLayoutY(360);
+
+        yearsText.setLayoutX(60);
+        yearsText.setLayoutY(430);
 
 
-        btn9.setLayoutX(520);
-        btn9.setLayoutY(150);
+        TextField futureValueField =     createTextField(300,180,120,60);
+        TextField presentValueField =    createTextField(300,250,120,60);
+        TextField interestRateField =   createTextField(300,320,120,60);
+        TextField yearsField =          createTextField(300,390,120,60);
 
-        btn8.setLayoutX(460);
-        btn8.setLayoutY(150);
+        installListener(futureValueField,presentValueField,interestRateField,yearsField);
 
-        btn7.setLayoutX(400);
-        btn7.setLayoutY(150);
 
-        btn6.setLayoutX(520);
-        btn6.setLayoutY(210);
 
-        btn5.setLayoutX(460);
-        btn5.setLayoutY(210);
+        Button btnBack = new Button("Back");
 
-        btn4.setLayoutX(400);
-        btn4.setLayoutY(210);
-
-        btn3.setLayoutX(520);
-        btn3.setLayoutY(270);
-
-        btn2.setLayoutX(460);
-        btn2.setLayoutY(270);
-
-        btn1.setLayoutX(400);
-        btn1.setLayoutY(270);
-
-        btnC.setLayoutX(520);
-        btnC.setLayoutY(330);
-
-        btn0.setLayoutX(460);
-        btn0.setLayoutY(330);
-
-        btnPoint.setLayoutX(400);
-        btnPoint.setLayoutY(330);
-
-        btnEnter.setLayoutX(400);
-        btnEnter.setLayoutY(390);
-
-        btnEnter.setOnAction(e -> {
+        btnBack.setOnAction(e -> {
             window.close();
             HomePage.display();
         });
 
         Pane root2 = new Pane();
-        root2.getChildren().addAll(btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btnEnter,btn0,btnPoint,btnC);
+        root2.getChildren().addAll(
+                futureValueField,futureValueText,presentValueText,interestRateText,yearsText,btnBack,Keyboard.displayKeyboard(100,20),
+                presentValueField,interestRateField,yearsField
+        );
 
-        keyBoardScene = new Scene(root2,900,900);
+        keyBoardScene = new Scene(root2,900,700);
+        keyBoardScene.getStylesheets().add(HomePage.class.getResource("stylesheet.css").toExternalForm());
 
         window.setScene(keyBoardScene);
         window.show();
+
+
     }
 
+    private static TextField createTextField(double x, double y, double j, double k){
+        TextField textField = new TextField();
+        textField.setLayoutX(x);
+        textField.setLayoutY(y);
+        textField.setId("commonField");
+        textField.setPrefSize(j,k);
+
+        return textField;
+    }
+
+    private static void installListener(TextField... textFields) {
+
+        // Install the same listener on all of them
+        for (TextField textField : textFields) {
+            textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
+
+                // Set the selectedTextField to null whenever focus is lost. This accounts for the
+                // TextField losing focus to another control that is NOT a TextField
+                TextField selectedTextField = null;
+
+                if (newValue) {
+                    // The new textfield is focused, so set the global reference
+                    selectedTextField = textField;
+                    System.out.println("Selected Text: " + selectedTextField.getText());
+                }
+            });
+        }
+    }
+
+
+
+
+
+
 }
-
-
