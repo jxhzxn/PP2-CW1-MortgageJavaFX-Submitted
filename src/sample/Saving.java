@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
 
+import static java.lang.Double.parseDouble;
+
 public class Saving{
 
     public static void display() throws FileNotFoundException {
@@ -60,15 +62,51 @@ public class Saving{
                 WarningBox.display("Lack on Values","Leave Only 1 field Blank");
             }else if(checkAll(futureValueField,presentValueField,interestRateField,yearsField)==1 && futureValueField.getText().trim().isEmpty()){
                 //calculate future value
-                System.out.println("calculate future value");
+
+                double presentValue = parseDouble(presentValueField.getText());
+                double interestRate = parseDouble(interestRateField.getText())/100;
+                double years = parseDouble(yearsField.getText());
+                double nOF = 12.0;
+
+                double futureValeOutcome = presentValue*Math.pow(((1+(interestRate/nOF))),(nOF*years));
+                futureValueField.setText(String.valueOf(futureValeOutcome));
+
             }else if(checkAll(futureValueField,presentValueField,interestRateField,yearsField)==1 && presentValueField.getText().trim().isEmpty()){
                 //calculate present value
+
+                double futureValue = parseDouble(futureValueField.getText());
+                double interestRate = parseDouble(interestRateField.getText())/100;
+                double years = parseDouble(yearsField.getText());
+                double nOF = 12.0;
+
+                double presentValueOutcome = futureValue/Math.pow(1+(interestRate/nOF),(nOF*years));
+                presentValueField.setText(String.valueOf(presentValueOutcome));
+
                 System.out.println("calculate present value");
+
             }else if(checkAll(futureValueField,presentValueField,interestRateField,yearsField)==1 && interestRateField.getText().trim().isEmpty()){
                 //calculate interestRateField
+
+                double futureValue = parseDouble(futureValueField.getText());
+                double presentValue = parseDouble(presentValueField.getText());
+                double years = parseDouble(yearsField.getText());
+                double nOF = 12.0;
+
+                double interestRateOutcome = nOF*(Math.pow((futureValue/presentValue),(1/nOF*years))-1);
+                interestRateField.setText(String.valueOf(interestRateOutcome));
+
                 System.out.println("calculate Interest");
             }else if(checkAll(futureValueField,presentValueField,interestRateField,yearsField)==1 && yearsField.getText().trim().isEmpty()){
                 //calculate years
+
+                double futureValue = parseDouble(futureValueField.getText());
+                double presentValue = parseDouble(presentValueField.getText());
+                double interestRate = parseDouble(interestRateField.getText())/100;
+                double nOF = 12.0;
+
+                double yearsOutcome = (Math.log(futureValue/presentValue))/nOF*(Math.log(1+(interestRate/nOF)));
+                yearsField.setText(String.valueOf(yearsOutcome));
+
                 System.out.println("calculate Years");
             }
         });
@@ -111,14 +149,14 @@ public class Saving{
                     count++;
                 }
         }
-        System.out.println(count);
+//        System.out.println(count);
         return count;
     }
 
     private static void activeCheck(TextField... textFields){
         for (TextField textField : textFields) {
             textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
-                System.out.println(textField.getId()+" is Active");
+//                System.out.println(textField.getId()+" is Active");
                 String active = textField.getId();
             });
         }
@@ -149,7 +187,7 @@ public class Saving{
                 if (newValue) {
                     // The new textfield is focused, so set the global reference
                     selectedTextField = textField;
-                    System.out.println("Selected Text: " + selectedTextField.getText());
+//                    System.out.println("Selected Text: " + selectedTextField.getText());
                 }
             });
         }
