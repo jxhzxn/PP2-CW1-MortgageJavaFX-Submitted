@@ -52,7 +52,34 @@
     -fx-font-weight: bold;
 }
 
-#commonField{
+#futureValueField{
+    -fx-border-color: black;
+    -fx-border-width: 4px;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+#presentValueField{
+    -fx-border-color: black;
+    -fx-border-width: 4px;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+#interestRateField{
+    -fx-border-color: black;
+    -fx-border-width: 4px;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+#yearsField{
     -fx-border-color: black;
     -fx-border-width: 4px;
     -fx-font-size: 22px;

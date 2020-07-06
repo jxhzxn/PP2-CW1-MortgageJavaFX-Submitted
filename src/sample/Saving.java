@@ -1,21 +1,13 @@
 package sample;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
-
-import static sample.Keyboard.displayKeyboard;
 
 public class Saving{
 
@@ -28,6 +20,12 @@ public class Saving{
         Text presentValueText = new Text("Present Value");
         Text interestRateText = new Text("Interest Rate");
         Text yearsText = new Text("Time in Years");
+
+        Button calculateBtn = new Button("Calculate");
+        calculateBtn.setId("keyboardButton");
+        calculateBtn.setLayoutX(60);
+        calculateBtn.setLayoutY(500);
+
 
         futureValueText.setId("fdText");
         presentValueText.setId("fdText");
@@ -47,12 +45,16 @@ public class Saving{
         yearsText.setLayoutY(430);
 
 
-        TextField futureValueField =     createTextField(300,180,120,60);
-        TextField presentValueField =    createTextField(300,250,120,60);
-        TextField interestRateField =   createTextField(300,320,120,60);
-        TextField yearsField =          createTextField(300,390,120,60);
+        TextField futureValueField =     createTextField(300,180,120,60,"futureValueField");
+        TextField presentValueField =    createTextField(300,250,120,60,"presentValueField");
+        TextField interestRateField =   createTextField(300,320,120,60,"interestRateField");
+        TextField yearsField =          createTextField(300,390,120,60,"yearsField");
 
-        installListener(futureValueField,presentValueField,interestRateField,yearsField);
+//        installListener(futureValueField,presentValueField,interestRateField,yearsField);
+
+        calculateBtn.setOnAction(event -> {
+            checkAll(futureValueField,presentValueField,interestRateField,yearsField);
+        });
 
 
 
@@ -69,7 +71,7 @@ public class Saving{
         Pane root2 = new Pane();
         root2.getChildren().addAll(
                 futureValueField,futureValueText,presentValueText,interestRateText,yearsText,btnBack,Keyboard.displayKeyboard(100,20),
-                presentValueField,interestRateField,yearsField
+                presentValueField,interestRateField,yearsField,calculateBtn
         );
 
         keyBoardScene = new Scene(root2,900,700);
@@ -80,13 +82,26 @@ public class Saving{
         window.show();
 
 
+
     }
 
-    private static TextField createTextField(double x, double y, double j, double k){
+    private static void checkAll(TextField... textFields){
+        for(TextField textField : textFields){
+//            textField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                if (textField.getText().trim().isEmpty()){
+                    System.out.println(textField.getId()+" is Null");
+                }
+//            });
+        }
+    }
+
+
+
+    private static TextField createTextField(double x, double y, double j, double k,String id){
         TextField textField = new TextField();
         textField.setLayoutX(x);
         textField.setLayoutY(y);
-        textField.setId("commonField");
+        textField.setId(id);
         textField.setPrefSize(j,k);
 
         return textField;
