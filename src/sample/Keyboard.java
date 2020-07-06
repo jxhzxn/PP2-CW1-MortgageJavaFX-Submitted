@@ -111,7 +111,6 @@ public class Keyboard {
 
         keyboardPane.getStylesheets().add(Keyboard.class.getResource("stylesheet.css").toExternalForm());
 
-
         return keyboardPane;
 
     }
@@ -125,5 +124,4 @@ public class Keyboard {
 
         return button;
     }
-
 }

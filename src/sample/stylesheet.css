@@ -23,7 +23,8 @@
 }
 
 #fdText{
-    -fx-font-size: 30px;
+    -fx-font-size: 25px;
+
 }
 
 #keyboardText{
@@ -61,6 +62,9 @@
     -fx-border-radius: 10px;
 }
 
+
+
+
 #presentValueField{
     -fx-border-color: black;
     -fx-border-width: 4px;
@@ -69,6 +73,8 @@
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
 }
+
+
 
 #interestRateField{
     -fx-border-color: black;
