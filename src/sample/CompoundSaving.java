@@ -11,28 +11,35 @@ import java.io.FileNotFoundException;
 
 import static java.lang.Double.parseDouble;
 
-public class Saving{
+public class CompoundSaving {
 
     public static void display() throws FileNotFoundException {
         Stage window = new Stage();
         Scene keyBoardScene;
-        window.setTitle("Simple Savings");
+        window.setTitle("Compound Savings");
 
         Text futureValueText = new Text("Future Value");
         Text presentValueText = new Text("Present Value");
         Text interestRateText = new Text("Interest Rate");
+        Text monthlyPaymentText = new Text("Monthly Payments");
         Text yearsText = new Text("Time in Years");
 
         Button calculateBtn = new Button("Calculate");
         calculateBtn.setId("keyboardButton");
         calculateBtn.setLayoutX(60);
-        calculateBtn.setLayoutY(500);
+        calculateBtn.setLayoutY(600);
+
+        Button resetBtn = new Button("Reset");
+        resetBtn.setId("keyboardButton");
+        resetBtn.setLayoutX(250);
+        resetBtn.setLayoutY(600);
 
 
         futureValueText.setId("fdText");
         presentValueText.setId("fdText");
         interestRateText.setId("fdText");
         yearsText.setId("fdText");
+        monthlyPaymentText.setId("fdText");
 
         futureValueText.setLayoutX(60);
         futureValueText.setLayoutY(220);
@@ -43,22 +50,30 @@ public class Saving{
         interestRateText.setLayoutX(60);
         interestRateText.setLayoutY(360);
 
+        monthlyPaymentText.setLayoutX(60);
+        monthlyPaymentText.setLayoutY(430);
+
         yearsText.setLayoutX(60);
-        yearsText.setLayoutY(430);
+        yearsText.setLayoutY(500);
 
 
 
 //        TextField futureValueField =     createTextField(300,180,120,60,"futureValueField");
-        TextField futureValueField = createTextField(300,180,120,60,"futureValueField");
-        TextField presentValueField =    createTextField(300,250,120,60,"presentValueField");
-        TextField interestRateField =   createTextField(300,320,120,60,"interestRateField");
-        TextField yearsField =          createTextField(300,390,120,60,"yearsField");
+        TextField futureValueField =        createTextField(300,180,120,60,"futureValueField");
+        TextField presentValueField =       createTextField(300,250,120,60,"presentValueField");
+        TextField interestRateField =       createTextField(300,320,120,60,"interestRateField");
+        TextField monthlyPaymentField =     createTextField(300,390,120,60,"yearsField");
+        TextField yearsField =              createTextField(300,460,120,60,"yearsField");
 
 //        installListener(futureValueField,presentValueField,interestRateField,yearsField);
 
         calculateBtn.setOnAction(event -> {
 
-            if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)>1){
+            if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)==0){
+
+                WarningBox.display("Everything filled","Leave the field which want to Calculate Blank");
+
+            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)>1){
 
                 WarningBox.display("Lack on Values","Leave Only 1 field Blank");
 
@@ -109,8 +124,14 @@ public class Saving{
                 double yearsOutcome = (Math.log(futureValue/presentValue))/nOF*(Math.log(1+(interestRate/nOF)));
                 yearsField.setText(String.valueOf(yearsOutcome));
 
-                System.out.println("calculate Years");
             }
+        });
+
+        resetBtn.setOnAction(e->{
+            futureValueField.clear();
+            presentValueField.clear();
+            interestRateField.clear();
+            yearsField.clear();
         });
 
         activeCheck(futureValueField,presentValueField,interestRateField,yearsField);
@@ -129,27 +150,24 @@ public class Saving{
 
         Pane root2 = new Pane();
         root2.getChildren().addAll(
-               futureValueText,presentValueText,interestRateText,yearsText,btnBack,Keyboard.displayKeyboard(100,20),
-                presentValueField,interestRateField,yearsField,calculateBtn, futureValueField
+                futureValueText,presentValueText,interestRateText,monthlyPaymentText,yearsText,btnBack,Keyboard.displayKeyboard(200,40),
+                presentValueField,interestRateField,monthlyPaymentField,yearsField,calculateBtn, futureValueField, resetBtn
         );
 
         keyBoardScene = new Scene(root2,900,700);
         keyBoardScene.getStylesheets().add(HomePage.class.getResource("stylesheet.css").toExternalForm());
-        root2.setStyle("-fx-background-color: #e1ffc2;");
+        root2.setStyle("-fx-background-color: #f7cccc;");
 
         window.setScene(keyBoardScene);
         window.show();
-
-
-
     }
 
     private static int checkAll(TextField... textFields){
         int count = 0;
         for(TextField textField : textFields){
-                if (textField.getText().trim().isEmpty()){
-                    count++;
-                }
+            if (textField.getText().trim().isEmpty()){
+                count++;
+            }
         }
 //        System.out.println(count);
         return count;
@@ -194,10 +212,4 @@ public class Saving{
             });
         }
     }
-
-
-
-
-
-
 }

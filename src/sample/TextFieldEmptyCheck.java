@@ -11,7 +11,6 @@ import javafx.scene.control.TextField;
                     count++;
                 }
             }
-    //        System.out.println(count);
             return count;
         }
 }

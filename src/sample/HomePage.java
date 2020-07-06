@@ -1,13 +1,8 @@
 package sample;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
@@ -17,49 +12,52 @@ public class HomePage{
     public static void display(){
         Stage window = new Stage();
         Scene homePageScene;
-        window.setTitle("Welcome to the Calculator");
+        window.setTitle("Financial Calculator");
 
         //HomePageButtons
-        Button fixedDepositBtn = new Button("Fixed Deposit");
-        Button savingsBtn = new Button("Savings");
-        Button loanBtn = new Button("Loan");
+
+        Button simpleSavingBtn = new Button("Simple Savings");
+        Button compoundSavingBtn = new Button("Compound Savings");
+        Button loanBtn = new Button("Loans");
         Button mortgageBtn = new Button("Mortgage");
 
         //Setting the ID of the Buttons
-        fixedDepositBtn.setId("homeBtn");
-        savingsBtn.setId("homeBtn");
+        compoundSavingBtn.setId("homeBtn");
+        simpleSavingBtn.setId("homeBtn");
         loanBtn.setId("homeBtn");
         mortgageBtn.setId("homeBtn");
 
-        fixedDepositBtn.setPrefSize(230,70);
-        fixedDepositBtn.setLayoutX(550);
-        fixedDepositBtn.setLayoutY(160);
+        simpleSavingBtn.setPrefSize(330,70);
+        simpleSavingBtn.setLayoutX(500);
+        simpleSavingBtn.setLayoutY(160);
 
-        savingsBtn.setPrefSize(230,70);
-        savingsBtn.setLayoutX(550);
-        savingsBtn.setLayoutY(260);
+        compoundSavingBtn.setPrefSize(330,70);
+        compoundSavingBtn.setLayoutX(500);
+        compoundSavingBtn.setLayoutY(260);
 
-        loanBtn.setPrefSize(230,70);
-        loanBtn.setLayoutX(550);
+
+
+        loanBtn.setPrefSize(330,70);
+        loanBtn.setLayoutX(500);
         loanBtn.setLayoutY(360);
 
-        mortgageBtn.setPrefSize(230,70);
-        mortgageBtn.setLayoutX(550);
+        mortgageBtn.setPrefSize(330,70);
+        mortgageBtn.setLayoutX(500);
         mortgageBtn.setLayoutY(460);
 
-        fixedDepositBtn.setOnAction(e -> {
+        compoundSavingBtn.setOnAction(e -> {
             window.close();
             try {
-                FixedDeposit.display();
+                CompoundSaving.display();
             } catch (FileNotFoundException fileNotFoundException) {
                 fileNotFoundException.printStackTrace();
             }
         });
 
-        savingsBtn.setOnAction(e -> {
+        simpleSavingBtn.setOnAction(e -> {
             window.close();
             try {
-                Saving.display();
+                SimpleSaving.display();
             } catch (FileNotFoundException fileNotFoundException) {
                 fileNotFoundException.printStackTrace();
             }
@@ -76,7 +74,7 @@ public class HomePage{
         });
 
         Pane homePageRoot = new Pane();
-        homePageRoot.getChildren().addAll(fixedDepositBtn,savingsBtn,loanBtn,mortgageBtn);
+        homePageRoot.getChildren().addAll(compoundSavingBtn,simpleSavingBtn,loanBtn,mortgageBtn);
 
 
         homePageScene = new Scene(homePageRoot,900,700);
