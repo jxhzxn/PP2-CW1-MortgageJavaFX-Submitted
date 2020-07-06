@@ -57,10 +57,12 @@ public class Saving{
 //        installListener(futureValueField,presentValueField,interestRateField,yearsField);
 
         calculateBtn.setOnAction(event -> {
-            checkAll(futureValueField,presentValueField,interestRateField,yearsField);
-            if(checkAll(futureValueField,presentValueField,interestRateField,yearsField)>1){
+
+            if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)>1){
+
                 WarningBox.display("Lack on Values","Leave Only 1 field Blank");
-            }else if(checkAll(futureValueField,presentValueField,interestRateField,yearsField)==1 && futureValueField.getText().trim().isEmpty()){
+
+            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && futureValueField.getText().trim().isEmpty()){
                 //calculate future value
 
                 double presentValue = parseDouble(presentValueField.getText());
@@ -71,7 +73,7 @@ public class Saving{
                 double futureValeOutcome = presentValue*Math.pow(((1+(interestRate/nOF))),(nOF*years));
                 futureValueField.setText(String.valueOf(futureValeOutcome));
 
-            }else if(checkAll(futureValueField,presentValueField,interestRateField,yearsField)==1 && presentValueField.getText().trim().isEmpty()){
+            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && presentValueField.getText().trim().isEmpty()){
                 //calculate present value
 
                 double futureValue = parseDouble(futureValueField.getText());
@@ -84,7 +86,7 @@ public class Saving{
 
                 System.out.println("calculate present value");
 
-            }else if(checkAll(futureValueField,presentValueField,interestRateField,yearsField)==1 && interestRateField.getText().trim().isEmpty()){
+            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && interestRateField.getText().trim().isEmpty()){
                 //calculate interestRateField
 
                 double futureValue = parseDouble(futureValueField.getText());
@@ -96,7 +98,7 @@ public class Saving{
                 interestRateField.setText(String.valueOf(interestRateOutcome));
 
                 System.out.println("calculate Interest");
-            }else if(checkAll(futureValueField,presentValueField,interestRateField,yearsField)==1 && yearsField.getText().trim().isEmpty()){
+            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && yearsField.getText().trim().isEmpty()){
                 //calculate years
 
                 double futureValue = parseDouble(futureValueField.getText());
