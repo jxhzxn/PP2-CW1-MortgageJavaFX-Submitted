@@ -138,20 +138,20 @@ public class CompoundSaving {
 
 
 
-        Button btnBack = new Button("Back");
-        btnBack.setId("backBtn");
-        btnBack.setLayoutX(10);
-        btnBack.setLayoutY(10);
-
-        btnBack.setOnAction(e -> {
-            window.close();
-            HomePage.display();
-        });
+//        Button btnBack = new Button("Back");
+//        btnBack.setId("backBtn");
+//        btnBack.setLayoutX(10);
+//        btnBack.setLayoutY(10);
+//
+//        btnBack.setOnAction(e -> {
+//            window.close();
+//            HomePage.display();
+//        });
 
         Pane root2 = new Pane();
         root2.getChildren().addAll(
-                futureValueText,presentValueText,interestRateText,monthlyPaymentText,yearsText,btnBack,Keyboard.displayKeyboard(200,40),
-                presentValueField,interestRateField,monthlyPaymentField,yearsField,calculateBtn, futureValueField, resetBtn
+                futureValueText,presentValueText,interestRateText,monthlyPaymentText,yearsText,Keyboard.displayKeyboard(200,40),
+                presentValueField,interestRateField,monthlyPaymentField,yearsField,calculateBtn, futureValueField, resetBtn,TopBar.display(window,0,10)
         );
 
         keyBoardScene = new Scene(root2,900,700);

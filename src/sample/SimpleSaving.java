@@ -18,6 +18,8 @@ public class SimpleSaving {
         Scene keyBoardScene;
         window.setTitle("Simple Savings");
 
+
+
         Text futureValueText = new Text("Future Value");
         Text presentValueText = new Text("Present Value");
         Text interestRateText = new Text("Interest Rate");
@@ -132,21 +134,22 @@ public class SimpleSaving {
 
 
 
-        Button btnBack = new Button("Back");
-        btnBack.setId("backBtn");
-        btnBack.setLayoutX(10);
-        btnBack.setLayoutY(10);
+//        Button btnBack = new Button("Back");
+//        btnBack.setId("backBtn");
+//        btnBack.setLayoutX(10);
+//        btnBack.setLayoutY(10);
 
-        btnBack.setOnAction(e -> {
-            window.close();
-            HomePage.display();
-        });
+//        btnBack.setOnAction(e -> {
+//            window.close();
+//            HomePage.display();
+//        });
 
         Pane root2 = new Pane();
         root2.getChildren().addAll(
-               futureValueText,presentValueText,interestRateText,yearsText,btnBack,Keyboard.displayKeyboard(200,40),
-                presentValueField,interestRateField,yearsField,calculateBtn, futureValueField, resetBtn
+               futureValueText,presentValueText,interestRateText,yearsText,Keyboard.displayKeyboard(200,40),
+                presentValueField,interestRateField,yearsField,calculateBtn, futureValueField, resetBtn,TopBar.display(window,0,10)
         );
+
 
         keyBoardScene = new Scene(root2,900,700);
         keyBoardScene.getStylesheets().add(HomePage.class.getResource("stylesheet.css").toExternalForm());

@@ -12,16 +12,6 @@
     -fx-background-color: #fe8a71;
 }
 
-#backBtn{
-      -fx-background-color: #f6cd61;
-       -fx-font-size: 22px;
-       -fx-font-weight: bold;
-}
-
-#backBtn:hover{
-      -fx-background-color: #ddb857;
-}
-
 #fdText{
     -fx-font-size: 25px;
 
@@ -92,4 +82,64 @@
     -fx-font-weight: bold;
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
+}
+
+#backBtn{
+    -fx-background-color: #C70039;
+    -fx-border-color: #C70039;
+    -fx-border-width: 1px;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+#backBtn:hover{
+    -fx-background-color: #9f002d;
+}
+
+#simpleSavingBtn{
+    -fx-background-color: #e1ffc2;
+    -fx-border-color: #e1ffc2;
+    -fx-border-width: 1px;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+#simpleSavingBtn:hover{
+    -fx-background-color: #b4cc9b;
+}
+
+#compoundSavingBtn{
+    -fx-background-color: #f7cccc;
+    -fx-border-color: #f7cccc;
+    -fx-border-width: 1px;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+#compoundSavingBtn:hover{
+    -fx-background-color: #c5a3a3;
+}
+
+#loanBtn{
+    -fx-background-color: #01a9b4;
+    -fx-border-color: #01a9b4;
+    -fx-border-width: 1px;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+#loanBtn:hover{
+    -fx-background-color: #008790;
+}
+
+#mortgageBtn{
+    -fx-background-color: #eebb4d;
+    -fx-border-color: #eebb4d;
+    -fx-border-width: 1px;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+#mortgageBtn:hover{
+    -fx-background-color: #be953d;
 }
