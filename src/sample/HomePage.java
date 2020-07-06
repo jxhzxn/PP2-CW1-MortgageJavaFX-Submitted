@@ -31,21 +31,21 @@ public class HomePage{
         loanBtn.setId("homeBtn");
         mortgageBtn.setId("homeBtn");
 
-        fixedDepositBtn.setPrefSize(180,50);
-        fixedDepositBtn.setLayoutX(120);
-        fixedDepositBtn.setLayoutY(100);
+        fixedDepositBtn.setPrefSize(230,70);
+        fixedDepositBtn.setLayoutX(550);
+        fixedDepositBtn.setLayoutY(160);
 
-        savingsBtn.setPrefSize(180,50);
-        savingsBtn.setLayoutX(120);
-        savingsBtn.setLayoutY(170);
+        savingsBtn.setPrefSize(230,70);
+        savingsBtn.setLayoutX(550);
+        savingsBtn.setLayoutY(260);
 
-        loanBtn.setPrefSize(180,50);
-        loanBtn.setLayoutX(120);
-        loanBtn.setLayoutY(240);
+        loanBtn.setPrefSize(230,70);
+        loanBtn.setLayoutX(550);
+        loanBtn.setLayoutY(360);
 
-        mortgageBtn.setPrefSize(180,50);
-        mortgageBtn.setLayoutX(120);
-        mortgageBtn.setLayoutY(310);
+        mortgageBtn.setPrefSize(230,70);
+        mortgageBtn.setLayoutX(550);
+        mortgageBtn.setLayoutY(460);
 
         fixedDepositBtn.setOnAction(e -> {
             window.close();
@@ -79,9 +79,9 @@ public class HomePage{
         homePageRoot.getChildren().addAll(fixedDepositBtn,savingsBtn,loanBtn,mortgageBtn);
 
 
-        homePageScene = new Scene(homePageRoot,400,400);
+        homePageScene = new Scene(homePageRoot,900,700);
         homePageScene.getStylesheets().add(HomePage.class.getResource("stylesheet.css").toExternalForm());
-
+        homePageRoot.setStyle("-fx-background-color: #f6cd61;");
         window.setScene(homePageScene);
         window.show();
     }

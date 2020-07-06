@@ -1,14 +1,25 @@
 #homeBtn{
-    -fx-background-color: #9B4A97FF;
-    -fx-font-size: 15px;
-    -fx-font-weight: bold;
-    -fx-border-radius: 100px;
-    -fx-background-radius: 20px;
-
+       -fx-background-color: #fea18d;
+       -fx-border-color: black;
+       -fx-border-width: 4px;
+       -fx-font-size: 22px;
+       -fx-font-weight: bold;
+       -fx-background-radius: 10px;
+       -fx-border-radius: 10px;
 }
 
 #homeBtn:hover{
-    -fx-font-size: 18px;
+    -fx-background-color: #fe8a71;
+}
+
+#backBtn{
+      -fx-background-color: #f6cd61;
+       -fx-font-size: 22px;
+       -fx-font-weight: bold;
+}
+
+#backBtn:hover{
+      -fx-background-color: #ddb857;
 }
 
 #fdText{
@@ -25,7 +36,7 @@
 }
 
 #keyboardButton{
-    -fx-background-color: #FAD0C9FF;
+    -fx-background-color: #89c9b8;
     -fx-border-color: black;
     -fx-border-width: 4px;
     -fx-font-size: 22px;
@@ -35,10 +46,9 @@
 }
 
 #keyboardButton:hover{
-    -fx-background-color: #FAD0C9FF;
+    -fx-background-color: #6da093;
     -fx-border-color: black;
     -fx-border-width: 5px;
-    -fx-font-size: 24px;
     -fx-font-weight: bold;
 }
 

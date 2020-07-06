@@ -57,6 +57,9 @@ public class Saving{
 
 
         Button btnBack = new Button("Back");
+        btnBack.setId("backBtn");
+        btnBack.setLayoutX(10);
+        btnBack.setLayoutY(10);
 
         btnBack.setOnAction(e -> {
             window.close();
@@ -71,6 +74,7 @@ public class Saving{
 
         keyBoardScene = new Scene(root2,900,700);
         keyBoardScene.getStylesheets().add(HomePage.class.getResource("stylesheet.css").toExternalForm());
+        root2.setStyle("-fx-background-color: #e1ffc2;");
 
         window.setScene(keyBoardScene);
         window.show();
