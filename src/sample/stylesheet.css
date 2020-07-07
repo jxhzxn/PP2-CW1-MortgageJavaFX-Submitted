@@ -144,3 +144,24 @@
 #mortgageBtn:hover{
     -fx-background-color: #be953d;
 }
+
+#historyBtn{
+    -fx-background-color: #da83b5;
+    -fx-border-color: #da83b5;
+    -fx-border-width: 1px;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+#historyBtn:hover{
+    -fx-background-color: #cb5197;
+}
+
+#readHead{
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+
+#readText{
+    -fx-font-size: 18px;
+}

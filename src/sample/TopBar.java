@@ -13,11 +13,12 @@ public class TopBar {
 
 
 
-        Button backBtn =                createButton("Home",            0, -10,100,40);
-        Button simpleSavingBtn =        createButton("Simple",          100,-10,200,40);
-        Button compoundSavingBtn =      createButton("Compound",        300,-10,200,40);
-        Button loanBtn =                createButton("Loan",            500,-10,200,40);
-        Button mortgageBtn =            createButton("Mortgage",        700,-10,200,40);
+        Button backBtn =                createButton("Home",            0,  -10,100,40);
+        Button simpleSavingBtn =        createButton("Simple",          100,-10,160,40);
+        Button compoundSavingBtn =      createButton("Compound",        260,-10,160,40);
+        Button loanBtn =                createButton("Loan",            420,-10,160,40);
+        Button mortgageBtn =            createButton("Mortgage",        580,-10,160,40);
+        Button historyBtn =            createButton("History",          740,-10,160,40);
 
 
         backBtn.setId("backBtn");
@@ -25,6 +26,7 @@ public class TopBar {
         compoundSavingBtn.setId("compoundSavingBtn");
         loanBtn.setId("loanBtn");
         mortgageBtn.setId("mortgageBtn");
+        historyBtn.setId("historyBtn");
 
         backBtn.setOnAction(event -> {
             stage.close();
@@ -49,9 +51,18 @@ public class TopBar {
             }
         });
 
+        historyBtn.setOnAction(event -> {
+            stage.close();
+            try {
+                History.display();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
+
 
         topBarPane.getChildren().addAll(
-               backBtn,simpleSavingBtn,compoundSavingBtn,loanBtn,mortgageBtn
+               backBtn,simpleSavingBtn,compoundSavingBtn,loanBtn,mortgageBtn,historyBtn
         );
         topBarPane.setLayoutX(x);
         topBarPane.setLayoutY(y);

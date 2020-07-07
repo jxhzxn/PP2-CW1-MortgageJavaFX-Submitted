@@ -19,46 +19,26 @@ public class History {
         Scene keyBoardScene;
         window.setTitle("History");
 
+        Text simpleSavingHead = new Text("Simple Savings");
+        Text simpleSavingRead = new Text();
 
-
-        Text futureValueText = new Text("Future Value");
-        Text presentValueText = new Text("Present Value");
-        Text interestRateText = new Text("Interest Rate");
-        Text yearsText = new Text("Time in Years");
-
-        Text futureValueRead = new Text();
-        Text presentValueRead = new Text();
-        Text interestRateRead = new Text();
-        Text yearsRead = new Text();
 
 //        Button calculateBtn = new Button("Calculate");
 //        calculateBtn.setId("keyboardButton");
 //        calculateBtn.setLayoutX(60);
 //        calculateBtn.setLayoutY(500);
 
-        futureValueRead.setText(FileRead.read("./simpleSaving.txt"));
+        simpleSavingRead.setText(FileRead.read("./simpleSaving.txt"));
 
 
+        simpleSavingHead.setId("readHead");
+        simpleSavingRead.setId("readText");
 
-        futureValueText.setId("fdText");
-        presentValueText.setId("fdText");
-        interestRateText.setId("fdText");
-        yearsText.setId("fdText");
+        simpleSavingHead.setLayoutX(10);
+        simpleSavingHead.setLayoutY(150);
 
-        futureValueText.setLayoutX(60);
-        futureValueText.setLayoutY(220);
-
-        presentValueText.setLayoutX(60);
-        presentValueText.setLayoutY(290);
-
-        interestRateText.setLayoutX(60);
-        interestRateText.setLayoutY(360);
-
-        yearsText.setLayoutX(60);
-        yearsText.setLayoutY(430);
-
-        futureValueRead.setLayoutX(10);
-        futureValueRead.setLayoutY(50);
+        simpleSavingRead.setLayoutX(10);
+        simpleSavingRead.setLayoutY(200);
 
 
 
@@ -73,14 +53,14 @@ public class History {
 
         Pane root2 = new Pane();
         root2.getChildren().addAll(
-                futureValueText,presentValueText,interestRateText,yearsText,futureValueRead
+                simpleSavingRead,simpleSavingHead,TopBar.display(window,0,10)
 
         );
 
 
         keyBoardScene = new Scene(root2,900,700);
         keyBoardScene.getStylesheets().add(HomePage.class.getResource("stylesheet.css").toExternalForm());
-        root2.setStyle("-fx-background-color: #e1ffc2;");
+        root2.setStyle("-fx-background-color: #da83b5;");
 
         window.setScene(keyBoardScene);
         window.show();
