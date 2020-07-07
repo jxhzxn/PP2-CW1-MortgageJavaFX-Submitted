@@ -8,6 +8,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import static java.lang.Double.parseDouble;
 
@@ -84,6 +85,12 @@ public class SimpleSaving {
                 double futureValeOutcome = presentValue*Math.pow(((1+(interestRate/nOF))),(nOF*years));
                 futureValueField.setText(String.valueOf(futureValeOutcome));
 
+                try {
+                    FileWrite.write("simpleSaving.txt",futureValeOutcome,presentValue,interestRate,years);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && presentValueField.getText().trim().isEmpty()){
                 //calculate present value
 
@@ -105,7 +112,10 @@ public class SimpleSaving {
                 double years = parseDouble(yearsField.getText());
                 double nOF = 12.0;
 
-                double interestRateOutcome = nOF*(Math.pow((futureValue/presentValue),(1/nOF*years))-1);
+//                double interestRateOutcome = nOF*(Math.pow((futureValue/presentValue),(1/nOF*years))-1);
+
+                double interestRateOutcome = nOF*(Math.pow((futureValue/presentValue),(1/(nOF*years))-1));
+
                 interestRateField.setText(String.valueOf(interestRateOutcome));
 
                 System.out.println("calculate Interest");

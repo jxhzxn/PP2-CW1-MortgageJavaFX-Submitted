@@ -20,12 +20,14 @@ public class HomePage{
         Button compoundSavingBtn = new Button("Compound Savings");
         Button loanBtn = new Button("Loans");
         Button mortgageBtn = new Button("Mortgage");
+        Button historyBtn = new Button("History");
 
         //Setting the ID of the Buttons
         compoundSavingBtn.setId("homeBtn");
         simpleSavingBtn.setId("homeBtn");
         loanBtn.setId("homeBtn");
         mortgageBtn.setId("homeBtn");
+        historyBtn.setId("backBtn");
 
         simpleSavingBtn.setPrefSize(330,70);
         simpleSavingBtn.setLayoutX(500);
@@ -44,6 +46,10 @@ public class HomePage{
         mortgageBtn.setPrefSize(330,70);
         mortgageBtn.setLayoutX(500);
         mortgageBtn.setLayoutY(460);
+
+        historyBtn.setPrefSize(200,70);
+        historyBtn.setLayoutX(100);
+        historyBtn.setLayoutY(460);
 
         compoundSavingBtn.setOnAction(e -> {
             window.close();
@@ -73,8 +79,17 @@ public class HomePage{
             Loan.display();
         });
 
+        historyBtn.setOnAction(e -> {
+            window.close();
+            try {
+                History.display();
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
+        });
+
         Pane homePageRoot = new Pane();
-        homePageRoot.getChildren().addAll(compoundSavingBtn,simpleSavingBtn,loanBtn,mortgageBtn);
+        homePageRoot.getChildren().addAll(compoundSavingBtn,simpleSavingBtn,loanBtn,mortgageBtn,historyBtn);
 
 
         homePageScene = new Scene(homePageRoot,900,700);

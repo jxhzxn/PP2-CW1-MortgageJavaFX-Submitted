@@ -13,7 +13,7 @@ public class TopBar {
 
 
 
-        Button backBtn =                createButton("Back",            0, -10,100,40);
+        Button backBtn =                createButton("Home",            0, -10,100,40);
         Button simpleSavingBtn =        createButton("Simple",          100,-10,200,40);
         Button compoundSavingBtn =      createButton("Compound",        300,-10,200,40);
         Button loanBtn =                createButton("Loan",            500,-10,200,40);
