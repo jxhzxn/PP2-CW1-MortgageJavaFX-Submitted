@@ -1,5 +1,4 @@
-Future Value : 2.51326451236177E34
-Present Value : 88.0
-Interest : 88.0%
-Years : 88.0
-
+Future Value : 99.0
+Present Value : 99.0
+Interest : 99.0%
+Years : 0.0

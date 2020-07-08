@@ -78,7 +78,7 @@ public class SimpleSaving {
             interestRateField.setText(readList.get(2));
             yearsField.setText(readList.get(3));
         try {
-            FileTempoWrite.write("simpleSavingTemp.txt","","","","");
+            FileTempoWrite.simpleSaving("simpleSavingTemp.txt","","","","");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -107,7 +107,7 @@ public class SimpleSaving {
 //            }
 
             try {
-                FileTempoWrite.write("simpleSavingTemp.txt"," "," "," "," ");
+                FileTempoWrite.simpleSaving("simpleSavingTemp.txt"," "," "," "," ");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -136,7 +136,7 @@ public class SimpleSaving {
                 futureValueField.setText(String.valueOf(futureValeOutcome));
 
                 try {
-                    FileWrite.write("simpleSaving.txt",futureValeOutcome,presentValue,interestRate,years);
+                    FileWrite.simpleSaving("simpleSaving.txt",futureValeOutcome,presentValue,interestRate,years);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -152,7 +152,11 @@ public class SimpleSaving {
                 double presentValueOutcome = futureValue/Math.pow(1+(interestRate/nOF),(nOF*years));
                 presentValueField.setText(String.valueOf(presentValueOutcome));
 
-                System.out.println("calculate present value");
+                try {
+                    FileWrite.simpleSaving("simpleSaving.txt",futureValue,presentValueOutcome,interestRate,years);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && interestRateField.getText().trim().isEmpty()){
                 //calculate interestRateField
@@ -165,10 +169,13 @@ public class SimpleSaving {
 //                double interestRateOutcome = nOF*(Math.pow((futureValue/presentValue),(1/nOF*years))-1);
 
                 double interestRateOutcome = nOF*(Math.pow((futureValue/presentValue),(1/(nOF*years))-1));
-
                 interestRateField.setText(String.valueOf(interestRateOutcome));
 
-                System.out.println("calculate Interest");
+                try {
+                    FileWrite.simpleSaving("simpleSaving.txt",futureValue,presentValue,interestRateOutcome,years);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && yearsField.getText().trim().isEmpty()){
                 //calculate years
 
@@ -179,6 +186,12 @@ public class SimpleSaving {
 
                 double yearsOutcome = (Math.log(futureValue/presentValue))/nOF*(Math.log(1+(interestRate/nOF)));
                 yearsField.setText(String.valueOf(yearsOutcome));
+
+                try {
+                    FileWrite.simpleSaving("simpleSaving.txt",futureValue,presentValue,interestRate,yearsOutcome);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             }
 
@@ -225,7 +238,7 @@ public class SimpleSaving {
         //When the UI close Button is Clicked;
         window.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST,event -> {
             try {
-                FileTempoWrite.write("simpleSavingTemp.txt",futureValueField.getText(),presentValueField.getText(),interestRateField.getText(),yearsField.getText());
+                FileTempoWrite.simpleSaving("simpleSavingTemp.txt",futureValueField.getText(),presentValueField.getText(),interestRateField.getText(),yearsField.getText());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -255,9 +268,33 @@ public class SimpleSaving {
                     count++;
                 }
         }
-//        System.out.println(count);
         return count;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private static void activeCheck(TextField... textFields){
         for (TextField textField : textFields) {

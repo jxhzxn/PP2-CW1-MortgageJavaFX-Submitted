@@ -6,8 +6,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
 
 import static java.lang.Double.parseDouble;
 
@@ -65,9 +68,27 @@ public class CompoundSaving {
         TextField monthlyPaymentField =     createTextField(300,390,120,60,"yearsField");
         TextField yearsField =              createTextField(300,460,120,60,"yearsField");
 
+        List<String> readList = FileReadTemp.read("./compoundSavingTemp.txt");
+        futureValueField.setText(readList.get(0));
+        presentValueField.setText(readList.get(1));
+        interestRateField.setText(readList.get(2));
+        monthlyPaymentField.setText(readList.get(3));
+        yearsField.setText(readList.get(4));
+        try {
+            FileTempoWrite.compoundSaving("compoundSavingTemp.txt"," "," "," "," "," ");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 //        installListener(futureValueField,presentValueField,interestRateField,yearsField);
 
         calculateBtn.setOnAction(event -> {
+
+            try {
+                FileTempoWrite.compoundSaving("compoundSavingTemp.txt"," "," "," "," "," ");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==0){
 
@@ -89,6 +110,12 @@ public class CompoundSaving {
                 double futureValeOutcome = ((presentValue*Math.pow(1+(interestRate/nOF),nOF*years))+payment*(((Math.pow((1+(interestRate/nOF)),(nOF*years)))-1)/(interestRate/nOF)));
                 futureValueField.setText(String.valueOf(futureValeOutcome));
 
+                try {
+                    FileWrite.compoundSaving("compoundSaving.txt",futureValeOutcome,presentValue,interestRate,payment,years);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && presentValueField.getText().trim().isEmpty()){
                 //calculate present value
 
@@ -101,11 +128,15 @@ public class CompoundSaving {
                 double presentValueOutcome = ((futureValue-(payment*(((Math.pow((1+(interestRate/nOF)),(nOF*years)))-1)/(interestRate/nOF))))/(Math.pow((1+(interestRate/nOF)),(nOF*years))));
                 presentValueField.setText(String.valueOf(presentValueOutcome));
 
-                System.out.println("calculate present value");
+                try {
+                    FileWrite.compoundSaving("compoundSaving.txt",futureValue,presentValueOutcome,interestRate,payment,years);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && interestRateField.getText().trim().isEmpty()){
                 //calculate interestRateField
-                //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Still NO::::::::::::::::::::::::::::::::::::::
+                //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Still NO:::::::::::::::::::::::::::::::::::::://
 
                 double futureValue = parseDouble(futureValueField.getText());
                 double presentValue = parseDouble(presentValueField.getText());
@@ -129,6 +160,12 @@ public class CompoundSaving {
                 double yearsOutcome =  (Math.log((((interestRate*futureValue)/nOF)+payment)/(((presentValue*interestRate)/nOF)+payment))/(nOF*(Math.log((1+(interestRate/nOF))))));
                 yearsField.setText(String.valueOf(yearsOutcome));
 
+                try {
+                    FileWrite.compoundSaving("compoundSaving.txt",futureValue,presentValue,interestRate,payment,yearsOutcome);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && monthlyPaymentField.getText().trim().isEmpty()){
                 //calculate monthly payment
                 double futureValue = parseDouble(futureValueField.getText());
@@ -139,6 +176,12 @@ public class CompoundSaving {
 
                 double paymentOutcome = ((futureValue-(presentValue*Math.pow((1+(interestRate/nOF)),(nOF*years))))/((Math.pow((1+(interestRate/nOF)),(nOF*years))-1)/(interestRate/nOF)));
                 monthlyPaymentField.setText(String.valueOf(paymentOutcome));
+
+                try {
+                    FileWrite.compoundSaving("compoundSaving.txt",futureValue,presentValue,interestRate,paymentOutcome,years);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
 
 
@@ -179,6 +222,15 @@ public class CompoundSaving {
 
         window.setScene(keyBoardScene);
         window.show();
+
+        //When the UI close Button is Clicked;
+        window.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, event -> {
+            try {
+                FileTempoWrite.compoundSaving("compoundSavingTemp.txt",futureValueField.getText(),presentValueField.getText(),interestRateField.getText(),monthlyPaymentField.getText(),yearsField.getText());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
 

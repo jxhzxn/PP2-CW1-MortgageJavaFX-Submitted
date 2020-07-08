@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 
 public class FileWrite{
 
-    public static void write(String fileName, double futureValue, double presentValue, double interestRate, double years) throws IOException {
+    public static void simpleSaving(String fileName, double futureValue, double presentValue, double interestRate, double years) throws IOException {
 
         File file = new File(fileName);
         FileWriter fileWriter = new FileWriter(file);
@@ -16,6 +16,22 @@ public class FileWrite{
         printWriter.println("Future Value : "+futureValue);
         printWriter.println("Present Value : "+presentValue);
         printWriter.println("Interest : "+interestRate*100+"%");
+        printWriter.println("Years : "+years);
+
+        printWriter.close();
+
+    }
+
+    public static void compoundSaving(String fileName, double futureValue, double presentValue, double interestRate, double payment, double years) throws IOException {
+
+        File file = new File(fileName);
+        FileWriter fileWriter = new FileWriter(file);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+
+        printWriter.println("Future Value : "+futureValue);
+        printWriter.println("Present Value : "+presentValue);
+        printWriter.println("Interest : "+interestRate*100+"%");
+        printWriter.println("Monthly Payment : "+payment);
         printWriter.println("Years : "+years);
 
         printWriter.close();
