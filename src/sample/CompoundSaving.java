@@ -69,60 +69,78 @@ public class CompoundSaving {
 
         calculateBtn.setOnAction(event -> {
 
-            if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)==0){
+            if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==0){
 
                 WarningBox.display("Everything filled","Leave the field which want to Calculate Blank");
 
-            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)>1){
+            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)>1){
 
                 WarningBox.display("Lack on Values","Leave Only 1 field Blank");
 
-            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && futureValueField.getText().trim().isEmpty()){
+            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && futureValueField.getText().trim().isEmpty()){
                 //calculate future value
 
                 double presentValue = parseDouble(presentValueField.getText());
                 double interestRate = parseDouble(interestRateField.getText())/100;
                 double years = parseDouble(yearsField.getText());
+                double payment = parseDouble(monthlyPaymentField.getText());
                 double nOF = 12.0;
 
-                double futureValeOutcome = presentValue*Math.pow(((1+(interestRate/nOF))),(nOF*years));
+                double futureValeOutcome = ((presentValue*Math.pow(1+(interestRate/nOF),nOF*years))+payment*(((Math.pow((1+(interestRate/nOF)),(nOF*years)))-1)/(interestRate/nOF)));
                 futureValueField.setText(String.valueOf(futureValeOutcome));
 
-            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && presentValueField.getText().trim().isEmpty()){
+            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && presentValueField.getText().trim().isEmpty()){
                 //calculate present value
 
                 double futureValue = parseDouble(futureValueField.getText());
                 double interestRate = parseDouble(interestRateField.getText())/100;
                 double years = parseDouble(yearsField.getText());
+                double payment = parseDouble(monthlyPaymentField.getText());
                 double nOF = 12.0;
 
-                double presentValueOutcome = futureValue/Math.pow(1+(interestRate/nOF),(nOF*years));
+                double presentValueOutcome = ((futureValue-(payment*(((Math.pow((1+(interestRate/nOF)),(nOF*years)))-1)/(interestRate/nOF))))/(Math.pow((1+(interestRate/nOF)),(nOF*years))));
                 presentValueField.setText(String.valueOf(presentValueOutcome));
 
                 System.out.println("calculate present value");
 
-            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && interestRateField.getText().trim().isEmpty()){
+            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && interestRateField.getText().trim().isEmpty()){
                 //calculate interestRateField
+                //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Still NO::::::::::::::::::::::::::::::::::::::
 
                 double futureValue = parseDouble(futureValueField.getText());
                 double presentValue = parseDouble(presentValueField.getText());
                 double years = parseDouble(yearsField.getText());
+                double payment = parseDouble(monthlyPaymentField.getText());
                 double nOF = 12.0;
 
                 double interestRateOutcome = nOF*(Math.pow((futureValue/presentValue),(1/nOF*years))-1);
                 interestRateField.setText(String.valueOf(interestRateOutcome));
 
                 System.out.println("calculate Interest");
-            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && yearsField.getText().trim().isEmpty()){
+            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && yearsField.getText().trim().isEmpty()){
                 //calculate years
 
                 double futureValue = parseDouble(futureValueField.getText());
                 double presentValue = parseDouble(presentValueField.getText());
                 double interestRate = parseDouble(interestRateField.getText())/100;
+                double payment = parseDouble(monthlyPaymentField.getText());
                 double nOF = 12.0;
 
-                double yearsOutcome = (Math.log(futureValue/presentValue))/nOF*(Math.log(1+(interestRate/nOF)));
+                double yearsOutcome =  (Math.log((((interestRate*futureValue)/nOF)+payment)/(((presentValue*interestRate)/nOF)+payment))/(nOF*(Math.log((1+(interestRate/nOF))))));
                 yearsField.setText(String.valueOf(yearsOutcome));
+
+            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && monthlyPaymentField.getText().trim().isEmpty()){
+                //calculate monthly payment
+                double futureValue = parseDouble(futureValueField.getText());
+                double presentValue = parseDouble(presentValueField.getText());
+                double interestRate = parseDouble(interestRateField.getText())/100;
+                double years = parseDouble(yearsField.getText());
+                double nOF = 12.0;
+
+                double paymentOutcome = ((futureValue-(presentValue*Math.pow((1+(interestRate/nOF)),(nOF*years))))/((Math.pow((1+(interestRate/nOF)),(nOF*years))-1)/(interestRate/nOF)));
+                monthlyPaymentField.setText(String.valueOf(paymentOutcome));
+
+
 
             }
         });
@@ -131,6 +149,7 @@ public class CompoundSaving {
             futureValueField.clear();
             presentValueField.clear();
             interestRateField.clear();
+            monthlyPaymentField.clear();
             yearsField.clear();
         });
 

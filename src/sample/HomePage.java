@@ -91,7 +91,6 @@ public class HomePage{
         Pane homePageRoot = new Pane();
         homePageRoot.getChildren().addAll(compoundSavingBtn,simpleSavingBtn,loanBtn,mortgageBtn,historyBtn);
 
-
         homePageScene = new Scene(homePageRoot,900,700);
         homePageScene.getStylesheets().add(HomePage.class.getResource("stylesheet.css").toExternalForm());
         homePageRoot.setStyle("-fx-background-color: #f6cd61;");
