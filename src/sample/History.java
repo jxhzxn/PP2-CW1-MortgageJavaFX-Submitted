@@ -19,6 +19,7 @@ public class History {
         Scene keyBoardScene;
         window.setTitle("History");
 
+        Text historyHead = new Text("Results of the Last Calculation");
         Text simpleSavingHead = new Text("Simple Savings");
         Text simpleSavingRead = new Text();
 

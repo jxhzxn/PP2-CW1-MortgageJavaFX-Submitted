@@ -162,6 +162,32 @@ public class CompoundSaving {
         window.show();
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     private static int checkAll(TextField... textFields){
         int count = 0;
         for(TextField textField : textFields){

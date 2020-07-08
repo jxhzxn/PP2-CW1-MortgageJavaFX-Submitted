@@ -6,9 +6,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.Double.parseDouble;
 
@@ -64,7 +68,53 @@ public class SimpleSaving {
 
 //        installListener(futureValueField,presentValueField,interestRateField,yearsField);
 
+//        File readList = new File("simpleSavingTemp.txt");
+//        if(readFile.isDirectory()){
+
+
+            List<String> readList = FileReadTemp.read("./simpleSavingTemp.txt");
+            futureValueField.setText(readList.get(0));
+            presentValueField.setText(readList.get(1));
+            interestRateField.setText(readList.get(2));
+            yearsField.setText(readList.get(3));
+        try {
+            FileTempoWrite.write("simpleSavingTemp.txt","","","","");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+//        }else{
+//            System.out.print("file isn't there");
+//        }
+
+
+
+
+
+
+
+
+
+
+
         calculateBtn.setOnAction(event -> {
+
+//            try {
+//                FileTempoWrite.write("simpleSaving.txt","","","","");
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+
+            try {
+                FileTempoWrite.write("simpleSavingTemp.txt"," "," "," "," ");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+//            window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+
 
             if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)==0){
 
@@ -131,6 +181,9 @@ public class SimpleSaving {
                 yearsField.setText(String.valueOf(yearsOutcome));
 
             }
+
+
+
         });
 
         resetBtn.setOnAction(e->{
@@ -167,7 +220,33 @@ public class SimpleSaving {
 
         window.setScene(keyBoardScene);
         window.show();
+
+
+        //When the UI close Button is Clicked;
+        window.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST,event -> {
+            try {
+                FileTempoWrite.write("simpleSavingTemp.txt",futureValueField.getText(),presentValueField.getText(),interestRateField.getText(),yearsField.getText());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private static int checkAll(TextField... textFields){
         int count = 0;

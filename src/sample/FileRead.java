@@ -14,8 +14,5 @@ public class FileRead {
             fileRead = fileRead.concat(reader.nextLine() + "\n");
         }
         return fileRead;
-
-
-
     }
 }

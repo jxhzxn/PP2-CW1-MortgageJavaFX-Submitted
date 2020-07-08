@@ -158,10 +158,15 @@
 }
 
 #readHead{
-    -fx-font-size: 25px;
+    -fx-font-size: 30px;
     -fx-font-weight: bold;
 }
 
 #readText{
     -fx-font-size: 18px;
+}
+
+#historyHead{
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
 }
