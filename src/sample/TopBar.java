@@ -51,6 +51,15 @@ public class TopBar {
             }
         });
 
+        loanBtn.setOnAction(event -> {
+            stage.close();
+            try {
+                Loan.display();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
+
         historyBtn.setOnAction(event -> {
             stage.close();
             try {

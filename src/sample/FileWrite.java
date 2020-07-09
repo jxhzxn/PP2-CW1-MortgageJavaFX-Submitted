@@ -38,4 +38,19 @@ public class FileWrite{
 
     }
 
+    public static void loan(String fileName, double loanAmount, double monthlyPayment, double interestRate, double month) throws IOException {
+
+        File file = new File(fileName);
+        FileWriter fileWriter = new FileWriter(file);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+
+        printWriter.println("Loan Amount : "+loanAmount);
+        printWriter.println("Monthly Payment : "+monthlyPayment);
+        printWriter.println("Interest : "+interestRate*100+"%");
+        printWriter.println("Loan Month Terms : "+month);
+
+        printWriter.close();
+
+    }
+
 }

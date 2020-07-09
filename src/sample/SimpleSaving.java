@@ -77,11 +77,11 @@ public class SimpleSaving {
             presentValueField.setText(readList.get(1));
             interestRateField.setText(readList.get(2));
             yearsField.setText(readList.get(3));
-        try {
-            FileTempoWrite.simpleSaving("simpleSavingTemp.txt","","","","");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            FileTempoWrite.simpleSaving("simpleSavingTemp.txt","","","","");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
 
 //        }else{
@@ -100,7 +100,7 @@ public class SimpleSaving {
 
         calculateBtn.setOnAction(event -> {
 
-//            try {
+//                   try {
 //                FileTempoWrite.write("simpleSaving.txt","","","","");
 //            } catch (IOException e) {
 //                e.printStackTrace();
@@ -244,21 +244,6 @@ public class SimpleSaving {
             }
         });
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     private static int checkAll(TextField... textFields){

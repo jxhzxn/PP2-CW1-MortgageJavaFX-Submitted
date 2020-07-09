@@ -1,105 +1,319 @@
 package sample;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
-public class Loan{
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-    public static void display(){
+import static java.lang.Double.parseDouble;
+
+public class Loan {
+
+    public static void display() throws FileNotFoundException {
         Stage window = new Stage();
         Scene keyBoardScene;
         window.setTitle("Loan");
 
-        Button btn0 = new Button("0");
-        Button btn1 = new Button("1");
-        Button btn2 = new Button("2");
-        Button btn3 = new Button("3");
-        Button btn4 = new Button("4");
-        Button btn5 = new Button("5");
-        Button btn6 = new Button("6");
-        Button btn7 = new Button("7");
-        Button btn8 = new Button("8");
-        Button btn9 = new Button("9");
-        Button btnPoint = new Button(".");
-        Button btnEnter = new Button("Enter");
-        Button btnC = new Button("C");
 
 
-        btn0.setPrefSize(50,50);
-        btn1.setPrefSize(50,50);
-        btn2.setPrefSize(50,50);
-        btn3.setPrefSize(50,50);
-        btn4.setPrefSize(50,50);
-        btn5.setPrefSize(50,50);
-        btn6.setPrefSize(50,50);
-        btn7.setPrefSize(50,50);
-        btn8.setPrefSize(50,50);
-        btn9.setPrefSize(50,50);
-        btnPoint.setPrefSize(50,50);
-        btnEnter.setPrefSize(170,50);
-        btnC.setPrefSize(50,50);
+        Text loanAmountText = new Text("Loan Amount");
+        Text monthlyPaymentText = new Text("Monthly Payment");
+        Text interestRateText = new Text("Interest Rate");
+        Text monthText = new Text("Loan Month Terms");
+
+        Button calculateBtn = new Button("Calculate");
+        calculateBtn.setId("keyboardButton");
+        calculateBtn.setLayoutX(60);
+        calculateBtn.setLayoutY(500);
+
+        Button resetBtn = new Button("Reset");
+        resetBtn.setId("keyboardButton");
+        resetBtn.setLayoutX(250);
+        resetBtn.setLayoutY(500);
 
 
-        btn9.setLayoutX(520);
-        btn9.setLayoutY(150);
+        loanAmountText.setId("fdText");
+        monthlyPaymentText.setId("fdText");
+        interestRateText.setId("fdText");
+        monthText.setId("fdText");
 
-        btn8.setLayoutX(460);
-        btn8.setLayoutY(150);
+        loanAmountText.setLayoutX(60);
+        loanAmountText.setLayoutY(220);
 
-        btn7.setLayoutX(400);
-        btn7.setLayoutY(150);
+        monthlyPaymentText.setLayoutX(60);
+        monthlyPaymentText.setLayoutY(290);
 
-        btn6.setLayoutX(520);
-        btn6.setLayoutY(210);
+        interestRateText.setLayoutX(60);
+        interestRateText.setLayoutY(360);
 
-        btn5.setLayoutX(460);
-        btn5.setLayoutY(210);
+        monthText.setLayoutX(60);
+        monthText.setLayoutY(430);
 
-        btn4.setLayoutX(400);
-        btn4.setLayoutY(210);
 
-        btn3.setLayoutX(520);
-        btn3.setLayoutY(270);
 
-        btn2.setLayoutX(460);
-        btn2.setLayoutY(270);
+//        TextField futureValueField =     createTextField(300,180,120,60,"futureValueField");
+        TextField loanAmountField = createTextField(300,180,120,60,"futureValueField");
+        TextField monthlyPaymentField =    createTextField(300,250,120,60,"presentValueField");
+        TextField interestRateField =   createTextField(300,320,120,60,"interestRateField");
+        TextField monthField =          createTextField(300,390,120,60,"yearsField");
 
-        btn1.setLayoutX(400);
-        btn1.setLayoutY(270);
+//        installListener(futureValueField,presentValueField,interestRateField,yearsField);
 
-        btnC.setLayoutX(520);
-        btnC.setLayoutY(330);
+//        File readList = new File("simpleSavingTemp.txt");
+//        if(readFile.isDirectory()){
 
-        btn0.setLayoutX(460);
-        btn0.setLayoutY(330);
 
-        btnPoint.setLayoutX(400);
-        btnPoint.setLayoutY(330);
 
-        btnEnter.setLayoutX(400);
-        btnEnter.setLayoutY(390);
+        List<String> readList = FileReadTemp.read("./loanTemp.txt");
+        loanAmountField.setText(readList.get(0));
+        monthlyPaymentField.setText(readList.get(1));
+        interestRateField.setText(readList.get(2));
+        monthField.setText(readList.get(3));
 
-        btnEnter.setOnAction(e -> {
-            window.close();
-            HomePage.display();
+
+
+//        try {
+//            FileTempoWrite.simpleSaving("simpleSavingTemp.txt","","","","");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+
+//        }else{
+//            System.out.print("file isn't there");
+//        }
+
+
+
+
+
+
+
+
+
+
+
+        calculateBtn.setOnAction(event -> {
+
+//                   try {
+//                FileTempoWrite.write("simpleSaving.txt","","","","");
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+
+            try {
+                FileTempoWrite.simpleSaving("loanTemp.txt"," "," "," "," ");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+//            window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+
+
+            if(TextFieldEmptyCheck.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)==0){
+
+                WarningBox.display("Everything filled","Leave the field which want to Calculate Blank");
+
+            }else if(TextFieldEmptyCheck.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)>1){
+
+                WarningBox.display("Lack on Values","Leave Only 1 field Blank");
+
+            }else if(TextFieldEmptyCheck.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)==1 && loanAmountField.getText().trim().isEmpty()){
+                //calculate loan Amount
+
+                double monthlyPayment = parseDouble(monthlyPaymentField.getText());
+                double interestRate = parseDouble(interestRateField.getText())/100;
+                double month = parseDouble(monthField.getText());
+
+                double loanAmountOutcome = ((monthlyPayment/interestRate)*(1-(1/(Math.pow((1+interestRate),(month))))));
+                loanAmountField.setText(String.valueOf(loanAmountOutcome));
+
+                try {
+                    FileWrite.loan("loan.txt",loanAmountOutcome,monthlyPayment,interestRate,month);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }else if(TextFieldEmptyCheck.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)==1 && monthlyPaymentField.getText().trim().isEmpty()){
+                //calculate monthly payment
+
+                double loanAmount = parseDouble(loanAmountField.getText());
+                double interestRate = parseDouble(interestRateField.getText())/100;
+                double month = parseDouble(monthField.getText());
+
+                double monthlyPaymentOutcome = ((loanAmount*interestRate)/(1-(1/(Math.pow((1+interestRate),(month))))));
+                monthlyPaymentField.setText(String.valueOf(monthlyPaymentOutcome));
+
+                try {
+                    FileWrite.loan("loan.txt",loanAmount,monthlyPaymentOutcome,interestRate,month);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }else if(TextFieldEmptyCheck.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)==1 && interestRateField.getText().trim().isEmpty()){
+                //calculate interestRateField
+                //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Still NO:::::::::::::::::::::::::::::::::::::://
+                double monthlyPayment = parseDouble(monthlyPaymentField.getText());
+                double loanAmount = parseDouble(loanAmountField.getText());
+                double month = parseDouble(monthField.getText());
+
+                try {
+                    FileWrite.loan("loan.txt",0.0,0.0,0.0,0.0);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Still NO:::::::::::::::::::::::::::::::::::::://
+            }else if(TextFieldEmptyCheck.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)==1 && monthField.getText().trim().isEmpty()){
+                //calculate month
+
+                double monthlyPayment = parseDouble(monthlyPaymentField.getText());
+                double loanAmount = parseDouble(loanAmountField.getText());
+                double interestRate = parseDouble(interestRateField.getText())/100;
+
+                double monthOutcome = ((Math.log((monthlyPayment/interestRate)/((monthlyPayment/interestRate)-loanAmount)))/(Math.log(1+interestRate)));
+                monthField.setText(String.valueOf(monthOutcome));
+
+                try {
+                    FileWrite.loan("loan.txt",loanAmount,monthlyPayment,interestRate,monthOutcome);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+
+
         });
 
+        resetBtn.setOnAction(e->{
+            loanAmountField.clear();
+            monthlyPaymentField.clear();
+            interestRateField.clear();
+            monthField.clear();
+        });
+
+        activeCheck(loanAmountField,monthlyPaymentField,interestRateField,monthField);
+
+
+
+//        Button btnBack = new Button("Back");
+//        btnBack.setId("backBtn");
+//        btnBack.setLayoutX(10);
+//        btnBack.setLayoutY(10);
+
+//        btnBack.setOnAction(e -> {
+//            window.close();
+//            HomePage.display();
+//        });
 
         Pane root2 = new Pane();
-        root2.getChildren().addAll(btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btnEnter,btn0,btnPoint,btnC);
+        root2.getChildren().addAll(
+                loanAmountText,monthlyPaymentText,interestRateText,monthText,Keyboard.displayKeyboard(200,40),
+                monthlyPaymentField,interestRateField,monthField,calculateBtn, loanAmountField, resetBtn,TopBar.display(window,0,10)
+        );
 
-        keyBoardScene = new Scene(root2,900,900);
+
+        keyBoardScene = new Scene(root2,900,700);
+        keyBoardScene.getStylesheets().add(HomePage.class.getResource("stylesheet.css").toExternalForm());
+        root2.setStyle("-fx-background-color: #01a9b4;");
 
         window.setScene(keyBoardScene);
         window.show();
+
+
+        //When the UI close Button is Clicked;
+        window.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST,event -> {
+            try {
+                FileTempoWrite.loan("loanTemp.txt",loanAmountField.getText(),monthlyPaymentField.getText(),interestRateField.getText(),monthField.getText());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+
+    private static int checkAll(TextField... textFields){
+        int count = 0;
+        for(TextField textField : textFields){
+            if (textField.getText().trim().isEmpty()){
+                count++;
+            }
+        }
+        return count;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private static void activeCheck(TextField... textFields){
+        for (TextField textField : textFields) {
+            textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
+//                System.out.println(textField.getId()+" is Active");
+                String active = textField.getId();
+            });
+        }
+    }
+
+
+
+    private static TextField createTextField(double x, double y, double j, double k,String id){
+        TextField textField = new TextField();
+        textField.setLayoutX(x);
+        textField.setLayoutY(y);
+        textField.setId(id);
+        textField.setPrefSize(j,k);
+
+        return textField;
+    }
+
+    private static void installListener(TextField... textFields) {
+
+        // Install the same listener on all of them
+        for (TextField textField : textFields) {
+            textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
+
+                // Set the selectedTextField to null whenever focus is lost. This accounts for the
+                // TextField losing focus to another control that is NOT a TextField
+                TextField selectedTextField = null;
+
+                if (newValue) {
+                    // The new textfield is focused, so set the global reference
+                    selectedTextField = textField;
+//                    System.out.println("Selected Text: " + selectedTextField.getText());
+                }
+            });
+        }
     }
 }
-
-

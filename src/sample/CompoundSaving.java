@@ -74,11 +74,11 @@ public class CompoundSaving {
         interestRateField.setText(readList.get(2));
         monthlyPaymentField.setText(readList.get(3));
         yearsField.setText(readList.get(4));
-        try {
-            FileTempoWrite.compoundSaving("compoundSavingTemp.txt"," "," "," "," "," ");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            FileTempoWrite.compoundSaving("compoundSavingTemp.txt"," "," "," "," "," ");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
 //        installListener(futureValueField,presentValueField,interestRateField,yearsField);
 

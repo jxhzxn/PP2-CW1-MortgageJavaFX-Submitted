@@ -20,11 +20,15 @@ public class History {
         window.setTitle("History");
 
         Text historyHead = new Text("Results of the Last Calculation");
+
         Text simpleSavingHead = new Text("Simple Savings");
         Text simpleSavingRead = new Text();
 
         Text compoundSavingHead = new Text("Compound Savings");
         Text compoundSavingRead = new Text();
+
+        Text loanHead = new Text("Loan");
+        Text loanRead = new Text();
 
 
 //        Button calculateBtn = new Button("Calculate");
@@ -34,6 +38,7 @@ public class History {
 
         simpleSavingRead.setText(FileRead.read("./simpleSaving.txt"));
         compoundSavingRead.setText(FileRead.read("./compoundSaving.txt"));
+        loanRead.setText(FileRead.read("./loan.txt"));
 
 
         simpleSavingHead.setId("readHead");
@@ -42,10 +47,13 @@ public class History {
         compoundSavingHead.setId("readHead");
         compoundSavingRead.setId("readText");
 
-        simpleSavingHead.setLayoutX(10);
+        loanHead.setId("readHead");
+        loanRead.setId("readText");
+
+        simpleSavingHead.setLayoutX(30);
         simpleSavingHead.setLayoutY(150);
 
-        simpleSavingRead.setLayoutX(10);
+        simpleSavingRead.setLayoutX(30);
         simpleSavingRead.setLayoutY(200);
 
         compoundSavingHead.setLayoutX(450);
@@ -53,6 +61,12 @@ public class History {
 
         compoundSavingRead.setLayoutX(450);
         compoundSavingRead.setLayoutY(200);
+
+        loanHead.setLayoutX(30);
+        loanHead.setLayoutY(450);
+
+        loanRead.setLayoutX(30);
+        loanRead.setLayoutY(500);
 
 
 
@@ -69,7 +83,7 @@ public class History {
 
         Pane root2 = new Pane();
         root2.getChildren().addAll(
-                simpleSavingRead,simpleSavingHead,compoundSavingHead,compoundSavingRead,TopBar.display(window,0,10)
+                simpleSavingRead,simpleSavingHead,compoundSavingHead,compoundSavingRead,loanHead,loanRead,TopBar.display(window,0,10)
 
         );
 

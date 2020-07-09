@@ -38,4 +38,19 @@ public class FileTempoWrite{
 
     }
 
+    public static void loan(String fileName, String loanAmount, String monthlyPayment, String interestRate, String month) throws IOException {
+
+        File file = new File(fileName);
+        FileWriter fileWriter = new FileWriter(file);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+
+        printWriter.println(loanAmount);
+        printWriter.println(monthlyPayment);
+        printWriter.println(interestRate);
+        printWriter.println(month);
+
+        printWriter.close();
+
+    }
+
 }

@@ -71,12 +71,20 @@ public class HomePage{
 
         loanBtn.setOnAction(e -> {
             window.close();
-            Loan.display();
+            try {
+                Loan.display();
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
         });
 
         mortgageBtn.setOnAction(e -> {
             window.close();
-            Loan.display();
+            try {
+                Loan.display();
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
         });
 
         historyBtn.setOnAction(e -> {
