@@ -28,9 +28,13 @@ public class Keyboard {
         Button button8 = createButton("8",480,150,70,70);
         Button button9 = createButton("9",560,150,70,70);
         Button buttonPoint = createButton(".",400,390,70,70);
-        Button buttonPOM = createButton("+",560,470,70,70);
-        Button buttonEnter = createButton("Enter",400,470,150,70);
+        Button buttonPOM = createButton("+/-",640,310,80,150);
+
         Button buttonC = createButton("C",560,390,70,70);
+        Button backSpace = createButton("<-",640,150,80,150);
+
+        backSpace.setStyle("-fx-background-color: #e8505b;");
+        buttonC.setStyle("-fx-background-color: #e8505b;");
 
 
         for (TextField textField : textFields) {
@@ -122,6 +126,12 @@ public class Keyboard {
                         finalSelectedTextField11.clear();
                     });
 
+                    TextField finalSelectedTextField12 = selectedTextField;
+                    backSpace.setOnAction(event -> {
+                        String currentVal = finalSelectedTextField12.getText();
+                        finalSelectedTextField12.setText(finalSelectedTextField12.getText().substring(0, finalSelectedTextField12.getLength() - 1));
+                    });
+
                 }
             });
         }
@@ -129,8 +139,8 @@ public class Keyboard {
 
 
         keyboardPane.getChildren().addAll(
-                button0,button1,button2,button3,button4,button5,button6,button7,button8,button9,
-                buttonC,buttonPOM,buttonPoint,buttonEnter
+                button0,button1,button2,button3,button4,button5,button6,button7,button8,button9,backSpace,
+                buttonC,buttonPOM,buttonPoint
         );
         keyboardPane.setLayoutX(x);
         keyboardPane.setLayoutY(y);

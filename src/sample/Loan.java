@@ -8,10 +8,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Double.parseDouble;
@@ -120,15 +118,15 @@ public class Loan {
 //            window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
 
 
-            if(TextFieldEmptyCheck.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)==0){
+            if(TextFieldValidate.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)==0){
 
                 WarningBox.display("Everything filled","Leave the field which want to Calculate Blank");
 
-            }else if(TextFieldEmptyCheck.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)>1){
+            }else if(TextFieldValidate.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)>1){
 
                 WarningBox.display("Lack on Values","Leave Only 1 field Blank");
 
-            }else if(TextFieldEmptyCheck.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)==1 && loanAmountField.getText().trim().isEmpty()){
+            }else if(TextFieldValidate.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)==1 && loanAmountField.getText().trim().isEmpty()){
                 //calculate loan Amount
 
                 double monthlyPayment = parseDouble(monthlyPaymentField.getText());
@@ -144,7 +142,7 @@ public class Loan {
                     e.printStackTrace();
                 }
 
-            }else if(TextFieldEmptyCheck.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)==1 && monthlyPaymentField.getText().trim().isEmpty()){
+            }else if(TextFieldValidate.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)==1 && monthlyPaymentField.getText().trim().isEmpty()){
                 //calculate monthly payment
 
                 double loanAmount = parseDouble(loanAmountField.getText());
@@ -160,7 +158,7 @@ public class Loan {
                     e.printStackTrace();
                 }
 
-            }else if(TextFieldEmptyCheck.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)==1 && interestRateField.getText().trim().isEmpty()){
+            }else if(TextFieldValidate.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)==1 && interestRateField.getText().trim().isEmpty()){
                 //calculate interestRateField
                 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Still NO:::::::::::::::::::::::::::::::::::::://
                 double monthlyPayment = parseDouble(monthlyPaymentField.getText());
@@ -173,7 +171,7 @@ public class Loan {
                     e.printStackTrace();
                 }
                 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Still NO:::::::::::::::::::::::::::::::::::::://
-            }else if(TextFieldEmptyCheck.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)==1 && monthField.getText().trim().isEmpty()){
+            }else if(TextFieldValidate.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)==1 && monthField.getText().trim().isEmpty()){
                 //calculate month
 
                 double monthlyPayment = parseDouble(monthlyPaymentField.getText());
@@ -218,7 +216,7 @@ public class Loan {
 
         Pane root2 = new Pane();
         root2.getChildren().addAll(
-                loanAmountText,monthlyPaymentText,interestRateText,monthText,Keyboard.displayKeyboard(200,40,loanAmountField,monthlyPaymentField,interestRateField,monthField),
+                loanAmountText,monthlyPaymentText,interestRateText,monthText,Keyboard.displayKeyboard(130,40,loanAmountField,monthlyPaymentField,interestRateField,monthField),
                 monthlyPaymentField,interestRateField,monthField,calculateBtn, loanAmountField, resetBtn,TopBar.display(window,0,10)
         );
 

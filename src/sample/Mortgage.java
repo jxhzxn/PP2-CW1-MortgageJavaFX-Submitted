@@ -9,10 +9,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Double.parseDouble;
@@ -117,15 +115,15 @@ public class Mortgage{
 //            window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
 
 
-            if(TextFieldEmptyCheck.check(mortgageAmountField,mortgageTermField,interestRateField,monthField)==0){
+            if(TextFieldValidate.check(mortgageAmountField,mortgageTermField,interestRateField,monthField)==0){
 
                 WarningBox.display("Everything filled","Leave the field which want to Calculate Blank");
 
-            }else if(TextFieldEmptyCheck.check(mortgageAmountField,mortgageTermField,interestRateField,monthField)>1){
+            }else if(TextFieldValidate.check(mortgageAmountField,mortgageTermField,interestRateField,monthField)>1){
 
                 WarningBox.display("Lack on Values","Leave Only 1 field Blank");
 
-            }else if(TextFieldEmptyCheck.check(mortgageAmountField,mortgageTermField,interestRateField,monthField)==1 && mortgageAmountField.getText().trim().isEmpty()){
+            }else if(TextFieldValidate.check(mortgageAmountField,mortgageTermField,interestRateField,monthField)==1 && mortgageAmountField.getText().trim().isEmpty()){
                 //calculate future value
 
                 double presentValue = parseDouble(mortgageTermField.getText());
@@ -142,7 +140,7 @@ public class Mortgage{
                     e.printStackTrace();
                 }
 
-            }else if(TextFieldEmptyCheck.check(mortgageAmountField,mortgageTermField,interestRateField,monthField)==1 && mortgageTermField.getText().trim().isEmpty()){
+            }else if(TextFieldValidate.check(mortgageAmountField,mortgageTermField,interestRateField,monthField)==1 && mortgageTermField.getText().trim().isEmpty()){
                 //calculate present value
 
                 double futureValue = parseDouble(mortgageAmountField.getText());
@@ -159,7 +157,7 @@ public class Mortgage{
                     e.printStackTrace();
                 }
 
-            }else if(TextFieldEmptyCheck.check(mortgageAmountField,mortgageTermField,interestRateField,monthField)==1 && interestRateField.getText().trim().isEmpty()){
+            }else if(TextFieldValidate.check(mortgageAmountField,mortgageTermField,interestRateField,monthField)==1 && interestRateField.getText().trim().isEmpty()){
                 //calculate interestRateField
 
                 double futureValue = parseDouble(mortgageAmountField.getText());
@@ -177,7 +175,7 @@ public class Mortgage{
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }else if(TextFieldEmptyCheck.check(mortgageAmountField,mortgageTermField,interestRateField,monthField)==1 && monthField.getText().trim().isEmpty()){
+            }else if(TextFieldValidate.check(mortgageAmountField,mortgageTermField,interestRateField,monthField)==1 && monthField.getText().trim().isEmpty()){
                 //calculate years
 
                 double futureValue = parseDouble(mortgageAmountField.getText());
@@ -223,7 +221,7 @@ public class Mortgage{
 
         Pane root2 = new Pane();
         root2.getChildren().addAll(
-                mortgageAmountText,mortgageTermText,interestRateText,monthPaymentText,Keyboard.displayKeyboard(200,40,mortgageAmountField,mortgageTermField,interestRateField,monthField),
+                mortgageAmountText,mortgageTermText,interestRateText,monthPaymentText,Keyboard.displayKeyboard(130,40,mortgageAmountField,mortgageTermField,interestRateField,monthField),
                 mortgageTermField,interestRateField,monthField,calculateBtn, mortgageAmountField, resetBtn,TopBar.display(window,0,10)
         );
 

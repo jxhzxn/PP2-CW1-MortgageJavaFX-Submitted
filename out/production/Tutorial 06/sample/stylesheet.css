@@ -27,7 +27,9 @@
 }
 
 #keyboardButton{
-    -fx-background-color: #89c9b8;
+    -fx-background-color: #f9d56e;
+    /*-fx-background-color: #89c9b8;*/
+
     -fx-border-color: black;
     -fx-border-width: 4px;
     -fx-font-size: 22px;
@@ -37,9 +39,8 @@
 }
 
 #keyboardButton:hover{
-    -fx-background-color: #6da093;
+    -fx-background-color: #e0bf63;
     -fx-border-color: black;
-    -fx-border-width: 5px;
     -fx-font-weight: bold;
 }
 

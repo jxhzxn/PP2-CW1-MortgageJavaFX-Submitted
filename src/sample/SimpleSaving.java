@@ -8,10 +8,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Double.parseDouble;
@@ -103,6 +101,8 @@ public class SimpleSaving {
 
         calculateBtn.setOnAction(event -> {
 
+
+
 //                   try {
 //                FileTempoWrite.write("simpleSaving.txt","","","","");
 //            } catch (IOException e) {
@@ -117,18 +117,24 @@ public class SimpleSaving {
 
 
 //            window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
-
-
-            if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)==0){
+            if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,yearsField)==0){
 
                 WarningBox.display("Everything filled","Leave the field which want to Calculate Blank");
 
-            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)>1){
+            }else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,yearsField)>1){
 
                 WarningBox.display("Lack on Values","Leave Only 1 field Blank");
 
-            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && futureValueField.getText().trim().isEmpty()){
+            }else if(TextFieldValidate.stringCheck(futureValueField.getText(),presentValueField.getText(),interestRateField.getText(),yearsField.getText())==2){
+                WarningBox.display("Strings are not Allowed","Only Numerical values are accepted");
+                futureValueField.clear();
+                presentValueField.clear();
+                interestRateField.clear();
+                yearsField.clear();
+
+            }else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && futureValueField.getText().trim().isEmpty()){
                 //calculate future value
+
 
                 double presentValue = parseDouble(presentValueField.getText());
                 double interestRate = parseDouble(interestRateField.getText())/100;
@@ -144,7 +150,7 @@ public class SimpleSaving {
                     e.printStackTrace();
                 }
 
-            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && presentValueField.getText().trim().isEmpty()){
+            }else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && presentValueField.getText().trim().isEmpty()){
                 //calculate present value
 
                 double futureValue = parseDouble(futureValueField.getText());
@@ -161,7 +167,7 @@ public class SimpleSaving {
                     e.printStackTrace();
                 }
 
-            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && interestRateField.getText().trim().isEmpty()){
+            }else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && interestRateField.getText().trim().isEmpty()){
                 //calculate interestRateField
 
                 double futureValue = parseDouble(futureValueField.getText());
@@ -179,7 +185,7 @@ public class SimpleSaving {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && yearsField.getText().trim().isEmpty()){
+            }else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && yearsField.getText().trim().isEmpty()){
                 //calculate years
 
                 double futureValue = parseDouble(futureValueField.getText());
@@ -223,10 +229,10 @@ public class SimpleSaving {
 //            HomePage.display();
 //        });
 
-        Pane root2 = new Pane();
+        Pane simpleSavingPane = new Pane();
 
-        root2.getChildren().addAll(
-                futureValueText,presentValueText,interestRateText,yearsText,Keyboard.displayKeyboard(200,40,futureValueField,presentValueField,interestRateField,yearsField),
+        simpleSavingPane.getChildren().addAll(
+                futureValueText,presentValueText,interestRateText,yearsText,Keyboard.displayKeyboard(130,40,futureValueField,presentValueField,interestRateField,yearsField),
                 presentValueField,interestRateField,yearsField,calculateBtn, futureValueField, resetBtn,TopBar.display(window,0,10)
         );
 
@@ -234,9 +240,9 @@ public class SimpleSaving {
 
 
 
-        keyBoardScene = new Scene(root2,900,700);
+        keyBoardScene = new Scene(simpleSavingPane,900,700);
         keyBoardScene.getStylesheets().add(HomePage.class.getResource("stylesheet.css").toExternalForm());
-        root2.setStyle("-fx-background-color: #e1ffc2;");
+        simpleSavingPane.setStyle("-fx-background-color: #e1ffc2;");
 
         window.setScene(keyBoardScene);
         window.show();
@@ -293,7 +299,6 @@ public class SimpleSaving {
     private static void activeCheck(TextField... textFields){
         for (TextField textField : textFields) {
             textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
-//                System.out.println(textField.getId()+" is Active");
                 String active = textField.getId();
             });
         }

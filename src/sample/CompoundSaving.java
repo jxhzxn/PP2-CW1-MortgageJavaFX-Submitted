@@ -90,15 +90,17 @@ public class CompoundSaving {
                 e.printStackTrace();
             }
 
-            if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==0){
+
+
+            if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==0){
 
                 WarningBox.display("Everything filled","Leave the field which want to Calculate Blank");
 
-            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)>1){
+            }else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)>1){
 
                 WarningBox.display("Lack on Values","Leave Only 1 field Blank");
 
-            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && futureValueField.getText().trim().isEmpty()){
+            }else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && futureValueField.getText().trim().isEmpty()){
                 //calculate future value
 
                 double presentValue = parseDouble(presentValueField.getText());
@@ -116,7 +118,7 @@ public class CompoundSaving {
                     e.printStackTrace();
                 }
 
-            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && presentValueField.getText().trim().isEmpty()){
+            }else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && presentValueField.getText().trim().isEmpty()){
                 //calculate present value
 
                 double futureValue = parseDouble(futureValueField.getText());
@@ -134,7 +136,7 @@ public class CompoundSaving {
                     e.printStackTrace();
                 }
 
-            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && interestRateField.getText().trim().isEmpty()){
+            }else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && interestRateField.getText().trim().isEmpty()){
                 //calculate interestRateField
                 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Still NO:::::::::::::::::::::::::::::::::::::://
 
@@ -148,7 +150,7 @@ public class CompoundSaving {
                 interestRateField.setText(String.valueOf(interestRateOutcome));
 
                 System.out.println("calculate Interest");
-            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && yearsField.getText().trim().isEmpty()){
+            }else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && yearsField.getText().trim().isEmpty()){
                 //calculate years
 
                 double futureValue = parseDouble(futureValueField.getText());
@@ -166,7 +168,7 @@ public class CompoundSaving {
                     e.printStackTrace();
                 }
 
-            }else if(TextFieldEmptyCheck.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && monthlyPaymentField.getText().trim().isEmpty()){
+            }else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && monthlyPaymentField.getText().trim().isEmpty()){
                 //calculate monthly payment
                 double futureValue = parseDouble(futureValueField.getText());
                 double presentValue = parseDouble(presentValueField.getText());
@@ -212,7 +214,7 @@ public class CompoundSaving {
 
         Pane root2 = new Pane();
         root2.getChildren().addAll(
-                futureValueText,presentValueText,interestRateText,monthlyPaymentText,yearsText,Keyboard.displayKeyboard(200,40,futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField),
+                futureValueText,presentValueText,interestRateText,monthlyPaymentText,yearsText,Keyboard.displayKeyboard(130,40,futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField),
                 presentValueField,interestRateField,monthlyPaymentField,yearsField,calculateBtn, futureValueField, resetBtn,TopBar.display(window,0,10)
         );
 
