@@ -218,7 +218,7 @@ public class Loan {
 
         Pane root2 = new Pane();
         root2.getChildren().addAll(
-                loanAmountText,monthlyPaymentText,interestRateText,monthText,Keyboard.displayKeyboard(200,40),
+                loanAmountText,monthlyPaymentText,interestRateText,monthText,Keyboard.displayKeyboard(200,40,loanAmountField,monthlyPaymentField,interestRateField,monthField),
                 monthlyPaymentField,interestRateField,monthField,calculateBtn, loanAmountField, resetBtn,TopBar.display(window,0,10)
         );
 

@@ -1,0 +1,4 @@
+Future Value : 32.0
+Present Value : 55.0
+Interest : 2016.4777187271322%
+Years : 2.0

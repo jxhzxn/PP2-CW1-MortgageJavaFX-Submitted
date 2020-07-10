@@ -212,7 +212,7 @@ public class CompoundSaving {
 
         Pane root2 = new Pane();
         root2.getChildren().addAll(
-                futureValueText,presentValueText,interestRateText,monthlyPaymentText,yearsText,Keyboard.displayKeyboard(200,40),
+                futureValueText,presentValueText,interestRateText,monthlyPaymentText,yearsText,Keyboard.displayKeyboard(200,40,futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField),
                 presentValueField,interestRateField,monthlyPaymentField,yearsField,calculateBtn, futureValueField, resetBtn,TopBar.display(window,0,10)
         );
 

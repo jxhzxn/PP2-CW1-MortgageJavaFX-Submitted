@@ -81,7 +81,7 @@ public class HomePage{
         mortgageBtn.setOnAction(e -> {
             window.close();
             try {
-                Loan.display();
+                Mortgage.display();
             } catch (FileNotFoundException fileNotFoundException) {
                 fileNotFoundException.printStackTrace();
             }

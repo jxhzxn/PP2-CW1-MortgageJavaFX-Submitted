@@ -69,6 +69,15 @@ public class TopBar {
             }
         });
 
+        mortgageBtn.setOnAction(event -> {
+            stage.close();
+            try {
+                Mortgage.display();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
+
 
         topBarPane.getChildren().addAll(
                backBtn,simpleSavingBtn,compoundSavingBtn,loanBtn,mortgageBtn,historyBtn

@@ -6,15 +6,15 @@ import javafx.scene.layout.Pane;
 import java.io.FileNotFoundException;
 
 public class Keyboard {
-    public static Pane displayKeyboard(double x, double y){
+    public static Pane displayKeyboard(double x, double y, TextField... textFields){
         Pane keyboardPane = new Pane();
 
-        TextField keyboardText = new TextField();
-        keyboardText.setLayoutX(400);
-        keyboardText.setLayoutY(60);
-        keyboardText.setPrefHeight(70);
-        keyboardText.setPrefWidth(230);
-        keyboardText.setId("keyboardText");
+        TextField textfield = new TextField();
+        textfield.setLayoutX(400);
+        textfield.setLayoutY(60);
+        textfield.setPrefHeight(70);
+        textfield.setPrefWidth(230);
+        textfield.setId("keyboardText");
 
 
         Button button0 = createButton("0",480,390,70,70);
@@ -32,79 +32,105 @@ public class Keyboard {
         Button buttonEnter = createButton("Enter",400,470,150,70);
         Button buttonC = createButton("C",560,390,70,70);
 
-        button0.setOnAction(event -> {
-            String currentVal = keyboardText.getText();
-            String btn0Value = button0.getText();
-            keyboardText.setText(currentVal+btn0Value);
-        });
 
-        button1.setOnAction(event -> {
-            String currentVal = keyboardText.getText();
-            String btn1Value = button1.getText();
-            keyboardText.setText(currentVal+btn1Value);
-        });
+        for (TextField textField : textFields) {
+            textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
+                TextField selectedTextField = null;
 
-        button2.setOnAction(event -> {
-            String currentVal = keyboardText.getText();
-            String btn2Value = button2.getText();
-            keyboardText.setText(currentVal+btn2Value);
-        });
+                if (newValue) {
+                    selectedTextField = textField;
 
-        button3.setOnAction(event -> {
-            String currentVal = keyboardText.getText();
-            String btn3Value = button3.getText();
-            keyboardText.setText(currentVal+btn3Value);
-        });
+                    TextField finalSelectedTextField = selectedTextField;
+                    button0.setOnAction(event -> {
+                        String currentVal = finalSelectedTextField.getText();
+                        String btn0Value = button0.getText();
+                        finalSelectedTextField.setText(currentVal+btn0Value);
+                    });
 
-        button4.setOnAction(event -> {
-            String currentVal = keyboardText.getText();
-            String btn4Value = button4.getText();
-            keyboardText.setText(currentVal+btn4Value);
-        });
+                    TextField finalSelectedTextField1 = selectedTextField;
+                    button1.setOnAction(event -> {
+                        String currentVal = finalSelectedTextField1.getText();
+                        String btn1Value = button1.getText();
+                        finalSelectedTextField1.setText(currentVal+btn1Value);
+                    });
 
-        button5.setOnAction(event -> {
-            String currentVal = keyboardText.getText();
-            String btn5Value = button5.getText();
-            keyboardText.setText(currentVal+btn5Value);
-        });
+                    TextField finalSelectedTextField2 = selectedTextField;
+                    button2.setOnAction(event -> {
+                        String currentVal = finalSelectedTextField2.getText();
+                        String btn2Value = button2.getText();
+                        finalSelectedTextField2.setText(currentVal+btn2Value);
+                    });
 
-        button6.setOnAction(event -> {
-            String currentVal = keyboardText.getText();
-            String btn6Value = button6.getText();
-            keyboardText.setText(currentVal+btn6Value);
-        });
+                    TextField finalSelectedTextField3 = selectedTextField;
+                    button3.setOnAction(event -> {
+                        String currentVal = finalSelectedTextField3.getText();
+                        String btn3Value = button3.getText();
+                        finalSelectedTextField3.setText(currentVal+btn3Value);
+                    });
 
-        button7.setOnAction(event -> {
-            String currentVal = keyboardText.getText();
-            String btn7Value = button7.getText();
-            keyboardText.setText(currentVal+btn7Value);
-        });
+                    TextField finalSelectedTextField4 = selectedTextField;
+                    button4.setOnAction(event -> {
+                        String currentVal = finalSelectedTextField4.getText();
+                        String btn4Value = button4.getText();
+                        finalSelectedTextField4.setText(currentVal+btn4Value);
+                    });
 
-        button8.setOnAction(event -> {
-            String currentVal = keyboardText.getText();
-            String btn8Value = button8.getText();
-            keyboardText.setText(currentVal+btn8Value);
-        });
+                    TextField finalSelectedTextField5 = selectedTextField;
+                    button5.setOnAction(event -> {
+                        String currentVal = finalSelectedTextField5.getText();
+                        String btn5Value = button5.getText();
+                        finalSelectedTextField5.setText(currentVal+btn5Value);
+                    });
 
-        button9.setOnAction(event -> {
-            String currentVal = keyboardText.getText();
-            String btn9Value = button9.getText();
-            keyboardText.setText(currentVal+btn9Value);
-        });
+                    TextField finalSelectedTextField6 = selectedTextField;
+                    button6.setOnAction(event -> {
+                        String currentVal = finalSelectedTextField6.getText();
+                        String btn6Value = button6.getText();
+                        finalSelectedTextField6.setText(currentVal+btn6Value);
+                    });
 
-        buttonPoint.setOnAction(event -> {
-            String currentVal = keyboardText.getText();
-            String btnPointValue = buttonPoint.getText();
-            keyboardText.setText(currentVal+btnPointValue);
-        });
+                    TextField finalSelectedTextField7 = selectedTextField;
+                    button7.setOnAction(event -> {
+                        String currentVal = finalSelectedTextField7.getText();
+                        String btn7Value = button7.getText();
+                        finalSelectedTextField7.setText(currentVal+btn7Value);
+                    });
 
-        buttonC.setOnAction(event -> {
-            keyboardText.clear();
-        });
+                    TextField finalSelectedTextField8 = selectedTextField;
+                    button8.setOnAction(event -> {
+                        String currentVal = finalSelectedTextField8.getText();
+                        String btn8Value = button8.getText();
+                        finalSelectedTextField8.setText(currentVal+btn8Value);
+                    });
+
+                    TextField finalSelectedTextField9 = selectedTextField;
+                    button9.setOnAction(event -> {
+                        String currentVal = finalSelectedTextField9.getText();
+                        String btn9Value = button9.getText();
+                        finalSelectedTextField9.setText(currentVal+btn9Value);
+                    });
+
+                    TextField finalSelectedTextField10 = selectedTextField;
+                    buttonPoint.setOnAction(event -> {
+                        String currentVal = finalSelectedTextField10.getText();
+                        String btnPointValue = buttonPoint.getText();
+                        finalSelectedTextField10.setText(currentVal+btnPointValue);
+                    });
+
+                    TextField finalSelectedTextField11 = selectedTextField;
+                    buttonC.setOnAction(event -> {
+                        finalSelectedTextField11.clear();
+                    });
+
+                }
+            });
+        }
+
+
 
         keyboardPane.getChildren().addAll(
                 button0,button1,button2,button3,button4,button5,button6,button7,button8,button9,
-                buttonC,buttonPOM,buttonPoint,buttonEnter,keyboardText
+                buttonC,buttonPOM,buttonPoint,buttonEnter
         );
         keyboardPane.setLayoutX(x);
         keyboardPane.setLayoutY(y);

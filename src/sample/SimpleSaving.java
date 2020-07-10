@@ -98,6 +98,9 @@ public class SimpleSaving {
 
 
 
+
+
+
         calculateBtn.setOnAction(event -> {
 
 //                   try {
@@ -221,10 +224,14 @@ public class SimpleSaving {
 //        });
 
         Pane root2 = new Pane();
+
         root2.getChildren().addAll(
-               futureValueText,presentValueText,interestRateText,yearsText,Keyboard.displayKeyboard(200,40),
+                futureValueText,presentValueText,interestRateText,yearsText,Keyboard.displayKeyboard(200,40,futureValueField,presentValueField,interestRateField,yearsField),
                 presentValueField,interestRateField,yearsField,calculateBtn, futureValueField, resetBtn,TopBar.display(window,0,10)
         );
+
+
+
 
 
         keyBoardScene = new Scene(root2,900,700);
@@ -255,6 +262,8 @@ public class SimpleSaving {
         }
         return count;
     }
+
+
 
 
 
