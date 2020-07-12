@@ -1,5 +1,5 @@
-Future Value : 11450.9
-Present Value : 1000.0
+Future Value : 23763.28
+Present Value : 5000.0
 Interest : 5.0%
 Monthly Payment : 100.0
-Years : 7.0
+Years : 10.0

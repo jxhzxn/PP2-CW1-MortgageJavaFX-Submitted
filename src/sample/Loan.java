@@ -106,7 +106,7 @@ public class Loan {
                 //calculate loan Amount
 
                 double monthlyPayment = parseDouble(monthlyPaymentField.getText());
-                double interestRate = parseDouble(interestRateField.getText())/100;
+                double interestRate = (parseDouble(interestRateField.getText())/12)/100;
                 double month = parseDouble(monthField.getText());
 
                 double loanAmountOutcome = ((monthlyPayment/interestRate)*(1-(1/(Math.pow((1+interestRate),(month))))));
@@ -123,10 +123,11 @@ public class Loan {
                 //calculate monthly payment
 
                 double loanAmount = parseDouble(loanAmountField.getText());
-                double interestRate = parseDouble(interestRateField.getText())/100;
+                double interestRate = (parseDouble(interestRateField.getText())/12)/100;
                 double month = parseDouble(monthField.getText());
 
-                double monthlyPaymentOutcome = ((loanAmount*interestRate)/(1-(1/(Math.pow((1+interestRate),(month))))));
+//                double monthlyPaymentOutcome = ((loanAmount*interestRate)/(1-(1/(Math.pow((1+interestRate),(month))))));
+                double monthlyPaymentOutcome = (loanAmount * interestRate) / (1 - (1 / Math.pow((1 + interestRate), month)));
                 double outcome = Double.valueOf(df.format(monthlyPaymentOutcome));
                 monthlyPaymentField.setText(String.valueOf(outcome));
 
@@ -144,11 +145,11 @@ public class Loan {
 
                 double monthlyPayment = parseDouble(monthlyPaymentField.getText());
                 double loanAmount = parseDouble(loanAmountField.getText());
-                double interestRate = parseDouble(interestRateField.getText())/100;
+                double interestRate = (parseDouble(interestRateField.getText())/12)/100;
 
                 double monthOutcome = ((Math.log((monthlyPayment/interestRate)/((monthlyPayment/interestRate)-loanAmount)))/(Math.log(1+interestRate)));
                 double outcome = Double.valueOf(df.format(monthOutcome));
-                monthField.setText(String.valueOf(outcome));
+monthField.setText(String.valueOf(outcome));
 
                 try {
                     FileWrite.loan("loan.txt",loanAmount,monthlyPayment,interestRate,outcome);

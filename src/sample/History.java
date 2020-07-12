@@ -15,81 +15,82 @@ import java.util.List;
 public class History {
 
     public static void display() throws IOException {
-        Stage window = new Stage();
-        Scene keyBoardScene;
-        window.setTitle("History");
-
-        Text historyHead = new Text("Results of the Last Calculation");
-
-        Text simpleSavingHead = new Text("Simple Savings");
-        Text simpleSavingRead = new Text();
-
-        Text compoundSavingHead = new Text("Compound Savings");
-        Text compoundSavingRead = new Text();
-
-        Text loanHead = new Text("Loan");
-        Text loanRead = new Text();
+        Stage historyWindow = new Stage();
+        Scene HistoryScene;
+        historyWindow.setTitle("History");
 
 
-//        Button calculateBtn = new Button("Calculate");
-//        calculateBtn.setId("keyboardButton");
-//        calculateBtn.setLayoutX(60);
-//        calculateBtn.setLayoutY(500);
-
-        simpleSavingRead.setText(FileRead.read("./simpleSaving.txt"));
-        compoundSavingRead.setText(FileRead.read("./compoundSaving.txt"));
-        loanRead.setText(FileRead.read("./loan.txt"));
 
 
-        simpleSavingHead.setId("readHead");
-        simpleSavingRead.setId("readText");
-
-        compoundSavingHead.setId("readHead");
-        compoundSavingRead.setId("readText");
-
-        loanHead.setId("readHead");
-        loanRead.setId("readText");
-
-        simpleSavingHead.setLayoutX(30);
-        simpleSavingHead.setLayoutY(150);
-
-        simpleSavingRead.setLayoutX(30);
-        simpleSavingRead.setLayoutY(200);
-
-        compoundSavingHead.setLayoutX(450);
-        compoundSavingHead.setLayoutY(150);
-
-        compoundSavingRead.setLayoutX(450);
-        compoundSavingRead.setLayoutY(200);
-
-        loanHead.setLayoutX(30);
-        loanHead.setLayoutY(450);
-
-        loanRead.setLayoutX(30);
-        loanRead.setLayoutY(500);
 
 
 
 
         Pane root2 = new Pane();
 
-        root2.getChildren().addAll(
-                simpleSavingRead,simpleSavingHead,compoundSavingHead,compoundSavingRead,loanHead,loanRead,TopBar.display(window,0,10)
-        );
+
+
+        TabPane tabPane = new TabPane();
+        tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+        tabPane.setLayoutY(200);
+        tabPane.setLayoutX(100);
+        tabPane.setPrefWidth(700);
+        tabPane.setPrefHeight(400);
+
+
+
+        Tab tab1 = new Tab("savings");
+        Tab tab2 = new Tab("Compound");
+        Tab tab3 = new Tab("Loan");
+        Tab tab4 = new Tab("Mortgage");
+
+
+
+        ScrollPane scrollPane1 = new ScrollPane();
+        ScrollPane scrollPane2 = new ScrollPane();
+        ScrollPane scrollPane3 = new ScrollPane();
+        ScrollPane scrollPane4 = new ScrollPane();
+
+
+
+        Label lbl1 = new Label(FileRead.read("simpleSaving.txt"));
+        Label lbl2 = new Label(FileRead.read("compoundSaving.txt"));
+        Label lbl3 = new Label(FileRead.read("loan.txt"));
+        Label lbl4 = new Label(FileRead.read("mortgage.txt"));
+
+        Pane pane1 = new Pane();
+        Pane pane2 = new Pane();
+        Pane pane3 = new Pane();
+        Pane pane4 = new Pane();
+        pane1.getChildren().add(lbl1);
+        pane2.getChildren().add(lbl2);
+        pane3.getChildren().add(lbl3);
+        pane4.getChildren().add(lbl4);
+
+
+        tab1.setContent(scrollPane1);
+        tab2.setContent(scrollPane2);
+        tab3.setContent(scrollPane3);
+        tab4.setContent(scrollPane4);
+        scrollPane1.setContent(pane1);
+        scrollPane2.setContent(pane2);
+        scrollPane3.setContent(pane3);
+        scrollPane4.setContent(pane4);
+        tabPane.getTabs().addAll(tab1,tab2,tab3,tab4);
+
+
+
+        root2.getChildren().addAll(TopBar.display(historyWindow,0,10),tabPane);
 
 
 
 
-
-
-
-
-        keyBoardScene = new Scene(root2,900,700);
-        keyBoardScene.getStylesheets().add(HomePage.class.getResource("stylesheet.css").toExternalForm());
+        HistoryScene = new Scene(root2,900,700);
+        HistoryScene.getStylesheets().add(HomePage.class.getResource("stylesheet.css").toExternalForm());
         root2.setStyle("-fx-background-color: #da83b5;");
 
-        window.setScene(keyBoardScene);
-        window.show();
+        historyWindow.setScene(HistoryScene);
+        historyWindow.show();
     }
 
     private static int checkAll(TextField... textFields){

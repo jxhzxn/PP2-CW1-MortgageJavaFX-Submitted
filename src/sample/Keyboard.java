@@ -3,9 +3,6 @@ package sample;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Keyboard {
@@ -173,20 +170,5 @@ public class Keyboard {
         return button;
     }
 
-    public static boolean test(String currentVal){
-        boolean out;
-        for(int i=0; i<currentVal.length()-1; i++){
-            List<Character> readList = new ArrayList<>();
-            readList.add(currentVal.charAt(i));
 
-            for (int x=0; x<readList.size()-1; x++){
-                if (readList.get(i)=='.'){
-                    out = true;
-                }else{
-                    out = false;
-                }
-            }
-        }
-        return true;
-    }
 }

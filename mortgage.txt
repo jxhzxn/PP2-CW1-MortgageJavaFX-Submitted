@@ -1,4 +1,20 @@
-Future Value : 52.0
-Present Value : 25.0
-Interest : 12.0%
-Years : 6.072752373903708E-4
+Future Value : 3.668850371054485E46
+Present Value : 1000.0
+Interest : 5.0%
+Years : 7.0
+Future Value : 132999.04
+Present Value : 30.0
+Interest : 3.0%
+Years : 421.6
+Future Value : 133000.0
+Present Value : 30.0
+Interest : 3.0%
+Years : 132900.0
+Future Value : 133000.0
+Present Value : 30.0
+Interest : 3.0%
+Years : 132900.0
+Future Value : 133000.0
+Present Value : 30.0
+Interest : 3.0%
+Years : 421.6

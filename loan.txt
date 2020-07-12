@@ -1,4 +1,0 @@
-Loan Amount : 5786.37
-Monthly Payment : 1000.0
-Interest : 5.0%
-Loan Month Terms : 7.0

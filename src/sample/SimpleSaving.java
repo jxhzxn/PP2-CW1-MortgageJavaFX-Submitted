@@ -1,6 +1,7 @@
 package sample;
 
 import com.sun.javafx.binding.StringFormatter;
+import com.sun.org.apache.xml.internal.security.utils.IgnoreAllErrorHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import static java.lang.Double.isFinite;
 import static java.lang.Double.parseDouble;
 
 public class SimpleSaving {
@@ -115,14 +117,20 @@ public class SimpleSaving {
                 double nOF = 12.0;
 
                 double futureValeOutcome = presentValue*Math.pow(((1+(interestRate/nOF))),(nOF*years));
-                double outcome = Double.valueOf(df.format(futureValeOutcome));
-                futureValueField.setText(String.valueOf(outcome));
-
-                try {
-                    FileWrite.simpleSaving("simpleSaving.txt",outcome,presentValue,interestRate,years);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                try{
+                    double outcome = Double.valueOf(df.format(futureValeOutcome));
+                    futureValueField.setText(String.valueOf(outcome));
+                    try {
+                        FileWrite.simpleSaving("simpleSaving.txt",outcome,presentValue,interestRate,years);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }catch (NumberFormatException e){
+                    WarningBox.display("Infinity","Your Answer results in Infinity");
                 }
+
+
+
 
             }else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && presentValueField.getText().trim().isEmpty()){
                 //calculating the present value
@@ -150,8 +158,9 @@ public class SimpleSaving {
                 double years = parseDouble(yearsField.getText());
                 double nOF = 12.0;
 
-                double interestRateOutcome = nOF*(Math.pow((futureValue/presentValue),(1/(nOF*years))-1));
-                double outcome = Double.valueOf(df.format(interestRateOutcome));
+//                double interestRateOutcome = nOF*(Math.pow((futureValue/presentValue),(1/(nOF*years))-1));
+                double interestRateOutcome = nOF * ((Math.pow((futureValue / presentValue), (1/(nOF * years)))) - 1);
+                double outcome = Double.valueOf(df.format(interestRateOutcome*100));
                 interestRateField.setText(String.valueOf(outcome));
 
                 try {
@@ -167,7 +176,8 @@ public class SimpleSaving {
                 double interestRate = parseDouble(interestRateField.getText())/100;
                 double nOF = 12.0;
 
-                double yearsOutcome = (Math.log(futureValue/presentValue))/nOF*(Math.log(1+(interestRate/nOF)));
+//                double yearsOutcome = (Math.log(futureValue/presentValue))/nOF*(Math.log(1+(interestRate/nOF)));
+                double yearsOutcome = (Math.log(futureValue/presentValue)) / (nOF * (Math.log(1 + (interestRate/nOF))));
                 double outcome = Double.valueOf(df.format(yearsOutcome));
                 yearsField.setText(String.valueOf(outcome));
 
