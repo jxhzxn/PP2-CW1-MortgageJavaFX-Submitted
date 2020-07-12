@@ -32,10 +32,12 @@ public class History {
 
         TabPane tabPane = new TabPane();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
-        tabPane.setLayoutY(200);
-        tabPane.setLayoutX(100);
-        tabPane.setPrefWidth(700);
-        tabPane.setPrefHeight(400);
+        tabPane.setLayoutY(100);
+        tabPane.setLayoutX(250);
+        tabPane.setPrefWidth(400);
+        tabPane.setPrefHeight(500);
+
+
 
 
 
@@ -44,6 +46,11 @@ public class History {
         Tab tab3 = new Tab("Loan");
         Tab tab4 = new Tab("Mortgage");
 
+        tab1.setId("tab");
+        tab2.setId("tab");
+        tab3.setId("tab");
+        tab4.setId("tab");
+
 
 
         ScrollPane scrollPane1 = new ScrollPane();
@@ -51,12 +58,19 @@ public class History {
         ScrollPane scrollPane3 = new ScrollPane();
         ScrollPane scrollPane4 = new ScrollPane();
 
+        scrollPane1.setId("scrollPane");
+
 
 
         Label lbl1 = new Label(FileRead.read("simpleSaving.txt"));
         Label lbl2 = new Label(FileRead.read("compoundSaving.txt"));
         Label lbl3 = new Label(FileRead.read("loan.txt"));
         Label lbl4 = new Label(FileRead.read("mortgage.txt"));
+
+        lbl1.setLayoutX(30);
+        lbl2.setLayoutX(30);
+        lbl3.setLayoutX(30);
+        lbl4.setLayoutX(30);
 
         lbl1.setId("historyLabel");
         lbl2.setId("historyLabel");
@@ -92,57 +106,11 @@ public class History {
 
         HistoryScene = new Scene(root2,900,700);
         HistoryScene.getStylesheets().add(HomePage.class.getResource("stylesheet.css").toExternalForm());
-        root2.setStyle("-fx-background-color: #da83b5;");
+        root2.setStyle("-fx-background-color: #7d7769;");
 
         historyWindow.setScene(HistoryScene);
         historyWindow.show();
     }
-
-    private static int checkAll(TextField... textFields){
-        int count = 0;
-        for(TextField textField : textFields){
-            if (textField.getText().trim().isEmpty()){
-                count++;
-            }
-        }
-//        System.out.println(count);
-        return count;
-    }
-
-    private static void activeCheck(TextField... textFields){
-        for (TextField textField : textFields) {
-            textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
-//                System.out.println(textField.getId()+" is Active");
-                String active = textField.getId();
-            });
-        }
-    }
-
-
-
-    private static TextField createTextField(double x, double y, double j, double k,String id){
-        TextField textField = new TextField();
-        textField.setLayoutX(x);
-        textField.setLayoutY(y);
-        textField.setId(id);
-        textField.setPrefSize(j,k);
-
-        return textField;
-    }
-
-    public ObservableList<String> testing(){
-        ObservableList<String> testing = FXCollections.observableArrayList();
-        testing.add("hi");
-        testing.add("hi1");
-        testing.add("hi2");
-        testing.add("hi3");
-
-        return testing;
-    }
-
-
-
-
 
 }
 

@@ -32,13 +32,13 @@ public class CompoundSaving {
 
         Button calculateBtn = new Button("Calculate");
         calculateBtn.setId("keyboardButton");
-        calculateBtn.setLayoutX(60);
-        calculateBtn.setLayoutY(600);
+        calculateBtn.setLayoutX(90);
+        calculateBtn.setLayoutY(570);
 
         Button resetBtn = new Button("Reset");
         resetBtn.setId("keyboardButton");
-        resetBtn.setLayoutX(250);
-        resetBtn.setLayoutY(600);
+        resetBtn.setLayoutX(320);
+        resetBtn.setLayoutY(570);
 
 
         futureValueText.setId("fdText");
@@ -47,19 +47,19 @@ public class CompoundSaving {
         yearsText.setId("fdText");
         monthlyPaymentText.setId("fdText");
 
-        futureValueText.setLayoutX(60);
+        futureValueText.setLayoutX(50);
         futureValueText.setLayoutY(220);
 
-        presentValueText.setLayoutX(60);
+        presentValueText.setLayoutX(50);
         presentValueText.setLayoutY(290);
 
-        interestRateText.setLayoutX(60);
+        interestRateText.setLayoutX(50);
         interestRateText.setLayoutY(360);
 
-        monthlyPaymentText.setLayoutX(60);
+        monthlyPaymentText.setLayoutX(50);
         monthlyPaymentText.setLayoutY(430);
 
-        yearsText.setLayoutX(60);
+        yearsText.setLayoutX(50);
         yearsText.setLayoutY(500);
 
 
@@ -192,13 +192,13 @@ public class CompoundSaving {
 
         Pane root2 = new Pane();
         root2.getChildren().addAll(
-                futureValueText,presentValueText,interestRateText,monthlyPaymentText,yearsText,Keyboard.displayKeyboard(130,40,futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField),
+                futureValueText,presentValueText,interestRateText,monthlyPaymentText,yearsText,Keyboard.displayKeyboard(130,30,futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField),
                 presentValueField,interestRateField,monthlyPaymentField,yearsField,calculateBtn, futureValueField, resetBtn,TopBar.display(window,0,10)
         );
 
         keyBoardScene = new Scene(root2,900,700);
         keyBoardScene.getStylesheets().add(HomePage.class.getResource("stylesheet.css").toExternalForm());
-        root2.setStyle("-fx-background-color: #f7cccc;");
+        root2.setStyle("-fx-background-color: #eac761;");
 
         window.setScene(keyBoardScene);
         window.show();

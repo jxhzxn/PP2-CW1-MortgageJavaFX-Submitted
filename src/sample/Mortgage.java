@@ -34,13 +34,13 @@ public class Mortgage{
 
         Button calculateBtn = new Button("Calculate");
         calculateBtn.setId("keyboardButton");
-        calculateBtn.setLayoutX(60);
-        calculateBtn.setLayoutY(550);
+        calculateBtn.setLayoutX(90);
+        calculateBtn.setLayoutY(570);
 
         Button resetBtn = new Button("Reset");
         resetBtn.setId("keyboardButton");
-        resetBtn.setLayoutX(250);
-        resetBtn.setLayoutY(550);
+        resetBtn.setLayoutX(320);
+        resetBtn.setLayoutY(570);
 
         mortgageAmountText.setId("fdText");
         mortgageTermText.setId("fdText");
@@ -48,19 +48,19 @@ public class Mortgage{
         monthPaymentText.setId("fdText");
         downPaymentText.setId("fdText");
 
-        mortgageAmountText.setLayoutX(60);
+        mortgageAmountText.setLayoutX(50);
         mortgageAmountText.setLayoutY(220);
 
-        downPaymentText.setLayoutX(60);
+        downPaymentText.setLayoutX(50);
         downPaymentText.setLayoutY(290);
 
-        mortgageTermText.setLayoutX(60);
+        mortgageTermText.setLayoutX(50);
         mortgageTermText.setLayoutY(360);
 
-        interestRateText.setLayoutX(60);
+        interestRateText.setLayoutX(50);
         interestRateText.setLayoutY(430);
 
-        monthPaymentText.setLayoutX(60);
+        monthPaymentText.setLayoutX(50);
         monthPaymentText.setLayoutY(500);
 
 
@@ -198,7 +198,7 @@ public class Mortgage{
 
         Pane root2 = new Pane();
         root2.getChildren().addAll(
-                mortgageAmountText,mortgageTermText,downPaymentText,interestRateText,monthPaymentText,Keyboard.displayKeyboard(130,40,mortgageAmountField,mortgageTermField,interestRateField,monthField,downPaymentField),
+                mortgageAmountText,mortgageTermText,downPaymentText,interestRateText,monthPaymentText,Keyboard.displayKeyboard(130,30,mortgageAmountField,mortgageTermField,interestRateField,monthField,downPaymentField),
                 mortgageTermField,downPaymentField,interestRateField,monthField,calculateBtn, mortgageAmountField, resetBtn,TopBar.display(window,0,10)
         );
 
@@ -208,7 +208,7 @@ public class Mortgage{
 
         keyBoardScene = new Scene(root2,900,700);
         keyBoardScene.getStylesheets().add(HomePage.class.getResource("stylesheet.css").toExternalForm());
-        root2.setStyle("-fx-background-color: #eebb4d;");
+        root2.setStyle("-fx-background-color: #91c09e;");
 
         window.setScene(keyBoardScene);
         window.show();

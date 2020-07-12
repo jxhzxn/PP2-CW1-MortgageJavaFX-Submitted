@@ -33,13 +33,13 @@ public class Loan {
 
         Button calculateBtn = new Button("Calculate");
         calculateBtn.setId("keyboardButton");
-        calculateBtn.setLayoutX(60);
-        calculateBtn.setLayoutY(500);
+        calculateBtn.setLayoutX(90);
+        calculateBtn.setLayoutY(570);
 
         Button resetBtn = new Button("Reset");
         resetBtn.setId("keyboardButton");
-        resetBtn.setLayoutX(250);
-        resetBtn.setLayoutY(500);
+        resetBtn.setLayoutX(320);
+        resetBtn.setLayoutY(570);
 
 
         loanAmountText.setId("fdText");
@@ -47,16 +47,16 @@ public class Loan {
         interestRateText.setId("fdText");
         monthText.setId("fdText");
 
-        loanAmountText.setLayoutX(60);
+        loanAmountText.setLayoutX(50);
         loanAmountText.setLayoutY(220);
 
-        monthlyPaymentText.setLayoutX(60);
+        monthlyPaymentText.setLayoutX(50);
         monthlyPaymentText.setLayoutY(290);
 
-        interestRateText.setLayoutX(60);
+        interestRateText.setLayoutX(50);
         interestRateText.setLayoutY(360);
 
-        monthText.setLayoutX(60);
+        monthText.setLayoutX(50);
         monthText.setLayoutY(430);
 
 
@@ -173,14 +173,14 @@ public class Loan {
 
         Pane root2 = new Pane();
         root2.getChildren().addAll(
-                loanAmountText,monthlyPaymentText,interestRateText,monthText,Keyboard.displayKeyboard(130,40,loanAmountField,monthlyPaymentField,interestRateField,monthField),
+                loanAmountText,monthlyPaymentText,interestRateText,monthText,Keyboard.displayKeyboard(130,30,loanAmountField,monthlyPaymentField,interestRateField,monthField),
                 monthlyPaymentField,interestRateField,monthField,calculateBtn, loanAmountField, resetBtn,TopBar.display(window,0,10)
         );
 
 
         keyBoardScene = new Scene(root2,900,700);
         keyBoardScene.getStylesheets().add(HomePage.class.getResource("stylesheet.css").toExternalForm());
-        root2.setStyle("-fx-background-color: #01a9b4;");
+        root2.setStyle("-fx-background-color: #e8df9c;");
 
         window.setScene(keyBoardScene);
         window.show();

@@ -33,8 +33,8 @@ public class Keyboard {
         Button buttonC = createButton("C",560,390,70,70);
         Button backSpace = createButton("<-",640,150,80,150);
 
-        backSpace.setStyle("-fx-background-color: #e8505b;");
-        buttonC.setStyle("-fx-background-color: #e8505b;");
+        backSpace.setStyle("-fx-background-color: #581845 ; -fx-text-fill: white");
+        buttonC.setStyle("-fx-background-color: #581845 ; -fx-text-fill: white");
 
 
         for (TextField textField : textFields) {

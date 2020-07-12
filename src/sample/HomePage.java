@@ -2,6 +2,7 @@ package sample;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -21,36 +22,46 @@ public class HomePage{
         Button compoundSavingBtn = new Button("Compound Savings");
         Button loanBtn = new Button("Loans");
         Button mortgageBtn = new Button("Mortgage");
-        Button historyBtn = new Button("History");
+        Button helpBtn = new Button("Help");
+
+        Label headLbl = new Label("Financial");
+        Label subHeadLbl = new Label("Calculator");
 
         //Setting the ID of the Buttons
         compoundSavingBtn.setId("homeBtn");
         simpleSavingBtn.setId("homeBtn");
         loanBtn.setId("homeBtn");
         mortgageBtn.setId("homeBtn");
-        historyBtn.setId("backBtn");
+        helpBtn.setId("helpBtn");
 
         simpleSavingBtn.setPrefSize(330,70);
-        simpleSavingBtn.setLayoutX(500);
-        simpleSavingBtn.setLayoutY(160);
-
         compoundSavingBtn.setPrefSize(330,70);
-        compoundSavingBtn.setLayoutX(500);
-        compoundSavingBtn.setLayoutY(260);
-
-
-
         loanBtn.setPrefSize(330,70);
-        loanBtn.setLayoutX(500);
-        loanBtn.setLayoutY(360);
-
         mortgageBtn.setPrefSize(330,70);
-        mortgageBtn.setLayoutX(500);
-        mortgageBtn.setLayoutY(460);
 
-        historyBtn.setPrefSize(200,70);
-        historyBtn.setLayoutX(100);
-        historyBtn.setLayoutY(460);
+        simpleSavingBtn.setLayoutX(450);
+        compoundSavingBtn.setLayoutX(450);
+        loanBtn.setLayoutX(450);
+        mortgageBtn.setLayoutX(450);
+
+        simpleSavingBtn.setLayoutY(220);
+        compoundSavingBtn.setLayoutY(320);
+        loanBtn.setLayoutY(420);
+        mortgageBtn.setLayoutY(520);
+
+
+
+        helpBtn.setPrefSize(100,50);
+        helpBtn.setLayoutX(70);
+        helpBtn.setLayoutY(535);
+
+        headLbl.setLayoutX(60);
+        headLbl.setLayoutY(50);
+        subHeadLbl.setLayoutX(60);
+        subHeadLbl.setLayoutY(120);
+        headLbl.setId("heading");
+        subHeadLbl.setId("subHeading");
+        helpBtn.setId("helpBtn");
 
         compoundSavingBtn.setOnAction(e -> {
             window.close();
@@ -88,23 +99,14 @@ public class HomePage{
             }
         });
 
-        historyBtn.setOnAction(e -> {
-            window.close();
-            try {
-                History.display();
-            } catch (FileNotFoundException fileNotFoundException) {
-                fileNotFoundException.printStackTrace();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
+
 
         Pane homePageRoot = new Pane();
-        homePageRoot.getChildren().addAll(compoundSavingBtn,simpleSavingBtn,loanBtn,mortgageBtn,historyBtn);
+        homePageRoot.getChildren().addAll(compoundSavingBtn,simpleSavingBtn,loanBtn,mortgageBtn,helpBtn,headLbl,subHeadLbl);
 
         homePageScene = new Scene(homePageRoot,900,700);
         homePageScene.getStylesheets().add(HomePage.class.getResource("stylesheet.css").toExternalForm());
-        homePageRoot.setStyle("-fx-background-color: #f6cd61;");
+        homePageRoot.setStyle("-fx-background-color: #2a7b9b;");
         window.setScene(homePageScene);
         window.show();
     }

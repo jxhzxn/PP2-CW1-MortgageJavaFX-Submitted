@@ -1,19 +1,21 @@
 #homeBtn{
-       -fx-background-color: #fea18d;
+       -fx-background-color: #f4c888;
        -fx-border-color: black;
        -fx-border-width: 4px;
        -fx-font-size: 22px;
        -fx-font-weight: bold;
        -fx-background-radius: 10px;
        -fx-border-radius: 10px;
+       -fx-font-color: white;
 }
 
 #homeBtn:hover{
-    -fx-background-color: #fe8a71;
+    -fx-background-color: #c3a06c;
 }
 
 #fdText{
     -fx-font-size: 25px;
+    -fx-font-weight: 600;
 
 }
 
@@ -27,7 +29,7 @@
 }
 
 #keyboardButton{
-    -fx-background-color: #f9d56e;
+    -fx-background-color: #f4c888;
     /*-fx-background-color: #89c9b8;*/
 
     -fx-border-color: black;
@@ -38,8 +40,31 @@
     -fx-border-radius: 10px;
 }
 
+#helpBtn{
+    -fx-background-color: black;
+    -fx-border-color: black;
+    -fx-border-width: 4px;
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-text-fill: white;
+}
+
+#helpBtn:hover{
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-width: 4px;
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+
 #keyboardButton:hover{
-    -fx-background-color: #e0bf63;
+    -fx-background-color: #c3a06c;
     -fx-border-color: black;
     -fx-font-weight: bold;
 }
@@ -55,6 +80,25 @@
 
 #historyLabel{
     -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+#tab{
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+#scrollPane{
+   -fx-background-color: #9f002d;
+}
+
+#heading{
+   -fx-font-size: 80px;
+    -fx-font-weight: bold;
+}
+
+#subHeading{
+   -fx-font-size: 50px;
     -fx-font-weight: bold;
 }
 
@@ -91,8 +135,8 @@
 }
 
 #backBtn{
-    -fx-background-color: #C70039;
-    -fx-border-color: #C70039;
+    -fx-background-color: #2a7b9b;
+    -fx-border-color: #2a7b9b;
     -fx-border-width: 1px;
     -fx-font-size: 20px;
     -fx-font-weight: bold;
@@ -100,67 +144,67 @@
 }
 
 #backBtn:hover{
-    -fx-background-color: #9f002d;
+    -fx-background-color: #21627c;
 }
 
 #simpleSavingBtn{
-    -fx-background-color: #e1ffc2;
-    -fx-border-color: #e1ffc2;
+    -fx-background-color: #f75e50;
+    -fx-border-color:     #f75e50;
     -fx-border-width: 1px;
     -fx-font-size: 15px;
     -fx-font-weight: bold;
 }
 
 #simpleSavingBtn:hover{
-    -fx-background-color: #b4cc9b;
+    -fx-background-color: #c54b40;
 }
 
 #compoundSavingBtn{
-    -fx-background-color: #f7cccc;
-    -fx-border-color: #f7cccc;
+    -fx-background-color: #eac761;
+    -fx-border-color:     #eac761;
     -fx-border-width: 1px;
     -fx-font-size: 15px;
     -fx-font-weight: bold;
 }
 
 #compoundSavingBtn:hover{
-    -fx-background-color: #c5a3a3;
+    -fx-background-color: #bb9f4d;
 }
 
 #loanBtn{
-    -fx-background-color: #01a9b4;
-    -fx-border-color: #01a9b4;
+    -fx-background-color: #e8df9c;
+    -fx-border-color:     #e8df9c;
     -fx-border-width: 1px;
     -fx-font-size: 15px;
     -fx-font-weight: bold;
 }
 
 #loanBtn:hover{
-    -fx-background-color: #008790;
+    -fx-background-color: #b9b27c;
 }
 
 #mortgageBtn{
-    -fx-background-color: #eebb4d;
-    -fx-border-color: #eebb4d;
+    -fx-background-color: #91c09e;
+    -fx-border-color:     #91c09e;
     -fx-border-width: 1px;
     -fx-font-size: 15px;
     -fx-font-weight: bold;
 }
 
 #mortgageBtn:hover{
-    -fx-background-color: #be953d;
+    -fx-background-color: #74997e;
 }
 
 #historyBtn{
-    -fx-background-color: #da83b5;
-    -fx-border-color: #da83b5;
+    -fx-background-color: #7d7769;
+    -fx-border-color:     #7d7769;
     -fx-border-width: 1px;
     -fx-font-size: 15px;
     -fx-font-weight: bold;
 }
 
 #historyBtn:hover{
-    -fx-background-color: #cb5197;
+    -fx-background-color: #645f54;
 }
 
 #readHead{
