@@ -2,6 +2,7 @@ package sample;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -22,31 +23,37 @@ public class CompoundSaving {
         Scene keyBoardScene;
         window.setTitle("Compound Savings");
 
+        //creating an object to round the Decimal
         DecimalFormat df = new DecimalFormat("#.##");
 
+        //creating the text
         Text futureValueText = new Text("Future Value");
         Text presentValueText = new Text("Present Value");
         Text interestRateText = new Text("Interest Rate");
         Text monthlyPaymentText = new Text("Monthly Payments");
         Text yearsText = new Text("Time in Years");
 
+        //creating the calculate button
         Button calculateBtn = new Button("Calculate");
         calculateBtn.setId("keyboardButton");
         calculateBtn.setLayoutX(90);
         calculateBtn.setLayoutY(570);
 
+        //creating the reset button
         Button resetBtn = new Button("Reset");
         resetBtn.setId("keyboardButton");
         resetBtn.setLayoutX(320);
         resetBtn.setLayoutY(570);
 
 
+        //Setting the ID
         futureValueText.setId("fdText");
         presentValueText.setId("fdText");
         interestRateText.setId("fdText");
         yearsText.setId("fdText");
         monthlyPaymentText.setId("fdText");
 
+        //placing the elements by setting coordinates
         futureValueText.setLayoutX(50);
         futureValueText.setLayoutY(220);
 
@@ -62,28 +69,26 @@ public class CompoundSaving {
         yearsText.setLayoutX(50);
         yearsText.setLayoutY(500);
 
+        Label headText = new Label("Compound Saving");
+        headText.setLayoutX(10);
+        headText.setLayoutY(50);
+        headText.setId("headText");
 
-
-//        TextField futureValueField =     createTextField(300,180,120,60,"futureValueField");
+        //creating textfields from a method
         TextField futureValueField =        createTextField(300,180,150,60,"futureValueField");
         TextField presentValueField =       createTextField(300,250,150,60,"presentValueField");
         TextField interestRateField =       createTextField(300,320,150,60,"interestRateField");
         TextField monthlyPaymentField =     createTextField(300,390,150,60,"yearsField");
         TextField yearsField =              createTextField(300,460,150,60,"yearsField");
 
+        //repopulating the unsaved input fields
         List<String> readList = FileReadTemp.read("./compoundSavingTemp.txt");
         futureValueField.setText(readList.get(0));
         presentValueField.setText(readList.get(1));
         interestRateField.setText(readList.get(2));
         monthlyPaymentField.setText(readList.get(3));
         yearsField.setText(readList.get(4));
-//        try {
-//            FileTempoWrite.compoundSaving("compoundSavingTemp.txt"," "," "," "," "," ");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
-//        installListener(futureValueField,presentValueField,interestRateField,yearsField);
 
         calculateBtn.setOnAction(event -> {
 
@@ -93,14 +98,12 @@ public class CompoundSaving {
                 e.printStackTrace();
             }
 
-
-
             if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==0){
-
+                //calling the warning box for leaving more than one input fields
                 WarningBox.display("Everything filled","Leave the field which want to Calculate Blank");
 
             }else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)>1){
-
+                //calling the warning box for filling all the fields
                 WarningBox.display("Lack on Values","Leave Only 1 field Blank");
 
             }else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && futureValueField.getText().trim().isEmpty()){
@@ -182,6 +185,7 @@ public class CompoundSaving {
             }
         });
 
+        //reset button
         resetBtn.setOnAction(e->{
             futureValueField.clear();
             presentValueField.clear();
@@ -193,7 +197,7 @@ public class CompoundSaving {
         Pane root2 = new Pane();
         root2.getChildren().addAll(
                 futureValueText,presentValueText,interestRateText,monthlyPaymentText,yearsText,Keyboard.displayKeyboard(130,30,futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField),
-                presentValueField,interestRateField,monthlyPaymentField,yearsField,calculateBtn, futureValueField, resetBtn,TopBar.display(window,0,10)
+                presentValueField,interestRateField,monthlyPaymentField,yearsField,calculateBtn, futureValueField, resetBtn,TopBar.display(window,0,10),headText
         );
 
         keyBoardScene = new Scene(root2,900,700);

@@ -4,6 +4,7 @@ import com.sun.javafx.binding.StringFormatter;
 import com.sun.org.apache.xml.internal.security.utils.IgnoreAllErrorHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -45,6 +46,11 @@ public class SimpleSaving {
         resetBtn.setLayoutX(320);
         resetBtn.setLayoutY(570);
 
+        Label headText = new Label("Simple Saving");
+        headText.setLayoutX(10);
+        headText.setLayoutY(50);
+        headText.setId("headText");
+
 
         futureValueText.setId("fdText");
         presentValueText.setId("fdText");
@@ -64,6 +70,7 @@ public class SimpleSaving {
         yearsText.setLayoutY(430);
 
 
+        //creating the textfields
         TextField futureValueField = createTextField(300,180,150,60,"futureValueField");
         TextField presentValueField =    createTextField(300,250,150,60,"presentValueField");
         TextField interestRateField =   createTextField(300,320,150,60,"interestRateField");
@@ -89,8 +96,6 @@ public class SimpleSaving {
                 e.printStackTrace();
             }
 
-
-//            window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
             if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,yearsField)==0){
 
                 WarningBox.display("Everything filled","Leave the field which want to Calculate Blank");
@@ -99,15 +104,7 @@ public class SimpleSaving {
 
                 WarningBox.display("Lack on Values","Leave Only 1 field Blank");
 
-            }
-//            else if(TextFieldValidate.stringCheck(futureValueField.getText(),presentValueField.getText(),interestRateField.getText(),yearsField.getText())==2){
-//                WarningBox.display("Strings are not Allowed","Only Numerical values are accepted");
-//                futureValueField.clear();
-//                presentValueField.clear();
-//                interestRateField.clear();
-//                yearsField.clear();
-
-            else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && futureValueField.getText().trim().isEmpty()){
+            } else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && futureValueField.getText().trim().isEmpty()){
                 //calculating the Future Value
 
 
@@ -204,7 +201,7 @@ public class SimpleSaving {
 
         simpleSavingPane.getChildren().addAll(
                 futureValueText,presentValueText,interestRateText,yearsText,Keyboard.displayKeyboard(130,30,futureValueField,presentValueField,interestRateField,yearsField),
-                presentValueField,interestRateField,yearsField,calculateBtn, futureValueField, resetBtn,TopBar.display(window,0,10)
+                presentValueField,interestRateField,yearsField,calculateBtn, futureValueField, resetBtn,TopBar.display(window,0,10),headText
         );
 
         keyBoardScene = new Scene(simpleSavingPane,900,700);

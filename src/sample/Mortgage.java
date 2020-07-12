@@ -2,6 +2,7 @@ package sample;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -25,6 +26,11 @@ public class Mortgage{
 
         //creating a new Decimal Formatter
         DecimalFormat df = new DecimalFormat("#.##");
+
+        Label headText = new Label("Mortgage");
+        headText.setLayoutX(10);
+        headText.setLayoutY(50);
+        headText.setId("headText");
 
         Text mortgageAmountText = new Text("Mortgage Amount");
         Text mortgageTermText = new Text("Mortgage Term");
@@ -64,6 +70,7 @@ public class Mortgage{
         monthPaymentText.setLayoutY(500);
 
 
+        //creating th etextfields
         TextField mortgageAmountField =     createTextField(300,180,150,60,"futureValueField");
         TextField downPaymentField =        createTextField(300,250,150,60,"futureValueField");
         TextField mortgageTermField =       createTextField(300,320,150,60,"presentValueField");
@@ -71,6 +78,7 @@ public class Mortgage{
         TextField monthField =              createTextField(300,460,150,60,"yearsField");
 
 
+        //repopulating the temporary input field data
         List<String> readList = FileReadTemp.read("./mortgageTemp.txt");
         mortgageAmountField.setText(readList.get(0));
         downPaymentField.setText(readList.get(1));
@@ -182,6 +190,7 @@ public class Mortgage{
 
         });
 
+        //reset button
         resetBtn.setOnAction(e->{
             mortgageAmountField.clear();
             mortgageTermField.clear();
@@ -191,15 +200,10 @@ public class Mortgage{
         });
 
 
-
-
-
-
-
         Pane root2 = new Pane();
         root2.getChildren().addAll(
                 mortgageAmountText,mortgageTermText,downPaymentText,interestRateText,monthPaymentText,Keyboard.displayKeyboard(130,30,mortgageAmountField,mortgageTermField,interestRateField,monthField,downPaymentField),
-                mortgageTermField,downPaymentField,interestRateField,monthField,calculateBtn, mortgageAmountField, resetBtn,TopBar.display(window,0,10)
+                mortgageTermField,downPaymentField,interestRateField,monthField,calculateBtn, mortgageAmountField, resetBtn,TopBar.display(window,0,10),headText
         );
 
         ScrollPane scrollPane = new ScrollPane();

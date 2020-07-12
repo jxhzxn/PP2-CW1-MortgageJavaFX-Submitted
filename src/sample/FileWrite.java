@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class FileWrite{
 
+    //method to write the SimpleSaving's final calculation data in a file
     public static void simpleSaving(String fileName, double futureValue, double presentValue, double interestRate, double years) throws IOException {
 
         File file = new File(fileName);
@@ -27,6 +28,7 @@ public class FileWrite{
 
     }
 
+    //method to write the CompoundSaving's final calculation data in a file
     public static void compoundSaving(String fileName, double futureValue, double presentValue, double interestRate, double payment, double years) throws IOException {
 
         File file = new File(fileName);
@@ -46,6 +48,7 @@ public class FileWrite{
 
     }
 
+    //method to write the Loan's final calculation data in a file
     public static void loan(String fileName, double loanAmount, double monthlyPayment, double interestRate, double month) throws IOException {
         File file = new File(fileName);
         if (file.exists()) {
@@ -61,6 +64,7 @@ public class FileWrite{
         }
     }
 
+    //method to write the Mortgage's final calculation data in a file
     public static void mortgage(String fileName, double mortgageAmount, double downPayment, double mortgageTerm, double interestRate, double monthPayment) throws IOException {
 
         File file = new File(fileName);

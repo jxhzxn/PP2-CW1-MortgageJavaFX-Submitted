@@ -13,7 +13,7 @@ public class TopBar {
         Pane topBarPane = new Pane();
 
 
-
+        //creating the buttons
         Button backBtn =                createButton("Home",            0,  -10,100,40);
         Button simpleSavingBtn =        createButton("Simple",          100,-10,160,40);
         Button compoundSavingBtn =      createButton("Compound",        260,-10,160,40);
@@ -22,6 +22,7 @@ public class TopBar {
         Button historyBtn =            createButton("History",          740,-10,160,40);
 
 
+        //setting the IDs to the buttons
         backBtn.setId("backBtn");
         simpleSavingBtn.setId("simpleSavingBtn");
         compoundSavingBtn.setId("compoundSavingBtn");
@@ -29,6 +30,7 @@ public class TopBar {
         mortgageBtn.setId("mortgageBtn");
         historyBtn.setId("historyBtn");
 
+        //setting the functions to the buttons
         backBtn.setOnAction(event -> {
             stage.close();
             HomePage.display();
@@ -94,6 +96,7 @@ public class TopBar {
 
     }
 
+    //method to create the buttons
     public static Button createButton(String ButtonText, double x, double y, double j, double k){
         Button button = new Button(ButtonText);
         button.setLayoutX(x);

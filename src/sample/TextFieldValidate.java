@@ -1,11 +1,9 @@
 package sample;
 import javafx.scene.control.TextField;
 
-import java.util.Arrays;
-
-
 public class TextFieldValidate {
 
+        //method to check the number of empty fields from the given textfields
         public static int check(TextField... textFields){
             int count = 0;
             for(TextField textField : textFields){
@@ -14,18 +12,6 @@ public class TextFieldValidate {
                 }
             }
             return count;
-        }
-
-        public static int stringCheck(String... values){
-            int returnVal = 0;
-            try{
-                double checked = Double.parseDouble(Arrays.toString(values));
-                returnVal = 1;
-            }
-            catch (NumberFormatException e){
-               returnVal = 2;
-            }
-            return returnVal;
         }
 
     }

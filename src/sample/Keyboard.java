@@ -16,7 +16,7 @@ public class Keyboard {
         textfield.setPrefWidth(230);
         textfield.setId("keyboardText");
 
-
+        //creating the buttons
         Button button0 = createButton("0",480,390,70,70);
         Button button1 = createButton("1",400,310,70,70);
         Button button2 = createButton("2",480,310,70,70);
@@ -37,6 +37,7 @@ public class Keyboard {
         buttonC.setStyle("-fx-background-color: #581845 ; -fx-text-fill: white");
 
 
+        //setting the functons for each buttons by considering the relevant focused textfield
         for (TextField textField : textFields) {
             textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
                 TextField selectedTextField = null;
@@ -160,6 +161,7 @@ public class Keyboard {
 
     }
 
+    //method to create the buttons
     private static Button createButton(String ButtonText, double x, double y, double j, double k){
         Button button = new Button(ButtonText);
         button.setLayoutX(x);

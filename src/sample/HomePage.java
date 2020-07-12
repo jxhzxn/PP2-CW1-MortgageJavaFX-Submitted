@@ -17,7 +17,6 @@ public class HomePage{
         window.setTitle("Financial Calculator");
 
         //HomePageButtons
-
         Button simpleSavingBtn = new Button("Simple Savings");
         Button compoundSavingBtn = new Button("Compound Savings");
         Button loanBtn = new Button("Loans");
@@ -63,6 +62,8 @@ public class HomePage{
         subHeadLbl.setId("subHeading");
         helpBtn.setId("helpBtn");
 
+
+        //functions for each buttons
         compoundSavingBtn.setOnAction(e -> {
             window.close();
             try {
@@ -96,6 +97,15 @@ public class HomePage{
                 Mortgage.display();
             } catch (FileNotFoundException fileNotFoundException) {
                 fileNotFoundException.printStackTrace();
+            }
+        });
+
+        helpBtn.setOnAction(event -> {
+            window.close();
+            try {
+                Help.display();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
 

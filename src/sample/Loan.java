@@ -2,6 +2,7 @@ package sample;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -24,8 +25,7 @@ public class Loan {
 
         DecimalFormat df = new DecimalFormat("#.##");
 
-
-
+        //creating the texts
         Text loanAmountText = new Text("Loan Amount");
         Text monthlyPaymentText = new Text("Monthly Payment");
         Text interestRateText = new Text("Interest Rate");
@@ -61,29 +61,23 @@ public class Loan {
 
 
 
-//        TextField futureValueField =     createTextField(300,180,120,60,"futureValueField");
+        //creating the textfields
         TextField loanAmountField =         createTextField(300,180,150,60,"futureValueField");
         TextField monthlyPaymentField =     createTextField(300,250,150,60,"presentValueField");
         TextField interestRateField =       createTextField(300,320,150,60,"interestRateField");
         TextField monthField =              createTextField(300,390,150,60,"yearsField");
 
-//        installListener(futureValueField,presentValueField,interestRateField,yearsField);
-
-//        File readList = new File("simpleSavingTemp.txt");
-//        if(readFile.isDirectory()){
-
-
-
+        //setting the temporary input field data
         List<String> readList = FileReadTemp.read("./loanTemp.txt");
         loanAmountField.setText(readList.get(0));
         monthlyPaymentField.setText(readList.get(1));
         interestRateField.setText(readList.get(2));
         monthField.setText(readList.get(3));
 
-
-
-
-
+        Label headText = new Label("Loan");
+        headText.setLayoutX(10);
+        headText.setLayoutY(50);
+        headText.setId("headText");
 
 
         calculateBtn.setOnAction(event -> {
@@ -126,7 +120,6 @@ public class Loan {
                 double interestRate = (parseDouble(interestRateField.getText())/12)/100;
                 double month = parseDouble(monthField.getText());
 
-//                double monthlyPaymentOutcome = ((loanAmount*interestRate)/(1-(1/(Math.pow((1+interestRate),(month))))));
                 double monthlyPaymentOutcome = (loanAmount * interestRate) / (1 - (1 / Math.pow((1 + interestRate), month)));
                 double outcome = Double.valueOf(df.format(monthlyPaymentOutcome));
                 monthlyPaymentField.setText(String.valueOf(outcome));
@@ -174,7 +167,7 @@ public class Loan {
         Pane root2 = new Pane();
         root2.getChildren().addAll(
                 loanAmountText,monthlyPaymentText,interestRateText,monthText,Keyboard.displayKeyboard(130,30,loanAmountField,monthlyPaymentField,interestRateField,monthField),
-                monthlyPaymentField,interestRateField,monthField,calculateBtn, loanAmountField, resetBtn,TopBar.display(window,0,10)
+                monthlyPaymentField,interestRateField,monthField,calculateBtn, loanAmountField, resetBtn,TopBar.display(window,0,10),headText
         );
 
 
@@ -197,6 +190,7 @@ public class Loan {
     }
 
 
+    //method to create the textfields
     private static TextField createTextField(double x, double y, double j, double k,String id){
         TextField textField = new TextField();
         textField.setLayoutX(x);

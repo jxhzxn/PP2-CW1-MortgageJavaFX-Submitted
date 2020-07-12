@@ -10,3 +10,9 @@ Mortgage Term : 33.0
 Interest : 3.0%
 Monthly Payment : 1.327026784E7
 
+Mortgage Amount : 9999999.0
+Down Payment : 99999.0
+Mortgage Term : 99.0
+Interest : 9.0%
+Monthly Payment : 74260.37
+

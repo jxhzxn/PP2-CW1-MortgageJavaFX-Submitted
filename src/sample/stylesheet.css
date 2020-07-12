@@ -220,3 +220,13 @@
     -fx-font-size: 40px;
     -fx-font-weight: bold;
 }
+
+#headText{
+    -fx-font-size: 80px;
+    -fx-font-weight: bold;
+    -fx-opacity: 15%;
+}
+
+#helpText{
+    -fx-font-size: 23px;
+}
