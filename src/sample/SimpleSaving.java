@@ -1,5 +1,6 @@
 package sample;
 
+import com.sun.javafx.binding.StringFormatter;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -10,6 +11,7 @@ import javafx.stage.WindowEvent;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import static java.lang.Double.parseDouble;
@@ -21,8 +23,11 @@ public class SimpleSaving {
         Scene keyBoardScene;
         window.setTitle("Simple Savings");
 
+        //creating a new Decimal Formatter
+        DecimalFormat df = new DecimalFormat("#.##");
 
 
+        //Creating the TextFields
         Text futureValueText = new Text("Future Value");
         Text presentValueText = new Text("Present Value");
         Text interestRateText = new Text("Interest Rate");
@@ -57,58 +62,25 @@ public class SimpleSaving {
         yearsText.setLayoutY(430);
 
 
-
-//        TextField futureValueField =     createTextField(300,180,120,60,"futureValueField");
-        TextField futureValueField = createTextField(300,180,120,60,"futureValueField");
-        TextField presentValueField =    createTextField(300,250,120,60,"presentValueField");
-        TextField interestRateField =   createTextField(300,320,120,60,"interestRateField");
-        TextField yearsField =          createTextField(300,390,120,60,"yearsField");
-
-//        installListener(futureValueField,presentValueField,interestRateField,yearsField);
-
-//        File readList = new File("simpleSavingTemp.txt");
-//        if(readFile.isDirectory()){
+        TextField futureValueField = createTextField(300,180,150,60,"futureValueField");
+        TextField presentValueField =    createTextField(300,250,150,60,"presentValueField");
+        TextField interestRateField =   createTextField(300,320,150,60,"interestRateField");
+        TextField yearsField =          createTextField(300,390,150,60,"yearsField");
 
 
-            List<String> readList = FileReadTemp.read("./simpleSavingTemp.txt");
-            futureValueField.setText(readList.get(0));
-            presentValueField.setText(readList.get(1));
-            interestRateField.setText(readList.get(2));
-            yearsField.setText(readList.get(3));
-//        try {
-//            FileTempoWrite.simpleSaving("simpleSavingTemp.txt","","","","");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-
-//        }else{
-//            System.out.print("file isn't there");
-//        }
-
-
-
-
-
-
-
-
-
-
-
+        //Reading the TempFile and assigning the values to the textFields
+        List<String> readList = FileReadTemp.read("./simpleSavingTemp.txt");
+        futureValueField.setText(readList.get(0));
+        presentValueField.setText(readList.get(1));
+        interestRateField.setText(readList.get(2));
+        yearsField.setText(readList.get(3));
 
 
 
         calculateBtn.setOnAction(event -> {
 
 
-
-//                   try {
-//                FileTempoWrite.write("simpleSaving.txt","","","","");
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-
+            //Clearing the TempFile after clicking the calculate button
             try {
                 FileTempoWrite.simpleSaving("simpleSavingTemp.txt"," "," "," "," ");
             } catch (IOException e) {
@@ -125,15 +97,16 @@ public class SimpleSaving {
 
                 WarningBox.display("Lack on Values","Leave Only 1 field Blank");
 
-            }else if(TextFieldValidate.stringCheck(futureValueField.getText(),presentValueField.getText(),interestRateField.getText(),yearsField.getText())==2){
-                WarningBox.display("Strings are not Allowed","Only Numerical values are accepted");
-                futureValueField.clear();
-                presentValueField.clear();
-                interestRateField.clear();
-                yearsField.clear();
+            }
+//            else if(TextFieldValidate.stringCheck(futureValueField.getText(),presentValueField.getText(),interestRateField.getText(),yearsField.getText())==2){
+//                WarningBox.display("Strings are not Allowed","Only Numerical values are accepted");
+//                futureValueField.clear();
+//                presentValueField.clear();
+//                interestRateField.clear();
+//                yearsField.clear();
 
-            }else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && futureValueField.getText().trim().isEmpty()){
-                //calculate future value
+            else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && futureValueField.getText().trim().isEmpty()){
+                //calculating the Future Value
 
 
                 double presentValue = parseDouble(presentValueField.getText());
@@ -142,16 +115,17 @@ public class SimpleSaving {
                 double nOF = 12.0;
 
                 double futureValeOutcome = presentValue*Math.pow(((1+(interestRate/nOF))),(nOF*years));
-                futureValueField.setText(String.valueOf(futureValeOutcome));
+                double outcome = Double.valueOf(df.format(futureValeOutcome));
+                futureValueField.setText(String.valueOf(outcome));
 
                 try {
-                    FileWrite.simpleSaving("simpleSaving.txt",futureValeOutcome,presentValue,interestRate,years);
+                    FileWrite.simpleSaving("simpleSaving.txt",outcome,presentValue,interestRate,years);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
             }else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && presentValueField.getText().trim().isEmpty()){
-                //calculate present value
+                //calculating the present value
 
                 double futureValue = parseDouble(futureValueField.getText());
                 double interestRate = parseDouble(interestRateField.getText())/100;
@@ -159,34 +133,34 @@ public class SimpleSaving {
                 double nOF = 12.0;
 
                 double presentValueOutcome = futureValue/Math.pow(1+(interestRate/nOF),(nOF*years));
-                presentValueField.setText(String.valueOf(presentValueOutcome));
+                double outcome = Double.valueOf(df.format(presentValueOutcome));
+                presentValueField.setText(String.valueOf(outcome));
 
                 try {
-                    FileWrite.simpleSaving("simpleSaving.txt",futureValue,presentValueOutcome,interestRate,years);
+                    FileWrite.simpleSaving("simpleSaving.txt",futureValue,outcome,interestRate,years);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
             }else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && interestRateField.getText().trim().isEmpty()){
-                //calculate interestRateField
+                //calculating the Interest Rate
 
                 double futureValue = parseDouble(futureValueField.getText());
                 double presentValue = parseDouble(presentValueField.getText());
                 double years = parseDouble(yearsField.getText());
                 double nOF = 12.0;
 
-//                double interestRateOutcome = nOF*(Math.pow((futureValue/presentValue),(1/nOF*years))-1);
-
                 double interestRateOutcome = nOF*(Math.pow((futureValue/presentValue),(1/(nOF*years))-1));
-                interestRateField.setText(String.valueOf(interestRateOutcome));
+                double outcome = Double.valueOf(df.format(interestRateOutcome));
+                interestRateField.setText(String.valueOf(outcome));
 
                 try {
-                    FileWrite.simpleSaving("simpleSaving.txt",futureValue,presentValue,interestRateOutcome,years);
+                    FileWrite.simpleSaving("simpleSaving.txt",futureValue,presentValue,outcome,years);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,yearsField)==1 && yearsField.getText().trim().isEmpty()){
-                //calculate years
+                //calculating the years
 
                 double futureValue = parseDouble(futureValueField.getText());
                 double presentValue = parseDouble(presentValueField.getText());
@@ -194,18 +168,16 @@ public class SimpleSaving {
                 double nOF = 12.0;
 
                 double yearsOutcome = (Math.log(futureValue/presentValue))/nOF*(Math.log(1+(interestRate/nOF)));
-                yearsField.setText(String.valueOf(yearsOutcome));
+                double outcome = Double.valueOf(df.format(yearsOutcome));
+                yearsField.setText(String.valueOf(outcome));
 
                 try {
-                    FileWrite.simpleSaving("simpleSaving.txt",futureValue,presentValue,interestRate,yearsOutcome);
+                    FileWrite.simpleSaving("simpleSaving.txt",futureValue,presentValue,interestRate,outcome);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
             }
-
-
-
         });
 
         resetBtn.setOnAction(e->{
@@ -215,19 +187,8 @@ public class SimpleSaving {
             yearsField.clear();
         });
 
-        activeCheck(futureValueField,presentValueField,interestRateField,yearsField);
 
 
-
-//        Button btnBack = new Button("Back");
-//        btnBack.setId("backBtn");
-//        btnBack.setLayoutX(10);
-//        btnBack.setLayoutY(10);
-
-//        btnBack.setOnAction(e -> {
-//            window.close();
-//            HomePage.display();
-//        });
 
         Pane simpleSavingPane = new Pane();
 
@@ -235,10 +196,6 @@ public class SimpleSaving {
                 futureValueText,presentValueText,interestRateText,yearsText,Keyboard.displayKeyboard(130,40,futureValueField,presentValueField,interestRateField,yearsField),
                 presentValueField,interestRateField,yearsField,calculateBtn, futureValueField, resetBtn,TopBar.display(window,0,10)
         );
-
-
-
-
 
         keyBoardScene = new Scene(simpleSavingPane,900,700);
         keyBoardScene.getStylesheets().add(HomePage.class.getResource("stylesheet.css").toExternalForm());
@@ -248,7 +205,7 @@ public class SimpleSaving {
         window.show();
 
 
-        //When the UI close Button is Clicked;
+        //Writing into the TempFile when the close button is clicked
         window.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST,event -> {
             try {
                 FileTempoWrite.simpleSaving("simpleSavingTemp.txt",futureValueField.getText(),presentValueField.getText(),interestRateField.getText(),yearsField.getText());
@@ -258,54 +215,7 @@ public class SimpleSaving {
         });
     }
 
-
-    private static int checkAll(TextField... textFields){
-        int count = 0;
-        for(TextField textField : textFields){
-                if (textField.getText().trim().isEmpty()){
-                    count++;
-                }
-        }
-        return count;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    private static void activeCheck(TextField... textFields){
-        for (TextField textField : textFields) {
-            textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
-                String active = textField.getId();
-            });
-        }
-    }
-
-
-
+    //Method to create TextFields
     private static TextField createTextField(double x, double y, double j, double k,String id){
         TextField textField = new TextField();
         textField.setLayoutX(x);
@@ -314,24 +224,5 @@ public class SimpleSaving {
         textField.setPrefSize(j,k);
 
         return textField;
-    }
-
-    private static void installListener(TextField... textFields) {
-
-        // Install the same listener on all of them
-        for (TextField textField : textFields) {
-            textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
-
-                // Set the selectedTextField to null whenever focus is lost. This accounts for the
-                // TextField losing focus to another control that is NOT a TextField
-                TextField selectedTextField = null;
-
-                if (newValue) {
-                    // The new textfield is focused, so set the global reference
-                    selectedTextField = textField;
-//                    System.out.println("Selected Text: " + selectedTextField.getText());
-                }
-            });
-        }
     }
 }

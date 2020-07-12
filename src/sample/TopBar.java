@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class TopBar {
     public static Pane display(Stage stage, double x, double y){
@@ -65,6 +66,8 @@ public class TopBar {
             try {
                 History.display();
             } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         });

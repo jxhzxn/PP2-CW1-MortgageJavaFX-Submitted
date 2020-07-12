@@ -3,7 +3,10 @@ package sample;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import java.io.FileNotFoundException;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Keyboard {
     public static Pane displayKeyboard(double x, double y, TextField... textFields){
@@ -40,8 +43,9 @@ public class Keyboard {
         for (TextField textField : textFields) {
             textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
                 TextField selectedTextField = null;
-
+                AtomicReference<String> checkPoint = new AtomicReference<>("false");
                 if (newValue) {
+
                     selectedTextField = textField;
 
                     TextField finalSelectedTextField = selectedTextField;
@@ -112,13 +116,21 @@ public class Keyboard {
                         String currentVal = finalSelectedTextField9.getText();
                         String btn9Value = button9.getText();
                         finalSelectedTextField9.setText(currentVal+btn9Value);
+                        System.out.println(checkPoint.get());
                     });
 
+                    //Point Button
                     TextField finalSelectedTextField10 = selectedTextField;
                     buttonPoint.setOnAction(event -> {
-                        String currentVal = finalSelectedTextField10.getText();
-                        String btnPointValue = buttonPoint.getText();
-                        finalSelectedTextField10.setText(currentVal+btnPointValue);
+                        if(checkPoint.get() == "true"){
+
+                        }else{
+                            String currentVal = finalSelectedTextField10.getText();
+                            String btnPointValue = buttonPoint.getText();
+                            finalSelectedTextField10.setText(currentVal+btnPointValue);
+                            checkPoint.set("true");
+                        }
+
                     });
 
                     TextField finalSelectedTextField11 = selectedTextField;
@@ -159,5 +171,22 @@ public class Keyboard {
         button.setPrefSize(j,k);
 
         return button;
+    }
+
+    public static boolean test(String currentVal){
+        boolean out;
+        for(int i=0; i<currentVal.length()-1; i++){
+            List<Character> readList = new ArrayList<>();
+            readList.add(currentVal.charAt(i));
+
+            for (int x=0; x<readList.size()-1; x++){
+                if (readList.get(i)=='.'){
+                    out = true;
+                }else{
+                    out = false;
+                }
+            }
+        }
+        return true;
     }
 }

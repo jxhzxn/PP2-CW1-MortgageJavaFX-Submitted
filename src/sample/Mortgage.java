@@ -22,8 +22,6 @@ public class Mortgage{
         Scene keyBoardScene;
         window.setTitle("Mortgage");
 
-
-
         Text mortgageAmountText = new Text("Mortgage Amount");
         Text mortgageTermText = new Text("Mortgage Term");
         Text interestRateText = new Text("Interest Rate");
@@ -38,7 +36,6 @@ public class Mortgage{
         resetBtn.setId("keyboardButton");
         resetBtn.setLayoutX(250);
         resetBtn.setLayoutY(500);
-
 
         mortgageAmountText.setId("fdText");
         mortgageTermText.setId("fdText");
@@ -58,17 +55,10 @@ public class Mortgage{
         monthPaymentText.setLayoutY(430);
 
 
-
-//        TextField futureValueField =     createTextField(300,180,120,60,"futureValueField");
-        TextField mortgageAmountField = createTextField(300,180,120,60,"futureValueField");
-        TextField mortgageTermField =    createTextField(300,250,120,60,"presentValueField");
-        TextField interestRateField =   createTextField(300,320,120,60,"interestRateField");
-        TextField monthField =          createTextField(300,390,120,60,"yearsField");
-
-//        installListener(futureValueField,presentValueField,interestRateField,yearsField);
-
-//        File readList = new File("simpleSavingTemp.txt");
-//        if(readFile.isDirectory()){
+        TextField mortgageAmountField =     createTextField(300,180,150,60,"futureValueField");
+        TextField mortgageTermField =       createTextField(300,250,150,60,"presentValueField");
+        TextField interestRateField =       createTextField(300,320,150,60,"interestRateField");
+        TextField monthField =              createTextField(300,390,150,60,"yearsField");
 
 
         List<String> readList = FileReadTemp.read("./mortgageTemp.txt");
@@ -76,44 +66,15 @@ public class Mortgage{
         mortgageTermField.setText(readList.get(1));
         interestRateField.setText(readList.get(2));
         monthField.setText(readList.get(3));
-//        try {
-//            FileTempoWrite.simpleSaving("simpleSavingTemp.txt","","","","");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-
-//        }else{
-//            System.out.print("file isn't there");
-//        }
-
-
-
-
-
-
-
-
-
 
 
         calculateBtn.setOnAction(event -> {
-
-//                   try {
-//                FileTempoWrite.write("simpleSaving.txt","","","","");
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
 
             try {
                 FileTempoWrite.simpleSaving("mortgageTemp.txt"," "," "," "," ");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
-//            window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
-
 
             if(TextFieldValidate.check(mortgageAmountField,mortgageTermField,interestRateField,monthField)==0){
 
@@ -158,23 +119,7 @@ public class Mortgage{
                 }
 
             }else if(TextFieldValidate.check(mortgageAmountField,mortgageTermField,interestRateField,monthField)==1 && interestRateField.getText().trim().isEmpty()){
-                //calculate interestRateField
-
-                double futureValue = parseDouble(mortgageAmountField.getText());
-                double presentValue = parseDouble(mortgageTermField.getText());
-                double years = parseDouble(monthField.getText());
-                double nOF = 12.0;
-
-//                double interestRateOutcome = nOF*(Math.pow((futureValue/presentValue),(1/nOF*years))-1);
-
-                double interestRateOutcome = nOF*(Math.pow((futureValue/presentValue),(1/(nOF*years))-1));
-                interestRateField.setText(String.valueOf(interestRateOutcome));
-
-                try {
-                    FileWrite.simpleSaving("mortgage.txt",futureValue,presentValue,interestRateOutcome,years);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                WarningBox.display("Interest Rate cannot be calculated","Please try calculating some other field");
             }else if(TextFieldValidate.check(mortgageAmountField,mortgageTermField,interestRateField,monthField)==1 && monthField.getText().trim().isEmpty()){
                 //calculate years
 
@@ -205,19 +150,11 @@ public class Mortgage{
             monthField.clear();
         });
 
-        activeCheck(mortgageAmountField,mortgageTermField,interestRateField,monthField);
 
 
 
-//        Button btnBack = new Button("Back");
-//        btnBack.setId("backBtn");
-//        btnBack.setLayoutX(10);
-//        btnBack.setLayoutY(10);
 
-//        btnBack.setOnAction(e -> {
-//            window.close();
-//            HomePage.display();
-//        });
+
 
         Pane root2 = new Pane();
         root2.getChildren().addAll(
@@ -247,53 +184,7 @@ public class Mortgage{
         });
     }
 
-
-    private static int checkAll(TextField... textFields){
-        int count = 0;
-        for(TextField textField : textFields){
-            if (textField.getText().trim().isEmpty()){
-                count++;
-            }
-        }
-        return count;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    private static void activeCheck(TextField... textFields){
-        for (TextField textField : textFields) {
-            textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
-//                System.out.println(textField.getId()+" is Active");
-                String active = textField.getId();
-            });
-        }
-    }
-
-
-
+    //Method to create TextFields
     private static TextField createTextField(double x, double y, double j, double k,String id){
         TextField textField = new TextField();
         textField.setLayoutX(x);
@@ -304,22 +195,5 @@ public class Mortgage{
         return textField;
     }
 
-    private static void installListener(TextField... textFields) {
 
-        // Install the same listener on all of them
-        for (TextField textField : textFields) {
-            textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
-
-                // Set the selectedTextField to null whenever focus is lost. This accounts for the
-                // TextField losing focus to another control that is NOT a TextField
-                TextField selectedTextField = null;
-
-                if (newValue) {
-                    // The new textfield is focused, so set the global reference
-                    selectedTextField = textField;
-//                    System.out.println("Selected Text: " + selectedTextField.getText());
-                }
-            });
-        }
-    }
 }

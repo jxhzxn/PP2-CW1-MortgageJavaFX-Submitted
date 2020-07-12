@@ -10,6 +10,7 @@ import javafx.stage.WindowEvent;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import static java.lang.Double.parseDouble;
@@ -20,6 +21,8 @@ public class CompoundSaving {
         Stage window = new Stage();
         Scene keyBoardScene;
         window.setTitle("Compound Savings");
+
+        DecimalFormat df = new DecimalFormat("#.##");
 
         Text futureValueText = new Text("Future Value");
         Text presentValueText = new Text("Present Value");
@@ -62,11 +65,11 @@ public class CompoundSaving {
 
 
 //        TextField futureValueField =     createTextField(300,180,120,60,"futureValueField");
-        TextField futureValueField =        createTextField(300,180,120,60,"futureValueField");
-        TextField presentValueField =       createTextField(300,250,120,60,"presentValueField");
-        TextField interestRateField =       createTextField(300,320,120,60,"interestRateField");
-        TextField monthlyPaymentField =     createTextField(300,390,120,60,"yearsField");
-        TextField yearsField =              createTextField(300,460,120,60,"yearsField");
+        TextField futureValueField =        createTextField(300,180,150,60,"futureValueField");
+        TextField presentValueField =       createTextField(300,250,150,60,"presentValueField");
+        TextField interestRateField =       createTextField(300,320,150,60,"interestRateField");
+        TextField monthlyPaymentField =     createTextField(300,390,150,60,"yearsField");
+        TextField yearsField =              createTextField(300,460,150,60,"yearsField");
 
         List<String> readList = FileReadTemp.read("./compoundSavingTemp.txt");
         futureValueField.setText(readList.get(0));
@@ -110,10 +113,11 @@ public class CompoundSaving {
                 double nOF = 12.0;
 
                 double futureValeOutcome = ((presentValue*Math.pow(1+(interestRate/nOF),nOF*years))+payment*(((Math.pow((1+(interestRate/nOF)),(nOF*years)))-1)/(interestRate/nOF)));
-                futureValueField.setText(String.valueOf(futureValeOutcome));
+                double outcome = Double.valueOf(df.format(futureValeOutcome));
+                futureValueField.setText(String.valueOf(outcome));
 
                 try {
-                    FileWrite.compoundSaving("compoundSaving.txt",futureValeOutcome,presentValue,interestRate,payment,years);
+                    FileWrite.compoundSaving("compoundSaving.txt",outcome,presentValue,interestRate,payment,years);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -128,28 +132,17 @@ public class CompoundSaving {
                 double nOF = 12.0;
 
                 double presentValueOutcome = ((futureValue-(payment*(((Math.pow((1+(interestRate/nOF)),(nOF*years)))-1)/(interestRate/nOF))))/(Math.pow((1+(interestRate/nOF)),(nOF*years))));
-                presentValueField.setText(String.valueOf(presentValueOutcome));
+                double outcome = Double.valueOf(df.format(presentValueOutcome));
+                presentValueField.setText(String.valueOf(outcome));
 
                 try {
-                    FileWrite.compoundSaving("compoundSaving.txt",futureValue,presentValueOutcome,interestRate,payment,years);
+                    FileWrite.compoundSaving("compoundSaving.txt",futureValue,outcome,interestRate,payment,years);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
             }else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && interestRateField.getText().trim().isEmpty()){
-                //calculate interestRateField
-                //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Still NO:::::::::::::::::::::::::::::::::::::://
-
-                double futureValue = parseDouble(futureValueField.getText());
-                double presentValue = parseDouble(presentValueField.getText());
-                double years = parseDouble(yearsField.getText());
-                double payment = parseDouble(monthlyPaymentField.getText());
-                double nOF = 12.0;
-
-                double interestRateOutcome = nOF*(Math.pow((futureValue/presentValue),(1/nOF*years))-1);
-                interestRateField.setText(String.valueOf(interestRateOutcome));
-
-                System.out.println("calculate Interest");
+                WarningBox.display("Interest Rate cannot be calculated","Please try calculating some other field");
             }else if(TextFieldValidate.check(futureValueField,presentValueField,interestRateField,monthlyPaymentField,yearsField)==1 && yearsField.getText().trim().isEmpty()){
                 //calculate years
 
@@ -160,10 +153,11 @@ public class CompoundSaving {
                 double nOF = 12.0;
 
                 double yearsOutcome =  (Math.log((((interestRate*futureValue)/nOF)+payment)/(((presentValue*interestRate)/nOF)+payment))/(nOF*(Math.log((1+(interestRate/nOF))))));
-                yearsField.setText(String.valueOf(yearsOutcome));
+                double outcome = Double.valueOf(df.format(yearsOutcome));
+                yearsField.setText(String.valueOf(outcome));
 
                 try {
-                    FileWrite.compoundSaving("compoundSaving.txt",futureValue,presentValue,interestRate,payment,yearsOutcome);
+                    FileWrite.compoundSaving("compoundSaving.txt",futureValue,presentValue,interestRate,payment,outcome);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -177,16 +171,14 @@ public class CompoundSaving {
                 double nOF = 12.0;
 
                 double paymentOutcome = ((futureValue-(presentValue*Math.pow((1+(interestRate/nOF)),(nOF*years))))/((Math.pow((1+(interestRate/nOF)),(nOF*years))-1)/(interestRate/nOF)));
-                monthlyPaymentField.setText(String.valueOf(paymentOutcome));
+                double outcome = Double.valueOf(df.format(paymentOutcome));
+                monthlyPaymentField.setText(String.valueOf(outcome));
 
                 try {
-                    FileWrite.compoundSaving("compoundSaving.txt",futureValue,presentValue,interestRate,paymentOutcome,years);
+                    FileWrite.compoundSaving("compoundSaving.txt",futureValue,presentValue,interestRate,outcome,years);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-
-
             }
         });
 
@@ -197,20 +189,6 @@ public class CompoundSaving {
             monthlyPaymentField.clear();
             yearsField.clear();
         });
-
-        activeCheck(futureValueField,presentValueField,interestRateField,yearsField);
-
-
-
-//        Button btnBack = new Button("Back");
-//        btnBack.setId("backBtn");
-//        btnBack.setLayoutX(10);
-//        btnBack.setLayoutY(10);
-//
-//        btnBack.setOnAction(e -> {
-//            window.close();
-//            HomePage.display();
-//        });
 
         Pane root2 = new Pane();
         root2.getChildren().addAll(
@@ -225,7 +203,7 @@ public class CompoundSaving {
         window.setScene(keyBoardScene);
         window.show();
 
-        //When the UI close Button is Clicked;
+        //Writing into temporary file when the UI close button is clicked
         window.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, event -> {
             try {
                 FileTempoWrite.compoundSaving("compoundSavingTemp.txt",futureValueField.getText(),presentValueField.getText(),interestRateField.getText(),monthlyPaymentField.getText(),yearsField.getText());
@@ -236,53 +214,7 @@ public class CompoundSaving {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    private static int checkAll(TextField... textFields){
-        int count = 0;
-        for(TextField textField : textFields){
-            if (textField.getText().trim().isEmpty()){
-                count++;
-            }
-        }
-//        System.out.println(count);
-        return count;
-    }
-
-    private static void activeCheck(TextField... textFields){
-        for (TextField textField : textFields) {
-            textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
-//                System.out.println(textField.getId()+" is Active");
-                String active = textField.getId();
-            });
-        }
-    }
-
-
-
+    //Method to create TextFields
     private static TextField createTextField(double x, double y, double j, double k,String id){
         TextField textField = new TextField();
         textField.setLayoutX(x);
@@ -293,22 +225,5 @@ public class CompoundSaving {
         return textField;
     }
 
-    private static void installListener(TextField... textFields) {
 
-        // Install the same listener on all of them
-        for (TextField textField : textFields) {
-            textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
-
-                // Set the selectedTextField to null whenever focus is lost. This accounts for the
-                // TextField losing focus to another control that is NOT a TextField
-                TextField selectedTextField = null;
-
-                if (newValue) {
-                    // The new textfield is focused, so set the global reference
-                    selectedTextField = textField;
-//                    System.out.println("Selected Text: " + selectedTextField.getText());
-                }
-            });
-        }
-    }
 }

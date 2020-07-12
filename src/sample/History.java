@@ -1,20 +1,20 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import static java.lang.Double.parseDouble;
+import java.util.List;
 
 public class History {
 
-    public static void display() throws FileNotFoundException {
+    public static void display() throws IOException {
         Stage window = new Stage();
         Scene keyBoardScene;
         window.setTitle("History");
@@ -71,21 +71,17 @@ public class History {
 
 
 
-
-
-
-
-
-
-
-
-
-
         Pane root2 = new Pane();
+
         root2.getChildren().addAll(
                 simpleSavingRead,simpleSavingHead,compoundSavingHead,compoundSavingRead,loanHead,loanRead,TopBar.display(window,0,10)
-
         );
+
+
+
+
+
+
 
 
         keyBoardScene = new Scene(root2,900,700);
@@ -128,23 +124,19 @@ public class History {
         return textField;
     }
 
-    private static void installListener(TextField... textFields) {
+    public ObservableList<String> testing(){
+        ObservableList<String> testing = FXCollections.observableArrayList();
+        testing.add("hi");
+        testing.add("hi1");
+        testing.add("hi2");
+        testing.add("hi3");
 
-        // Install the same listener on all of them
-        for (TextField textField : textFields) {
-            textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
-
-                // Set the selectedTextField to null whenever focus is lost. This accounts for the
-                // TextField losing focus to another control that is NOT a TextField
-                TextField selectedTextField = null;
-
-                if (newValue) {
-                    // The new textfield is focused, so set the global reference
-                    selectedTextField = textField;
-//                    System.out.println("Selected Text: " + selectedTextField.getText());
-                }
-            });
-        }
+        return testing;
     }
+
+
+
+
+
 }
 

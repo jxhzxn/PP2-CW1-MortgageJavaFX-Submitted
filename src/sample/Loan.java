@@ -10,6 +10,7 @@ import javafx.stage.WindowEvent;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import static java.lang.Double.parseDouble;
@@ -20,6 +21,8 @@ public class Loan {
         Stage window = new Stage();
         Scene keyBoardScene;
         window.setTitle("Loan");
+
+        DecimalFormat df = new DecimalFormat("#.##");
 
 
 
@@ -59,10 +62,10 @@ public class Loan {
 
 
 //        TextField futureValueField =     createTextField(300,180,120,60,"futureValueField");
-        TextField loanAmountField = createTextField(300,180,120,60,"futureValueField");
-        TextField monthlyPaymentField =    createTextField(300,250,120,60,"presentValueField");
-        TextField interestRateField =   createTextField(300,320,120,60,"interestRateField");
-        TextField monthField =          createTextField(300,390,120,60,"yearsField");
+        TextField loanAmountField =         createTextField(300,180,150,60,"futureValueField");
+        TextField monthlyPaymentField =     createTextField(300,250,150,60,"presentValueField");
+        TextField interestRateField =       createTextField(300,320,150,60,"interestRateField");
+        TextField monthField =              createTextField(300,390,150,60,"yearsField");
 
 //        installListener(futureValueField,presentValueField,interestRateField,yearsField);
 
@@ -79,44 +82,17 @@ public class Loan {
 
 
 
-//        try {
-//            FileTempoWrite.simpleSaving("simpleSavingTemp.txt","","","","");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-
-//        }else{
-//            System.out.print("file isn't there");
-//        }
-
-
-
-
-
-
-
 
 
 
 
         calculateBtn.setOnAction(event -> {
 
-//                   try {
-//                FileTempoWrite.write("simpleSaving.txt","","","","");
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-
             try {
                 FileTempoWrite.simpleSaving("loanTemp.txt"," "," "," "," ");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
-//            window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
-
 
             if(TextFieldValidate.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)==0){
 
@@ -134,10 +110,11 @@ public class Loan {
                 double month = parseDouble(monthField.getText());
 
                 double loanAmountOutcome = ((monthlyPayment/interestRate)*(1-(1/(Math.pow((1+interestRate),(month))))));
-                loanAmountField.setText(String.valueOf(loanAmountOutcome));
+                double outcome = Double.valueOf(df.format(loanAmountOutcome));
+                loanAmountField.setText(String.valueOf(outcome));
 
                 try {
-                    FileWrite.loan("loan.txt",loanAmountOutcome,monthlyPayment,interestRate,month);
+                    FileWrite.loan("loan.txt",outcome,monthlyPayment,interestRate,month);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -150,27 +127,18 @@ public class Loan {
                 double month = parseDouble(monthField.getText());
 
                 double monthlyPaymentOutcome = ((loanAmount*interestRate)/(1-(1/(Math.pow((1+interestRate),(month))))));
-                monthlyPaymentField.setText(String.valueOf(monthlyPaymentOutcome));
+                double outcome = Double.valueOf(df.format(monthlyPaymentOutcome));
+                monthlyPaymentField.setText(String.valueOf(outcome));
 
                 try {
-                    FileWrite.loan("loan.txt",loanAmount,monthlyPaymentOutcome,interestRate,month);
+                    FileWrite.loan("loan.txt",loanAmount,outcome,interestRate,month);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
             }else if(TextFieldValidate.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)==1 && interestRateField.getText().trim().isEmpty()){
                 //calculate interestRateField
-                //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Still NO:::::::::::::::::::::::::::::::::::::://
-                double monthlyPayment = parseDouble(monthlyPaymentField.getText());
-                double loanAmount = parseDouble(loanAmountField.getText());
-                double month = parseDouble(monthField.getText());
-
-                try {
-                    FileWrite.loan("loan.txt",0.0,0.0,0.0,0.0);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Still NO:::::::::::::::::::::::::::::::::::::://
+                WarningBox.display("Interest Rate cannot be calculated","Please try calculating some other field");
             }else if(TextFieldValidate.check(loanAmountField,monthlyPaymentField,interestRateField,monthField)==1 && monthField.getText().trim().isEmpty()){
                 //calculate month
 
@@ -179,10 +147,11 @@ public class Loan {
                 double interestRate = parseDouble(interestRateField.getText())/100;
 
                 double monthOutcome = ((Math.log((monthlyPayment/interestRate)/((monthlyPayment/interestRate)-loanAmount)))/(Math.log(1+interestRate)));
-                monthField.setText(String.valueOf(monthOutcome));
+                double outcome = Double.valueOf(df.format(monthOutcome));
+                monthField.setText(String.valueOf(outcome));
 
                 try {
-                    FileWrite.loan("loan.txt",loanAmount,monthlyPayment,interestRate,monthOutcome);
+                    FileWrite.loan("loan.txt",loanAmount,monthlyPayment,interestRate,outcome);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -200,19 +169,6 @@ public class Loan {
             monthField.clear();
         });
 
-        activeCheck(loanAmountField,monthlyPaymentField,interestRateField,monthField);
-
-
-
-//        Button btnBack = new Button("Back");
-//        btnBack.setId("backBtn");
-//        btnBack.setLayoutX(10);
-//        btnBack.setLayoutY(10);
-
-//        btnBack.setOnAction(e -> {
-//            window.close();
-//            HomePage.display();
-//        });
 
         Pane root2 = new Pane();
         root2.getChildren().addAll(
@@ -240,52 +196,6 @@ public class Loan {
     }
 
 
-    private static int checkAll(TextField... textFields){
-        int count = 0;
-        for(TextField textField : textFields){
-            if (textField.getText().trim().isEmpty()){
-                count++;
-            }
-        }
-        return count;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    private static void activeCheck(TextField... textFields){
-        for (TextField textField : textFields) {
-            textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
-//                System.out.println(textField.getId()+" is Active");
-                String active = textField.getId();
-            });
-        }
-    }
-
-
-
     private static TextField createTextField(double x, double y, double j, double k,String id){
         TextField textField = new TextField();
         textField.setLayoutX(x);
@@ -296,22 +206,4 @@ public class Loan {
         return textField;
     }
 
-    private static void installListener(TextField... textFields) {
-
-        // Install the same listener on all of them
-        for (TextField textField : textFields) {
-            textField.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
-
-                // Set the selectedTextField to null whenever focus is lost. This accounts for the
-                // TextField losing focus to another control that is NOT a TextField
-                TextField selectedTextField = null;
-
-                if (newValue) {
-                    // The new textfield is focused, so set the global reference
-                    selectedTextField = textField;
-//                    System.out.println("Selected Text: " + selectedTextField.getText());
-                }
-            });
-        }
-    }
 }
