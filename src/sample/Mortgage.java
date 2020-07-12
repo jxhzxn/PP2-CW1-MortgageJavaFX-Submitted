@@ -71,18 +71,18 @@ public class Mortgage{
         TextField monthField =              createTextField(300,460,150,60,"yearsField");
 
 
-//        List<String> readList = FileReadTemp.read("./mortgageTemp.txt");
-//        mortgageAmountField.setText(readList.get(0));
-//        downPaymentField.setText(readList.get(1));
-//        mortgageTermField.setText(readList.get(2));
-//        interestRateField.setText(readList.get(3));
-//        monthField.setText(readList.get(4));
+        List<String> readList = FileReadTemp.read("./mortgageTemp.txt");
+        mortgageAmountField.setText(readList.get(0));
+        downPaymentField.setText(readList.get(1));
+        mortgageTermField.setText(readList.get(2));
+        interestRateField.setText(readList.get(3));
+        monthField.setText(readList.get(4));
 
 
         calculateBtn.setOnAction(event -> {
 
             try {
-                FileTempoWrite.simpleSaving("mortgageTemp.txt"," "," "," "," ");
+                FileTempoWrite.mortgage("mortgageTemp.txt",""," "," "," "," ");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -109,7 +109,7 @@ public class Mortgage{
                 mortgageAmountField.setText(String.valueOf(outcome));
 
                 try {
-                    FileWrite.simpleSaving("mortgage.txt",outcome,mortgageTerm,interestRate,monthPMT);
+                    FileWrite.mortgage("mortgage.txt",outcome,downPayment,mortgageTerm,interestRate,monthPMT);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -129,7 +129,7 @@ public class Mortgage{
                 mortgageTermField.setText(String.valueOf(outcome));
 
                 try {
-                    FileWrite.simpleSaving("mortgage.txt",mortgageAmount,outcome,interestRate,monthPMT);
+                    FileWrite.mortgage("mortgage.txt",mortgageAmount,downPayment,outcome,interestRate,monthPMT);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -150,11 +150,11 @@ public class Mortgage{
                 double outcome = Double.valueOf(df.format(mortgageMonthPMTOutcome));
                 monthField.setText(String.valueOf(outcome));
 
-//                try {
-//                    FileWrite.simpleSaving("mortgage.txt",mortgageAmount,mortgageTerm,interestRate,outcome);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
+                try {
+                    FileWrite.mortgage("mortgage.txt",mortgageAmount,downPayment,mortgageTerm,interestRate,outcome);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             }else if(TextFieldValidate.check(mortgageAmountField,downPaymentField,mortgageTermField,interestRateField,monthField)==1 && downPaymentField.getText().trim().isEmpty()){
                 //calculate downPayment
@@ -171,7 +171,7 @@ public class Mortgage{
                 downPaymentField.setText(String.valueOf(outcome));
 
                 try {
-                    FileWrite.simpleSaving("mortgage.txt",mortgageAmount,mortgageTerm,interestRate,outcome);
+                    FileWrite.mortgage("mortgage.txt",mortgageAmount,outcome,mortgageTerm,interestRate,monthPMT);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -217,7 +217,7 @@ public class Mortgage{
         //When the UI close Button is Clicked;
         window.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST,event -> {
             try {
-                FileTempoWrite.simpleSaving("mortgageTemp.txt",mortgageAmountField.getText(),mortgageTermField.getText(),interestRateField.getText(),monthField.getText());
+                FileTempoWrite.mortgage("mortgageTemp.txt",mortgageAmountField.getText(),downPaymentField.getText(),mortgageTermField.getText(),interestRateField.getText(),monthField.getText());
             } catch (IOException e) {
                 e.printStackTrace();
             }

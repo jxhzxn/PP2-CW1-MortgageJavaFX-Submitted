@@ -19,6 +19,8 @@ public class FileWrite{
             printWriter.println("Present Value : "+presentValue);
             printWriter.println("Interest : "+interestRate*100+"%");
             printWriter.println("Years : "+years);
+            printWriter.println("");
+
 
             printWriter.close();
         }
@@ -28,35 +30,52 @@ public class FileWrite{
     public static void compoundSaving(String fileName, double futureValue, double presentValue, double interestRate, double payment, double years) throws IOException {
 
         File file = new File(fileName);
-        FileWriter fileWriter = new FileWriter(file);
-        PrintWriter printWriter = new PrintWriter(fileWriter);
+        if (file.exists()) {
+            FileWriter fileWriter = new FileWriter(file,true);
+            PrintWriter printWriter = new PrintWriter(fileWriter);
 
-        printWriter.println("Future Value : "+futureValue);
-        printWriter.println("Present Value : "+presentValue);
-        printWriter.println("Interest : "+interestRate*100+"%");
-        printWriter.println("Monthly Payment : "+payment);
-        printWriter.println("Years : "+years);
+            printWriter.println("Future Value : "+futureValue);
+            printWriter.println("Present Value : "+presentValue);
+            printWriter.println("Interest : "+interestRate*100+"%");
+            printWriter.println("Monthly Payment : "+payment);
+            printWriter.println("Years : "+years);
+            printWriter.println("");
+            printWriter.close();
+        }
 
-        printWriter.close();
 
     }
 
     public static void loan(String fileName, double loanAmount, double monthlyPayment, double interestRate, double month) throws IOException {
-
         File file = new File(fileName);
-        FileWriter fileWriter = new FileWriter(file);
-        PrintWriter printWriter = new PrintWriter(fileWriter);
-        Scanner reader = new Scanner(file);
+        if (file.exists()) {
+            FileWriter fileWriter = new FileWriter(file,true);
+            PrintWriter printWriter = new PrintWriter(fileWriter);
 
-        while(reader.hasNextLine()){
             printWriter.println("Loan Amount : "+loanAmount);
             printWriter.println("Monthly Payment : "+monthlyPayment);
             printWriter.println("Interest : "+interestRate*100+"%");
-            printWriter.println("Loan Month Terms : "+month);
+            printWriter.println("Loan Month Terms : "+monthlyPayment);
+            printWriter.println("");
+            printWriter.close();
         }
+    }
 
+    public static void mortgage(String fileName, double mortgageAmount, double downPayment, double mortgageTerm, double interestRate, double monthPayment) throws IOException {
 
-        printWriter.close();
+        File file = new File(fileName);
+        if (file.exists()) {
+            FileWriter fileWriter = new FileWriter(file,true);
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+
+            printWriter.println("Mortgage Amount : "+mortgageAmount);
+            printWriter.println("Down Payment : "+downPayment);
+            printWriter.println("Mortgage Term : "+mortgageTerm);
+            printWriter.println("Interest : "+interestRate*100+"%");
+            printWriter.println("Monthly Payment : "+monthPayment);
+            printWriter.println("");
+            printWriter.close();
+        }
 
     }
 

@@ -58,6 +58,11 @@ public class History {
         Label lbl3 = new Label(FileRead.read("loan.txt"));
         Label lbl4 = new Label(FileRead.read("mortgage.txt"));
 
+        lbl1.setId("historyLabel");
+        lbl2.setId("historyLabel");
+        lbl3.setId("historyLabel");
+        lbl4.setId("historyLabel");
+
         Pane pane1 = new Pane();
         Pane pane2 = new Pane();
         Pane pane3 = new Pane();

@@ -53,4 +53,20 @@ public class FileTempoWrite{
 
     }
 
+    public static void mortgage(String fileName, String mortgageAmount, String downPayment,String mortgageTerm, String interestRate, String payment) throws IOException {
+
+        File file = new File(fileName);
+        FileWriter fileWriter = new FileWriter(file);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+
+        printWriter.println(mortgageAmount);
+        printWriter.println(downPayment);
+        printWriter.println(mortgageTerm);
+        printWriter.println(interestRate);
+        printWriter.println(payment);
+
+        printWriter.close();
+
+    }
+
 }

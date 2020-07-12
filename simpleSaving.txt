@@ -1,106 +1,22 @@
-Future Value : 1490.59
+Future Value : 1418.04
 Present Value : 1000.0
 Interest : 5.0%
-Years : 8.0
+Years : 7.0
 
 
-Future Value : 1.671397140019884E54
-Present Value : 1111.0
-Interest : 111.00000000000001%
-Years : 111.0
-Future Value : 1221.0
+Future Value : 1520.37
 Present Value : 1000.0
-Interest : 4.0%
-Years : 5.0
-Future Value : 1221.0
-Present Value : 1000.0
-Interest : 4.0%
-Years : 5.0
-Future Value : 1221.0
-Present Value : 1000.0
-Interest : 986.0%
-Years : 5.0
-Future Value : 1221.0
-Present Value : 1000.0
-Interest : 4.0%
-Years : 0.0
-Future Value : 1221.0
-Present Value : 1000.0
-Interest : 4.0%
-Years : 0.0
-Future Value : 53.05
-Present Value : 52.0
-Interest : 1.0%
-Years : 2.0
-Future Value : 1283.36
-Present Value : 1000.0
-Interest : 5.0%
-Years : 5.0
-Future Value : 1283.36
-Present Value : 1000.0
-Interest : 5.0%
-Years : 5.0
-Future Value : 1283.36
-Present Value : 1000.0
-Interest : 939.0%
-Years : 5.0
-Future Value : 1283.36
-Present Value : 1000.0
-Interest : 9.39%
-Years : 0.0
-Future Value : 1283.36
-Present Value : 1000.0
-Interest : 5.0%
-Years : 5.0
-Future Value : 1283.36
-Present Value : 1000.0
-Interest : 5.0%
-Years : 5.0
-Future Value : 1283.36
-Present Value : 1000.0
-Interest : 93894.0%
-Years : 5.0
-Future Value : 1283.36
-Present Value : 1000.0
-Interest : 5.0%
-Years : 5.0
-Future Value : 1283.36
-Present Value : 1000.0
-Interest : 5.0%
-Years : 5.0
-Future Value : 1283.36
-Present Value : 1000.0
-Interest : 500.0%
-Years : 5.0
-Future Value : 1283.36
-Present Value : 1000.0
-Interest : 5.0%
-Years : 0.0
-Future Value : 1283.36
-Present Value : 1000.0
-Interest : 5.0%
-Years : 5.0
-Future Value : 1283.36
-Present Value : 1000.0
-Interest : 5.0%
-Years : 5.0
-Future Value : 1283.36
-Present Value : 1000.0
-Interest : 5.0%
-Years : 5.0
-Future Value : 1418.04
-Present Value : 1000.0
-Interest : 5.0%
+Interest : 6.0%
 Years : 7.0
-Future Value : 1418.04
-Present Value : 1000.0
+
+
+Future Value : 1000.0
+Present Value : 5.0
 Interest : 5.0%
-Years : 7.0
-Future Value : 1418.04
-Present Value : 1000.0
-Interest : 500.0%
-Years : 7.0
-Future Value : 1418.04
-Present Value : 1000.0
-Interest : 5.0%
-Years : 7.0
+Years : 106.19
+
+Future Value : 8850.77
+Present Value : 3333.0
+Interest : 33.0%
+Years : 3.0
+

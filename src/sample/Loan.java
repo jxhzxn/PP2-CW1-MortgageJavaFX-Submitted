@@ -149,7 +149,7 @@ public class Loan {
 
                 double monthOutcome = ((Math.log((monthlyPayment/interestRate)/((monthlyPayment/interestRate)-loanAmount)))/(Math.log(1+interestRate)));
                 double outcome = Double.valueOf(df.format(monthOutcome));
-monthField.setText(String.valueOf(outcome));
+                monthField.setText(String.valueOf(outcome));
 
                 try {
                     FileWrite.loan("loan.txt",loanAmount,monthlyPayment,interestRate,outcome);

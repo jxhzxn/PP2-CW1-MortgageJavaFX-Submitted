@@ -53,6 +53,11 @@
     -fx-border-radius: 10px;
 }
 
+#historyLabel{
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
 
 
 
