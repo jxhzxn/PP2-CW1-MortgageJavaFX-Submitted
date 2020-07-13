@@ -1,21 +1,12 @@
-Future Value : 3389.77
-Present Value : 2000.0
-Interest : 10.0%
-Monthly Payment : 7.0
-Years : 4.0
-
-
-Future Value : 1432.7
+Future Value : 1281.24
 Present Value : 1000.0
-Interest : 6.0%
-Monthly Payment : 6.0
-Years : 3.0
+Interest : 5.0%
+Monthly Payment : 7.0
+Years : 2.0
 
-
-Future Value : 2216.36
-Present Value : 2000.0
-Interest : 2.0%
-Monthly Payment : 1.0
+Future Value : 27122.71
+Present Value : 4545.0
+Interest : 45.0%
+Monthly Payment : 4.0
 Years : 4.0
-
 
